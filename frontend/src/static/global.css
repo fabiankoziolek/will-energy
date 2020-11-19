@@ -1,0 +1,31 @@
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family-text);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--font-size-base-rem);
+  line-height: var(--line-height-base-rem);
+  color: var(--color-secondary);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 6px;
+}

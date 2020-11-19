@@ -1,0 +1,72 @@
+:root {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-primary: #f52e13;
+  --color-secondary: #01313f;
+  --color-background: #f8f4f1;
+  --color-background-light: #fffefd;
+  --color-gray-lighter: #e4e4e4;
+  --color-gray-light: #859099;
+  --color-gray-dark: #585555;
+  --color-green: #00a996;
+  --color-red: #f54877;
+
+  /* Fonts */
+  --font-family-text: 'Work Sans', sans-serif;
+  --font-family-heading: 'Poppins', sans-serif;
+  --font-size-base: 16px;
+  --font-size-base-rem: 1rem;
+  --line-height-base: 24px;
+  --line-height-base-rem: 1.5rem;
+
+  /* Typography */
+  --font-size-h1: 42px;
+  --line-height-h1: 42px;
+
+  --font-size-h2: 26px;
+  --line-height-h2: 36px;
+
+  --font-size-h3: 20px;
+  --line-height-h3: 34px;
+
+  --font-size-h4: 18px;
+  --line-height-h4: 28px;
+
+  --font-size-p: 16px;
+  --line-height-p: 24px;
+
+  --font-size-small: 14px;
+  --line-height-small: 22px;
+
+  --font-size-xsmall: 12px;
+  --line-height-xsmall: 18px;
+
+  /* Spacing */
+  --space-xxxs: 8px;
+  --space-xxs: 12px;
+  --space-xs: 16px;
+  --space-ssm: 20px;
+  --space-sm: 24px;
+  --space-md: 32px;
+  --space-lg: 40px;
+  --space-xl: 48px;
+  --space-xxl: 64px;
+  --space-xxxl: 96px;
+  --space-xxxxl: 128px;
+
+  /* Breakpoints */
+  /* TODO: use in media.css */
+  --breakpoint-phone-small: 360px;
+  --breakpoint-phone: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1336px;
+  --breakpoint-desktop-hd: 1600px;
+  --breakpoint-desktop-fhd: 1920px;
+
+  /* Transitions */
+  --transition-short: all 0.1s ease-in-out;
+  --transition-base: all 0.2s ease-in-out;
+  --transition-long: all 0.5s ease-in-out;
+}

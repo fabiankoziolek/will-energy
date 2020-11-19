@@ -1,0 +1,85 @@
+{
+  "name": "will-energy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "lint": "npm run lint:ts && npm run lint:css",
+    "lint:ts": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:css": "stylelint --syntax css \"src/**/*.css\"",
+    "format": "npm run format:ts && npm run format:css",
+    "format:ts": "prettier --write \"src/**/*.{ts,tsx}\" --parser typescript",
+    "format:css": "prettier --write \"src/**/*.css\" --parser css",
+    "test:api": "dotnet test ../../../WillEnergy.sln",
+    "integration": "npm run lint",
+    "integrationLater": "npm run lint && npm run test:api"
+  },
+  "dependencies": {
+    "antd": "^4.7.2",
+    "axios": "^0.20.0",
+    "classnames": "^2.2.6",
+    "formik": "^2.2.0",
+    "lodash": "^4.17.20",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-helmet-async": "^1.0.7",
+    "react-router-dom": "^5.2.0",
+    "typescript": "~3.7.2",
+    "uuid": "^8.3.1",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@craco/craco": "^5.7.0",
+    "@types/classnames": "^2.2.10",
+    "@types/lodash": "^4.14.162",
+    "@types/node": "^14.14.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/uuid": "^8.3.0",
+    "@types/yup": "^0.29.8",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "autoprefixer": "^9.8.6",
+    "cross-env": "^7.0.2",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "husky": "^4.3.0",
+    "postcss-calc": "^7.0.5",
+    "postcss-color-function": "^4.1.0",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-custom-properties": "^10.0.0",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-media-variables": "^2.0.1",
+    "postcss-mixins": "^6.2.3",
+    "postcss-nested": "^4.2.3",
+    "postcss-normalize": "^9.0.0",
+    "postcss-pxtorem": "^5.1.1",
+    "postcss-simple-vars": "^5.0.2",
+    "postcss-svgo": "^4.0.2",
+    "prettier": "^2.1.2",
+    "react-scripts": "^3.4.3",
+    "stylelint": "^13.7.2",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-prettier": "^1.1.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run integration"
+    }
+  }
+}

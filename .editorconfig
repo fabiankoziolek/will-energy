@@ -1,0 +1,131 @@
+root=true
+
+[*]
+charset=utf-8
+indent_style=space
+end_of_line=lf
+
+# Microsoft .NET properties
+csharp_space_after_cast=false
+
+# ReSharper properties
+resharper_space_within_single_line_array_initializer_braces=true
+
+[*.cs]
+indent_size=4
+insert_final_newline=true
+trim_trailing_whitespace=true
+max_line_length=140
+
+# SA0001: All diagnostics of XML documentation comments has been disabled due to the current project configuration.
+dotnet_diagnostic.sa0001.severity=none
+
+# SA1101: Prefix local calls with this
+dotnet_diagnostic.sa1101.severity=none
+
+# SA1117: Parameters should be on one line
+dotnet_diagnostic.sa1117.severity=none
+
+# SA1200: Using directives should be placed correctly
+dotnet_diagnostic.sa1200.severity=none
+
+# SA1201: Elements should appear in the correct order
+dotnet_diagnostic.sa1201.severity=none
+
+# SA1309: Field names should not begin with underscore
+dotnet_diagnostic.sa1309.severity=none
+
+# SA1401: Fields should be private
+dotnet_diagnostic.sa1401.severity=none
+
+# SA1402: File may only contain a single type
+dotnet_diagnostic.sa1402.severity=none
+
+# SA1407: Arithmetic calculations should have parentis
+dotnet_diagnostic.sa1407.severity=none
+
+# SA1413: The last statement in a multi-line C# initializer or list is missing a trailing comma.
+dotnet_diagnostic.sa1413.severity=warning
+
+# A single-line comment within C# code is followed by a blank line.
+dotnet_diagnostic.sa1512.severity=none
+
+# A single-line comment within C# code is not preceded by a blank line.
+dotnet_diagnostic.sa1515.severity=none
+
+# Elements should be followed by blank line
+dotnet_diagnostic.sa1516.severity=none
+
+# SA1600: Elements should be documented
+dotnet_diagnostic.sa1600.severity=none
+
+# SA1601: Partial elements should be documented
+dotnet_diagnostic.sa1601.severity=none
+
+# SA1602: Enum elements should be documented
+dotnet_diagnostic.sa1602.severity=none
+
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity=none
+
+# CS0219: The variable is assigned but its value is never used
+dotnet_diagnostic.cs0219.severity=warning
+
+# IDE0005: Remove unnecessary import
+dotnet_diagnostic.IDE0005.severity=warning
+
+# CA1040: Avoid empty interfaces
+dotnet_diagnostic.ca1040.severity=none
+
+# CA1062: Validate arguments of public methods
+dotnet_diagnostic.ca1062.severity=none
+
+# CA1031: Do not catch generic exceptions
+dotnet_diagnostic.ca1031.severity=none
+
+# CA1032: Implement standard exception methods
+dotnet_diagnostic.ca1032.severity=none
+
+# CA1305: Specify IFormatProvider
+dotnet_diagnostic.ca1305.severity=none
+
+# CA1716: Should not match keywords
+dotnet_diagnostic.ca1716.severity=none
+
+# CA1822: Nothing access the instance and can be marked as static
+dotnet_diagnostic.ca1822.severity=none
+
+# CA2000: Call dispose first
+dotnet_diagnostic.ca2000.severity=none
+
+# CA2007: Do not directly await a Task
+dotnet_diagnostic.ca2007.severity=none
+
+# CA2211: Non-constant fields should not be visible
+dotnet_diagnostic.ca2211.severity=none
+
+# CA2225: Operator overload different name
+dotnet_diagnostic.ca2225.severity=none
+
+# CA2227: Collection properties should be readonly
+dotnet_diagnostic.ca2227.severity=none
+
+# SA1208: System namespace appears after
+dotnet_diagnostic.sa1208.severity=none
+
+# SA1210: The using directives within a C# code file are not sorted alphabetically by namespace.
+dotnet_diagnostic.sa1210.severity=none
+
+[{*.ts, *.tsx, *.js, *.jsx, *.scss, *.css}]
+indent_size=2
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length=140
+
+[*.md]
+insert_final_newline=false
+trim_trailing_whitespace=false
+
+[*.csproj]
+indent_size=2
+

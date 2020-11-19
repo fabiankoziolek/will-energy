@@ -1,0 +1,22 @@
+/*
+TODO: use additional module for breakpoint variables (postcss-media-variables is not working)
+@custom-media --breakpoint-down-phone (max-width: calc(var(--breakpoint-down-phone) - 1);
+*/
+
+@custom-media --breakpoint-down-phone-small (max-width: 359px);
+@custom-media --breakpoint-up-phone-small (min-width: 360px);
+@custom-media --breakpoint-down-phone (max-width: 479px);
+@custom-media --breakpoint-up-phone (min-width: 480px);
+@custom-media --breakpoint-down-tablet (max-width: 767px);
+@custom-media --breakpoint-up-tablet (min-width: 768px);
+@custom-media --breakpoint-only-tablet (min-width: 768px) and (max-width: 1023px);
+@custom-media --breakpoint-between-tablet-desktop-down (min-width: 768px) and (max-width: 1335px);
+@custom-media --breakpoint-down-laptop (max-width: 1023px);
+@custom-media --breakpoint-up-laptop (min-width: 1024px);
+@custom-media --breakpoint-only-laptop (min-width: 1024px) and (max-width: 1599px);
+@custom-media --breakpoint-down-desktop (max-width: 1335px);
+@custom-media --breakpoint-up-desktop (min-width: 1336px);
+@custom-media --breakpoint-down-desktop-hd (max-width: 1599px);
+@custom-media --breakpoint-up-desktop-hd (min-width: 1600px);
+@custom-media --breakpoint-down-desktop-fhd (max-width: 1919px);
+@custom-media --breakpoint-up-desktop-fhd (min-width: 1920px);

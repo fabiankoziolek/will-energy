@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\WillEnergy.CodeAnalysis.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>WillEnergy.Domain</RootNamespace>
+    <AssemblyName>WillEnergy.Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TimeZoneConverter" Version="3.3.0" />
+  </ItemGroup>
+</Project>

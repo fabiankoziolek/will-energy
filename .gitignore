@@ -1,0 +1,10 @@
+.vscode/
+.vs/
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+.idea/
+*.sln.iml
+.DS_Store
+Thumbs.db
+$RECYCLE.BIN/

@@ -1,0 +1,397 @@
+@define-mixin form-control {
+  display: block;
+  width: 100%;
+  padding: 9px 14px;
+  font-family: var(--font-family-text);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  line-height: var(--line-height-base);
+  color: var(--color-gray-dark);
+  background-color: var(--color-white);
+  background-clip: padding-box;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 6px;
+  outline-style: none;
+  transition: var(--transition-base);
+
+  &:focus {
+    border-color: var(--color-gray-light);
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: var(--color-gray-light) !important;
+    opacity: 1 !important;
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: var(--color-gray-lighter);
+    color: var(--color-gray-dark);
+    border-color: var(--color-gray-light);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+@define-mixin form-group {
+  margin-bottom: var(--space-sm);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  & > label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+}
+
+@define-mixin input-invalid {
+  border-color: var(--color-red);
+  color: var(--color-red);
+  box-shadow: none;
+}
+
+@define-mixin input-invalid-message {
+  font-size: var(--font-size-xsmall);
+  line-height: var(--line-height-xsmall);
+  color: var(--color-red) !important;
+  padding: 4px 2px;
+  display: none;
+  opacity: 0;
+  animation: fade-in 0.2s linear forwards;
+  font-weight: 400;
+}
+
+.Form {
+  &Control {
+    @mixin form-control;
+
+    &--invalid {
+      @mixin input-invalid;
+    }
+
+    textarea& {
+      height: auto;
+      min-height: 100px;
+      resize: none;
+    }
+  }
+
+  &Group {
+    @mixin form-group;
+
+    &--invalid .FormInvalidFeedback {
+      display: block;
+    }
+  }
+
+  &Check {
+    position: relative;
+    display: block;
+    padding-left: 20px;
+
+    &__input {
+      position: absolute;
+      margin-top: 12px;
+      margin-left: -16px;
+
+      &:disabled ~ .FormCheck__label {
+        color: var(--color-gray-dark);
+        cursor: not-allowed;
+      }
+    }
+
+    &__label {
+      margin-bottom: 0 !important;
+      font-weight: 400;
+      font-size: var(--font-size-h3);
+      line-height: var(--line-height-h3);
+      margin-left: 10px;
+      cursor: pointer;
+
+      @media (--breakpoint-down-tablet) {
+        font-size: var(--font-size-p);
+      }
+    }
+  }
+
+  &InvalidFeedback {
+    @mixin input-invalid-message;
+
+    .FormControl--invalid ~ & {
+      display: block;
+    }
+
+    .FormControl:disabled ~ & {
+      display: none;
+    }
+
+    .FormCustomControl--check & {
+      padding: 4px 0;
+    }
+  }
+}
+
+@svg-load radioIdleDisabled url(./images/radio/idle.svg) {
+  fill: var(--color-gray-lighter);
+  circle {
+    stroke: var(--color-gray-dark);
+  }
+}
+
+@svg-load radioSelectedDisabled url(./images/radio/selected.svg) {
+  fill: var(--color-gray-lighter);
+  circle:nth-child(1) {
+    stroke: var(--color-gray-dark);
+  }
+  circle:nth-child(2) {
+    fill: var(--color-gray-dark);
+  }
+}
+
+/* TODO: for some reasons it's not loaded
+@svg-load checkbox url(./images/checkbox/idle.svg) {
+  fill: transparent;
+}
+
+@svg-load checkboxIdleDisabled url(./images/checkbox/idle.svg) {
+  fill: var(--color-gray-lighter);
+  rect {
+    stroke: var(--color-gray-dark);
+  }
+}
+
+@svg-load checkboxSelectedDisabled url(./images/checkbox/selected.svg) {
+  fill: var(--color-gray-lighter);
+  rect {
+    stroke: var(--color-gray-dark);
+  }
+  path {
+    stroke: var(--color-gray-dark);
+  }
+}
+*/
+
+.FormCustom {
+  &Control {
+    position: relative;
+    display: block;
+    min-height: 2.5625rem;
+    padding-left: 40px;
+
+    &__input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+
+      &:checked ~ .FormCustomControl__label::before {
+        color: var(--color-gray-dark);
+        border-color: var(--color-gray-dark);
+      }
+
+      &:disabled {
+        ~ .FormCustomControl__label {
+          color: var(--color-gray-dark);
+          cursor: not-allowed;
+
+          &::before {
+            background-color: var(--color-gray-dark);
+          }
+        }
+      }
+    }
+
+    &__label {
+      position: relative;
+      margin-bottom: 0;
+      vertical-align: top;
+      font-weight: 400;
+      font-size: var(--font-size-h3);
+      line-height: var(--line-height-h3);
+      color: var(--color-gray-light);
+      cursor: pointer;
+      transition: var(--transition-base);
+
+      @media (--breakpoint-down-tablet) {
+        font-size: var(--font-size-p);
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: -40px;
+        display: block;
+        width: 37px;
+        height: 37px;
+        content: '';
+        background-repeat: no-repeat;
+        background-position: bottom left;
+      }
+    }
+
+    &--check {
+      padding-top: 6px;
+
+      .FormCustomControl__input ~ .FormCustomControl__label {
+        &::after {
+          /*@mixin icon './images/checkbox/idle.svg', 37px;*/
+          top: calc(50% - 19px);
+
+          @media (--breakpoint-down-tablet) {
+            top: -3px;
+          }
+        }
+      }
+
+      .FormCustomControl__input:checked ~ .FormCustomControl__label {
+        &::after {
+          /*@mixin icon './images/checkbox/selected.svg', 37px;*/
+        }
+      }
+
+      .FormCustomControl__input:disabled ~ .FormCustomControl__label {
+        &::after {
+          /*background-image: svg-inline(checkboxIdleDisabled);*/
+        }
+      }
+
+      .FormCustomControl__input:checked:disabled ~ .FormCustomControl__label {
+        &::after {
+          /*background-image: svg-inline(checkboxSelectedDisabled);*/
+        }
+      }
+
+      &Lg {
+        .FormCustomControl__input ~ .FormCustomControl__label {
+          &::after {
+            /*@mixin icon './images/checkbox/idle.svg', 55px;*/
+          }
+        }
+
+        .FormCustomControl__input:checked ~ .FormCustomControl__label {
+          &::after {
+            /*@mixin icon './images/checkbox/selected.svg', 55px;*/
+          }
+        }
+      }
+    }
+
+    &--radio {
+      .FormCustomControl__input ~ .FormCustomControl__label {
+        &::after {
+          background-image: svg-load('./images/radio/idle.svg');
+        }
+      }
+
+      .FormCustomControl__input:checked ~ .FormCustomControl__label {
+        &::after {
+          background-image: svg-load('./images/radio/selected.svg');
+        }
+      }
+
+      .FormCustomControl__input:disabled ~ .FormCustomControl__label {
+        &::after {
+          background-image: svg-inline(radioIdleDisabled);
+        }
+      }
+
+      .FormCustomControl__input:checked:disabled ~ .FormCustomControl__label {
+        &::after {
+          background-image: svg-inline(radioSelectedDisabled);
+        }
+      }
+    }
+
+    &--switch {
+      padding-left: 80px;
+
+      .FormCustomControl__label {
+        &::before {
+          position: absolute;
+          top: 4px;
+          left: -75px;
+          display: block;
+          content: '';
+          background-color: var(--color-gray-dark);
+          width: 64px;
+          height: 32px;
+          pointer-events: all;
+          border-radius: 20px;
+        }
+
+        &::after {
+          top: 8px;
+          left: -70px;
+          width: 24px;
+          height: 24px;
+          background-color: var(--color-gray-lighter);
+          border-radius: 50%;
+          transition: var(--transition-base);
+        }
+      }
+
+      .FormCustomControl__input:checked ~ .FormCustomControl__label {
+        &::before {
+          background-color: var(--color-gray-light);
+        }
+
+        &::after {
+          transform: translateX(30px);
+        }
+      }
+
+      .FormCustomControl__input:disabled {
+        &:checked ~ .FormCustomControl__label::before {
+          background-color: var(--color-gray-lighter);
+        }
+      }
+    }
+  }
+
+  &Select {
+    display: inline-block;
+    width: 100%;
+    height: 2.5625rem;
+    padding: 6px 12px;
+    font-family: var(--font-family-text);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    line-height: var(--line-height-base);
+    color: var(--color-gray-light);
+    vertical-align: middle;
+    /*background-image: svg-load('./images/arrow-down.svg');*/
+    background-position: right 12px top 60%;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 6px;
+    appearance: none;
+    transition: var(--transition-base);
+
+    &:focus {
+      border-color: var(--color-gray-light);
+      outline: 0;
+      box-shadow: none;
+    }
+
+    &[multiple],
+    &[size]:not([size='1']) {
+      height: auto;
+      padding-right: 12px;
+      background-image: none;
+    }
+
+    &:disabled {
+      background-color: var(--color-gray-lighter);
+      color: var(--color-gray-dark);
+      border-color: var(--color-gray-dark);
+    }
+  }
+}
