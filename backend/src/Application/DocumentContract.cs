@@ -33,7 +33,7 @@ namespace WillEnergy.Application
 
     public class CompanyDetails
     {
-        public TypDzialalnosci TypDzialalnosci { get; set; }
+        public CompanyDetailsType Type { get; set; }
         public bool NiepobieraniePomocyDeMinimis { get; set; }
         public string Nip { get; set; }
     }
@@ -56,10 +56,10 @@ namespace WillEnergy.Application
     {
         public string NumerEwidencjiDzialki { get; set; }
         public string Obreb { get; set; }
-        public bool PrzeznaczonyPodDzialalnośćGospodarcza { get; set; }
-        public int PowierzchniaUżytkowaObiektu { get; set; }
-        public int PowierzchniaUżytkowaObiektuPrzeznaczonaPodDzialalność { get; set; }
-        public int UdzialPowierzchniPrzeznaczonejPodDzialalnośćGospodarczaWStosunkuDoPowierzchniUżytkowejBudynku { get; set; }
+        public bool PrzeznaczonyPodDzialalnoscospodarcza { get; set; }
+        public int PowierzchniaUzytkowa { get; set; }
+        public int PowierzchniaPodDzialanosc { get; set; }
+        public int StosunekPowierzchniDzialalnosciDoUzytkowej { get; set; }
     }
 
     public enum TytulPrawaDoDypozycji
@@ -85,7 +85,7 @@ namespace WillEnergy.Application
         public int ConsumptionPerYear { get; set; }
     }
 
-    public enum TypDzialalnosci
+    public enum CompanyDetailsType
     {
         DzialalnoscGospodarcza,
         DzialanoscRolnicza,
