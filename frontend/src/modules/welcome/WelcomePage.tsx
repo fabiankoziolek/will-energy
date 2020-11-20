@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { isEmpty } from 'lodash';
 import { Option, SelectField } from '../../shared/forms/Select/SelectField';
 import { DatePickerField } from '../../shared/forms/DatePicker/DatePickerField';
+import { GoogleAddressIncome, GoogleSuggest } from '../../shared/forms/GoogleSuggest/GoogleSuggest';
 import './WelcomePage.css';
 
 const initialFormValues = {
@@ -67,6 +68,8 @@ export const WelcomePage = () => {
             />
             <div className="FormInvalidFeedback">{errors.email}</div>
           </div>
+          Address input:
+          <GoogleSuggest onSelect={(value: GoogleAddressIncome) => console.log(value)} />
           <div className="FormGroup">
             <label htmlFor="password">Etternavn</label>
             <Field
