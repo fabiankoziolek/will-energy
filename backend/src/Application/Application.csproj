@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\WillEnergy.CodeAnalysis.targets" />
 
   <PropertyGroup>
@@ -24,5 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
+    <Folder Include="Documents\Templates" />
   </ItemGroup>
 </Project>
