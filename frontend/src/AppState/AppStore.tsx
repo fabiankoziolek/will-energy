@@ -1,4 +1,4 @@
-import { createStore, StoreActionApi } from 'react-sweet-state';
+import { createStore } from 'react-sweet-state';
 import { Actions, actions } from './AppActions';
 import { AppState, initialState } from './AppState';
 

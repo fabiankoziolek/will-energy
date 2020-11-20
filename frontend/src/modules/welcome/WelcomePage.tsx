@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import * as React from 'react';
 import { Field, Form, Formik, FormikProps } from 'formik';
 import classNames from 'classnames';
@@ -124,7 +125,7 @@ export const WelcomePage = () => {
               </label>
             </div>
             <div className="FormGroup">
-              <label>Build in Select</label>
+              <label id="">Build in Select</label>
               <select className="FormControl" defaultValue="" name="" id="">
                 <option disabled value="">
                   Select...

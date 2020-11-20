@@ -4,9 +4,16 @@ import { AppState } from './AppState';
 export type AppStoreApi = StoreActionApi<AppState>;
 
 export const actions = {
-  increment: (by = 1) => ({ setState, getState }: AppStoreApi) => {
+  updateBaseData: (baseData: Pick<AppState, 'address' | 'area' | 'heatingType'>) => ({ setState, getState }: AppStoreApi) => {
     setState({
-      count: getState().count + by,
+      ...getState(),
+      ...baseData,
+    });
+  },
+  setAddress: (address: string) => ({ setState, getState }: AppStoreApi) => {
+    setState({
+      ...getState(),
+      address,
     });
   },
 };
