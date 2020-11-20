@@ -1,36 +1,44 @@
-import { Button } from 'antd';
+import { Button, Steps } from 'antd';
 import * as React from 'react';
 import { FillFormStep } from '../shared/fillFormStep/FillFormStep';
 import { AddressStep } from './addressStep/AddressStep';
 
-enum Step {
+enum ChangeFurnaceStep {
   Address,
   Calculator,
   FillForm,
 }
 
+const { Step } = Steps;
+
 export const ChangeFurnacePage = () => {
-  const [step, setStep] = React.useState<Step>(Step.Address);
+  const [step, setStep] = React.useState<ChangeFurnaceStep>(ChangeFurnaceStep.Address);
 
   const goToNextStep = () => {
-    if (step === Step.Address) {
-      setStep(Step.Calculator);
+    if (step === ChangeFurnaceStep.Address) {
+      setStep(ChangeFurnaceStep.Calculator);
     }
 
-    if (step === Step.Calculator) {
-      setStep(Step.FillForm);
+    if (step === ChangeFurnaceStep.Calculator) {
+      setStep(ChangeFurnaceStep.FillForm);
     }
   };
 
   return (
     <div className="ChangeFurnacePage">
-      {step === Step.Address && <AddressStep goToNextStep={goToNextStep} />}
-      {step === Step.Calculator && (
+      <Steps current={step}>
+        <Step />
+        <Step />
+        <Step />
+      </Steps>
+
+      {step === ChangeFurnaceStep.Address && <AddressStep goToNextStep={goToNextStep} />}
+      {step === ChangeFurnaceStep.Calculator && (
         <div>
           calculator <Button onClick={() => goToNextStep()}> Go to next Step</Button>
         </div>
       )}
-      {step === Step.FillForm && <FillFormStep />}
+      {step === ChangeFurnaceStep.FillForm && <FillFormStep />}
     </div>
   );
 };
