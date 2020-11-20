@@ -5,14 +5,16 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { AppProvider } from './AppState/AppContext';
 import { AppHeader } from './layout/header/AppHeader';
-import { ChangeStovePage } from './modules/changeStove/ChangeStovePage';
+import { ChangeFurnacePage } from './modules/changeFurnace/ChangeFurnacePage';
+import { FillFormPage } from './modules/fillForm/FillFormPage';
 import { WelcomePage } from './modules/welcome/WelcomePage';
 
-const routers = {
-  changeStove: '/zmien-piec',
+const routes = {
+  changeFurnace: '/zmien-piec',
+  fillForm: '/dofinansowanie',
 };
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const App = () => {
   return (
@@ -20,14 +22,17 @@ const App = () => {
       <Router>
         <AppProvider>
           <Layout className="App">
-            <AppHeader routers={routers} />
+            <AppHeader routes={routes} />
             <Content className="App__Content">
               <Switch>
                 <Route exact path="/">
                   <WelcomePage />
                 </Route>
-                <Route exact path={routers.changeStove}>
-                  <ChangeStovePage />
+                <Route exact path={routes.changeFurnace}>
+                  <ChangeFurnacePage />
+                </Route>
+                <Route exact path={routes.fillForm}>
+                  <FillFormPage />
                 </Route>
               </Switch>
             </Content>

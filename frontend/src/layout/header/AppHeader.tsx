@@ -6,20 +6,21 @@ import './AppHeader.css';
 const { Header } = Layout;
 
 interface IAppHeaderProps {
-  routers: { changeStove: string };
+  routes: { changeFurnace: string; fillForm: string };
 }
 
 export const AppHeader: React.FC<IAppHeaderProps> = (props) => {
-  const { routers } = props;
+  const { routes } = props;
   const location = useLocation();
   return (
     <Header className="AppHeader">
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[location.pathname]}>
-        <Menu.Item key="1">Jakość powietrza</Menu.Item>
-        <Menu.Item key={routers.changeStove}>
-          <Link to={routers.changeStove}>Zmień piec</Link>
+        <Menu.Item key={routes.changeFurnace}>
+          <Link to={routes.changeFurnace}>Zmień piec</Link>
         </Menu.Item>
-        <Menu.Item key="3">Dofinansowanie</Menu.Item>
+        <Menu.Item key={routes.fillForm}>
+          <Link to={routes.fillForm}>Dofinansowanie</Link>
+        </Menu.Item>
       </Menu>
     </Header>
   );

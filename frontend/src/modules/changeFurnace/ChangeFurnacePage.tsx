@@ -1,4 +1,6 @@
+import { Button } from 'antd';
 import * as React from 'react';
+import { FillFormStep } from '../shared/fillFormStep/FillFormStep';
 import { AddressStep } from './addressStep/AddressStep';
 
 enum Step {
@@ -7,7 +9,7 @@ enum Step {
   FillForm,
 }
 
-export const ChangeStovePage = () => {
+export const ChangeFurnacePage = () => {
   const [step, setStep] = React.useState<Step>(Step.Address);
 
   const goToNextStep = () => {
@@ -16,14 +18,19 @@ export const ChangeStovePage = () => {
     }
 
     if (step === Step.Calculator) {
-      setStep(Step.Calculator);
+      setStep(Step.FillForm);
     }
   };
 
   return (
-    <div className="ChangeStovePage">
+    <div className="ChangeFurnacePage">
       {step === Step.Address && <AddressStep goToNextStep={goToNextStep} />}
-      {step === Step.Calculator && <div>calculator</div>}
+      {step === Step.Calculator && (
+        <div>
+          calculator <Button onClick={() => goToNextStep()}> Go to next Step</Button>
+        </div>
+      )}
+      {step === Step.FillForm && <FillFormStep />}
     </div>
   );
 };
