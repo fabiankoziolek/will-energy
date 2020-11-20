@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WillEnergy.Application
 {
-    public class FormRequest
+    public class DocumentContract
     {
         public DateTimeOffset Date { get; set; }
         public string Name { get; set; } // FirstName + LastName || Company Name
@@ -18,17 +18,16 @@ namespace WillEnergy.Application
         public DateTimeOffset PlannedCompletionDate { get; set; }
         public int EstimatedCost { get; set; }
         public BankDetails BankDetails { get; set; }
-        public bool MożliwościPodłączeniaNieruchomościNaKtórejBędzieRealizowaneZadanieDoSieciCiepłowniczej { get; set; }
-        public bool MożliwościPodłączeniaNieruchomościNaKtórejBędzieRealizowaneZadanieDoSieciGazowej { get; set; }
-        public int RokGDZIEZakończęInwestycjęPodłączeniaDoSieciNajpóźniejDoDnia7Listopada { get; set; }
+        public bool CanConnectToHeatingNetwork { get; set; }
+        public bool CanConnectToGasNetwork { get; set; }
+        public int YearOfInvestment { get; set; }
 
         public TytułPrawaDoDypozycji TytułPrawaDoDypozycji { get; set; }
-        public IList<UczestnikPrawa> UczestnicyPrawa { get; set; } // jesli typ nie jest wlasnosc
-        public string DokumentyPotwierdzające { get; set; } // to pole będzie wypełnione na podstawie Tytułu
+        public IList<LawParticipant> UczestnicyPrawa { get; set; } // kiedy nie właściciel
+        public string DokumentyPotwierdzające { get; set; } // to pole będzie wypełnione na podstawie TytułPrawaDoDypozycji
 
-        public string FirmaRealizujaca { get; set; }
+        public string ExectuionCompany { get; set; }
 
-        // POLA pracodawcy jeśli nie
         public CompanyDetails CompanyDetails { get; set; } // na podstawie PrzeznaczonyPodDziałalnośćGospodarczą
     }
 
@@ -39,7 +38,7 @@ namespace WillEnergy.Application
         public string Nip { get; set; }
     }
 
-    public class UczestnikPrawa
+    public class LawParticipant
     {
         public string Name { get; set; }
         public AddressDetails AddressDetails { get; set; }
@@ -50,7 +49,7 @@ namespace WillEnergy.Application
         public string StreetName { get; set; }
         public string BuildingNumber { get; set; }
         public string City { get; set; }
-        public string Code { get; set; }
+        public string PostCode { get; set; }
     }
 
     public class PlannedWorkAddressDetails : AddressDetails
@@ -65,11 +64,11 @@ namespace WillEnergy.Application
 
     public enum TytułPrawaDoDypozycji
     {
-        własność, // jesli wlasciciel to uzyj imie i nazwisko podane wyzej zamiast UczestnicyPrawa
-        współwłaściciel,
-        trwałegoZarządu,
-        graniczeniaPrawaRzeczowego,
-        inne,
+        Owner, // jesli wlasciciel to uzyj imie i nazwisko podane wyzej zamiast UczestnicyPrawa
+        CoOwner,
+        PermanentManagement,
+        RestrictionsPropertyLaw,
+        Other,
     }
 
     public class BankDetails
@@ -81,19 +80,20 @@ namespace WillEnergy.Application
     public class EnergyCharacteristicsOfWork
     {
         public HeatingType Type { get; set; } // wegiel, gaz, biomasa itd.
-        public int Moc { get; set; }
-        public int Wiek { get; set; }
-        public int ZuzycieNaRok { get; set; }
+        public int Power { get; set; }
+        public int Age { get; set; }
+        public int ConsumptionPerYear { get; set; }
     }
 
     public enum TypDzialalnosci
     {
         DziałalnoscGospodarcza,
         DzialanoscRolnicza,
-        DzialanoscWZakresieRybolostwaIAkwakultury
+        DzialanoscWZakresieRybolostwaIAkwakultury,
     }
 
-    public enum HeatingType {
+    public enum HeatingType
+    {
         NetworkNaturalGas,
         LiquefiedNaturalGas,
         Biomass,
