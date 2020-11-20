@@ -1,0 +1,31 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  color: var(--textPrimary);
+  font-family: var(--baseFontFamily);
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+h1 {
+  @mixin h1;
+}
+
+h2 {
+  @mixin h2;
+}
+
+h3 {
+  @mixin h3;
+}
+
+h4 {
+  @mixin h4;
+}
+
+h5 {
+  @mixin h5;
+}

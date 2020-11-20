@@ -1,0 +1,54 @@
+@define-mixin hero {
+  font-size: 72px;
+  line-height: 112px;
+}
+
+@define-mixin h1 {
+  font-size: 56px;
+  line-height: 88px;
+}
+
+@define-mixin h2 {
+  font-size: 48px;
+  line-height: 72px;
+}
+
+@define-mixin h3 {
+  font-size: 36px;
+  line-height: 56px;
+}
+
+@define-mixin h4 {
+  font-size: 24px;
+  line-height: 40px;
+}
+
+@define-mixin h5 {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+@define-mixin b0 {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+@define-mixin b1 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@define-mixin b2 {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@define-mixin b3 {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+@define-mixin tag {
+  font-size: 12px;
+  line-height: 18px;
+}

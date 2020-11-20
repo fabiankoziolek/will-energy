@@ -22,4 +22,4 @@ function AppProvider(props: React.PropsWithChildren<{}>) {
   return <SettingProvider value={counter} {...props} />;
 }
 
-export { useAppContext, AppProvider  };
+export { useAppContext, AppProvider };

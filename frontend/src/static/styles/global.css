@@ -1,0 +1,26 @@
+@import-normalize;
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: var(--backgroundColor);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.visuallyHidden {
+  @mixin visuallyHidden;
+}

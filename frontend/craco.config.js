@@ -10,11 +10,11 @@ module.exports = {
         require('postcss-simple-vars'),
         require('postcss-custom-media')({
           preserve: false,
-          importFrom: 'src/static/media.css',
+          importFrom: 'src/static/styles/media.css',
         }),
         require('postcss-custom-properties')({
           preserve: false,
-          importFrom: 'src/static/variables.css',
+          importFrom: 'src/static/styles/variables.css',
         }),
         require('postcss-calc'),
         require('postcss-media-variables'),
@@ -32,6 +32,7 @@ module.exports = {
         require('postcss-svgo'),
         require('postcss-nested'),
         require('postcss-normalize'),
+        require('postcss-nesting'),
         require('autoprefixer'),
       ],
     },

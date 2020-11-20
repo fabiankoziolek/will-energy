@@ -1,0 +1,48 @@
+@define-mixin visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@define-mixin aspectRatio $ratio {
+  position: relative;
+
+  &::after {
+    display: block;
+    padding-bottom: calc(100% * $(ratio));
+    content: '';
+  }
+
+  & > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@define-mixin lineClamp $line {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
+
+@define-mixin linkOverlay {
+  position: relative;
+
+  & a[class$='__linkOverlay'] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}

@@ -1,0 +1,11 @@
+@define-mixin wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: var(--wrapperWidth);
+
+  @media (--tablet) {
+    padding: 0 22px;
+  }
+}
