@@ -22,9 +22,9 @@ namespace WillEnergy.Application
         public bool CanConnectToGasNetwork { get; set; }
         public int YearOfInvestment { get; set; }
 
-        public TytułPrawaDoDypozycji TytułPrawaDoDypozycji { get; set; }
+        public TytulPrawaDoDypozycji TytulPrawaDoDypozycji { get; set; }
         public IList<LawParticipant> UczestnicyPrawa { get; set; } // kiedy nie właściciel
-        public string DokumentyPotwierdzające { get; set; } // to pole będzie wypełnione na podstawie TytułPrawaDoDypozycji
+        public string DokumentyPotwierdzajace { get; set; } // to pole będzie wypełnione na podstawie TytułPrawaDoDypozycji
 
         public string ExectuionCompany { get; set; }
 
@@ -54,15 +54,15 @@ namespace WillEnergy.Application
 
     public class PlannedWorkAddressDetails : AddressDetails
     {
-        public string NumerEwidencjiDziałki { get; set; }
-        public string Obręb { get; set; }
-        public bool PrzeznaczonyPodDziałalnośćGospodarczą { get; set; }
+        public string NumerEwidencjiDzialki { get; set; }
+        public string Obreb { get; set; }
+        public bool PrzeznaczonyPodDzialalnośćGospodarcza { get; set; }
         public int PowierzchniaUżytkowaObiektu { get; set; }
-        public int PowierzchniaUżytkowaObiektuPrzeznaczonaPodDziałalność { get; set; }
-        public int UdziałPowierzchniPrzeznaczonejPodDziałalnośćGospodarcząWStosunkuDoPowierzchniUżytkowejBudynku { get; set; }
+        public int PowierzchniaUżytkowaObiektuPrzeznaczonaPodDzialalność { get; set; }
+        public int UdzialPowierzchniPrzeznaczonejPodDzialalnośćGospodarczaWStosunkuDoPowierzchniUżytkowejBudynku { get; set; }
     }
 
-    public enum TytułPrawaDoDypozycji
+    public enum TytulPrawaDoDypozycji
     {
         Owner, // jesli wlasciciel to uzyj imie i nazwisko podane wyzej zamiast UczestnicyPrawa
         CoOwner,
@@ -87,7 +87,7 @@ namespace WillEnergy.Application
 
     public enum TypDzialalnosci
     {
-        DziałalnoscGospodarcza,
+        DzialalnoscGospodarcza,
         DzialanoscRolnicza,
         DzialanoscWZakresieRybolostwaIAkwakultury,
     }
