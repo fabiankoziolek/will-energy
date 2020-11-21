@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -14,6 +14,7 @@ namespace WillEnergy.Infrastructure.Persistence
         }
 
         public DbSet<Sample> Samples { get; set; }
+        public DbSet<Street> Streets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
