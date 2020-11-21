@@ -14,7 +14,7 @@ namespace WillEnergy.Domain.Core.Documents.Extractor
             foreach (var field in fields)
             {
                 field.GetType();
-                var value = ((object)field.GetValue(form));
+                var value = (object)field.GetValue(form);
                 documentPositions.Add(new DocumentPositionKeyValue(ParseKey(field.Name), value?.ToString() ?? string.Empty));
             }
 

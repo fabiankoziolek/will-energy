@@ -65,6 +65,9 @@ dotnet_diagnostic.sa1601.severity=none
 # SA1602: Enum elements should be documented
 dotnet_diagnostic.sa1602.severity=none
 
+# SA1623: Comments
+dotnet_diagnostic.sa1623.severity=none
+
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity=none
 
@@ -92,6 +95,9 @@ dotnet_diagnostic.ca1305.severity=none
 # CA1716: Should not match keywords
 dotnet_diagnostic.ca1716.severity=none
 
+# CA1707: No underlines
+dotnet_diagnostic.ca1707.severity=none
+
 # CA1822: Nothing access the instance and can be marked as static
 dotnet_diagnostic.ca1822.severity=none
 
@@ -101,6 +107,9 @@ dotnet_diagnostic.ca2000.severity=none
 # CA2007: Do not directly await a Task
 dotnet_diagnostic.ca2007.severity=none
 
+# CA2016: Cancellation token
+dotnet_diagnostic.ca2016.severity=none
+
 # CA2211: Non-constant fields should not be visible
 dotnet_diagnostic.ca2211.severity=none
 
@@ -109,6 +118,9 @@ dotnet_diagnostic.ca2225.severity=none
 
 # CA2227: Collection properties should be readonly
 dotnet_diagnostic.ca2227.severity=none
+
+# SA1204: Static before not
+dotnet_diagnostic.sa1204.severity=none
 
 # SA1208: System namespace appears after
 dotnet_diagnostic.sa1208.severity=none

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using WillEnergy.Application.Documents;
 using WillEnergy.Domain.Core.Documents;
 using Xunit;
 
@@ -14,10 +12,6 @@ namespace Application.UnitTests.DocumentParser
         private const string OutputDocumentName = "Test_File_Output.doc";
         private const string DocumentParserFolderName = "DocumentParser";
         private const string TestFileFolderName = "Files";
-
-        public DocumentParserTest()
-        {
-        }
 
         [Fact]
         public async Task GivenDocumentTemplateAndKeyValues_ShouldProperlyParseDocument()

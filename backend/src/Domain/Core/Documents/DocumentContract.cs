@@ -10,7 +10,7 @@ namespace WillEnergy.Domain.Core.Documents
         public string Name { get; set; } // FirstName + LastName || Company Name
 
         /// <summary>
-        /// Private individual or Company address
+        /// Private individual or Company address.
         /// </summary>
         public AddressDetails AddressDetails { get; set; }
 
@@ -30,12 +30,12 @@ namespace WillEnergy.Domain.Core.Documents
         public PropertyOwnershipType PropertyOwnershipType { get; set; }
 
         /// <summary>
-        /// List współwłaścicieli posesji/nieruchomości
+        /// List współwłaścicieli posesji/nieruchomości.
         /// </summary>
         public IList<LawParticipant> LawParticipants { get; set; }
 
         /// <summary>
-        /// Dokumenty upoważniające użytkowanie nieruchomości
+        /// Dokumenty upoważniające użytkowanie nieruchomości.
         /// </summary>
         public string DispositionLawDocuments { get; set; } // to pole będzie wypełnione na podstawie TytułPrawaDoDypozycji
 
@@ -44,7 +44,6 @@ namespace WillEnergy.Domain.Core.Documents
         public string Nip { get; set; }
         public bool IsBenefitingDeMinimis { get; set; }
     }
-
 
     public class LawParticipant
     {
@@ -63,29 +62,29 @@ namespace WillEnergy.Domain.Core.Documents
     public class PlannedWorkAddressDetails : AddressDetails
     {
         /// <summary>
-        /// Numer ewidencyjny działki
+        /// Numer ewidencyjny działki.
         /// </summary>
         public string PropertyRegistrationNumber { get; set; }
 
         /// <summary>
-        /// Obręb w którym znajduje się działka
+        /// Obręb w którym znajduje się działka.
         /// </summary>
         public string District { get; set; }
 
         public bool IsForCommercialUse { get; set; }
 
         /// <summary>
-        /// Powierzchnia użytkowa
+        /// Powierzchnia użytkowa.
         /// </summary>
         public int UsableArea { get; set; }
 
         /// <summary>
-        /// Powierzchnia komercyjna
+        /// Powierzchnia komercyjna.
         /// </summary>
         public int CommercialArea { get; set; }
 
         /// <summary>
-        /// Stosunek powierzchni komercyjnej do użytkowej
+        /// Stosunek powierzchni komercyjnej do użytkowej.
         /// </summary>
         public int CommercialToUsableAreaRatio { get; set; }
     }
@@ -97,7 +96,7 @@ namespace WillEnergy.Domain.Core.Documents
         PermanentManagement,
         RestrictionsPropertyLaw,
         Other,
-        PerpetualUsufruct
+        PerpetualUsufruct,
     }
 
     public class BankDetails

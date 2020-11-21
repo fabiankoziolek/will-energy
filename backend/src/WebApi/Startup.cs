@@ -12,7 +12,6 @@ using WillEnergy.Infrastructure;
 using WillEnergy.WebUI.Extensions;
 using WillEnergy.WebUI.Filters;
 using WillEnergy.WebUI.Jobs;
-using Xceed.Document.NET;
 
 namespace WillEnergy.WebUI
 {

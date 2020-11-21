@@ -27,7 +27,8 @@ namespace WillEnergy.Domain.Core.Forms
             YearOfInvestment = contract.YearOfInvestment;
             DokumentyPotwierdzajace = contract.DispositionLawDocuments;
             ExectuionCompany = contract.ExectuionCompany;
-            UczestnicyPrawa = string.Join(", ",
+            UczestnicyPrawa = string.Join(
+                ", ",
                 contract.LawParticipants.Select(up =>
                     up.Name + " " + up.AddressDetails.StreetName + " " + up.AddressDetails.BuildingNumber + " " +
                     up.AddressDetails.PostCode + " " + up.AddressDetails.City).ToList());
@@ -66,7 +67,6 @@ namespace WillEnergy.Domain.Core.Forms
             Nip = contract.Nip;
         }
 
-
         public string InvestorType_B { get; set; }
 
         public string Temp_4_Type { get; set; }
@@ -90,7 +90,6 @@ namespace WillEnergy.Domain.Core.Forms
         public string PlannedWorkAddressDetails_BuildingNumber { get; set; }
 
         public string PlannedWorkAddressDetails_StreetName { get; set; }
-
 
         public DateTimeOffset Date { get; set; }
         public string Name { get; set; } // FirstName + LastName || Company Name
@@ -181,7 +180,8 @@ namespace WillEnergy.Domain.Core.Forms
                 case PropertyOwnershipType.Owner:
                     return "własności";
                 case PropertyOwnershipType.CoOwner:
-                    return string.Format("współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu",
+                    return string.Format(
+                        "współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu",
                         UczestnicyPrawa);
                 case PropertyOwnershipType.PermanentManagement:
                     return "trwałego zarządu";

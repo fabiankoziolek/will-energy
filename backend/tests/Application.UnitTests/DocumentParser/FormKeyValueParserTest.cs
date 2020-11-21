@@ -17,7 +17,7 @@ namespace Application.UnitTests.DocumentParser
 
             var formInput = new FormInput(new DocumentContract());
             {
-            };
+            }
 
             // Act
 

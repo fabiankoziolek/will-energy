@@ -6,6 +6,6 @@ namespace WillEnergy.Domain.Core.Forms
         PrivateIndividual,
         Company,
         Farmer,
-        Fisherman
+        Fisherman,
     }
 }
