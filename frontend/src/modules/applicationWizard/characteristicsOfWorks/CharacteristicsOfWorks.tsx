@@ -131,6 +131,17 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
                   >
                     Moc
                   </InputField>
+                  <InputField
+                    id="plannedConsumption"
+                    type="text"
+                    value={values.plannedConsumption}
+                    name="plannedConsumption"
+                    onChange={setFieldValue}
+                    onFocus={setFieldTouched}
+                  >
+                    Planowane roczne zużycie paliw
+                  </InputField>
+                  <hr />
                   <SelectField
                     id="plannedCompletionDate"
                     value={values.plannedCompletionDate}
