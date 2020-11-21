@@ -1,4 +1,5 @@
 import { StoreActionApi } from 'react-sweet-state';
+import { GoogleAddressIncome } from '../shared/forms/GoogleSuggest/GoogleSuggest';
 import { AppState } from './AppState';
 
 export type AppStoreApi = StoreActionApi<AppState>;
@@ -10,7 +11,7 @@ export const actions = {
       ...baseData,
     });
   },
-  setAddress: (address: string) => ({ setState, getState }: AppStoreApi) => {
+  setAddress: (address: GoogleAddressIncome) => ({ setState, getState }: AppStoreApi) => {
     setState({
       ...getState(),
       address,

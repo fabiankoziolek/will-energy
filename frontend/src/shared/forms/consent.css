@@ -1,0 +1,15 @@
+.Consent {
+  & .ant-checkbox {
+    margin-right: 8px;
+  }
+
+  & a {
+    margin-left: 8px;
+    color: var(--textTertiary);
+    border-bottom: 2px solid var(--primaryBlue);
+
+    &:hover {
+      color: var(--textPrimary);
+    }
+  }
+}

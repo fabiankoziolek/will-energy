@@ -1,0 +1,10 @@
+.Button {
+  background-color: var(--primaryBlue);
+  border-color: var(--primaryBlue);
+  font-weight: 700;
+
+  &:hover {
+    background-color: var(--primaryBlueDarker);
+    border-color: var(--primaryBlueDarker);
+  }
+}

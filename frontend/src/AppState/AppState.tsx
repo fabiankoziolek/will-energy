@@ -1,3 +1,5 @@
+import { GoogleAddressIncome } from '../shared/forms/GoogleSuggest/GoogleSuggest';
+
 export enum HeatingType {
   NetworkNaturalGas,
   LiquefiedNaturalGas,
@@ -6,9 +8,9 @@ export enum HeatingType {
   NetworkHeat,
 }
 
-export type AppState = { address: string; area: number; heatingType?: HeatingType };
+export type AppState = { address?: GoogleAddressIncome; area: number; heatingType?: HeatingType };
 
 export const initialState: AppState = {
-  address: '',
+  address: undefined,
   area: 0,
 };

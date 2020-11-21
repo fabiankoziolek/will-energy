@@ -1,0 +1,5 @@
+.StepBase {
+  & .StepBase__inner {
+    @mixin wrapper;
+  }
+}

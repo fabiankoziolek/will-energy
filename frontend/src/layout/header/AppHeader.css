@@ -1,6 +1,50 @@
 .AppHeader {
-}
+  position: fixed;
+  width: 100%;
+  height: var(--headerHeight);
+  z-index: 1;
+  background-color: var(--whiteColor);
+  padding: 0;
+  border-bottom: 1px solid var(--backgroundGreyDarker20Color);
 
-.AppHeader__logo {
-  display: inline;
+  & .AppHeader__inner {
+    @mixin wrapper;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .AppHeader__logo {
+      @mixin aspectRatio 40/184;
+      width: 184px;
+      background-color: var(--backgroundGreyDarker10Color);
+    }
+
+    & .ant-menu {
+      @mixin b1;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      background-color: var(--whiteColor);
+
+      & .ant-menu-item {
+        &:hover {
+          border-bottom-color: var(--textPrimary);
+        }
+
+        & a:hover {
+          color: var(--textSecondary);
+        }
+      }
+
+      & .ant-menu-item-selected {
+        border-bottom: 0;
+
+        & a {
+          color: var(--textPrimary);
+          font-weight: 700;
+        }
+      }
+    }
+  }
 }

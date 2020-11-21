@@ -13,6 +13,10 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: var(--backgroundColor);
+
+  & .ant-layout {
+    background-color: var(--backgroundColor);
+  }
 }
 
 *,

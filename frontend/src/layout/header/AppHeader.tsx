@@ -14,14 +14,17 @@ export const AppHeader: React.FC<IAppHeaderProps> = (props) => {
   const location = useLocation();
   return (
     <Header className="AppHeader">
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[location.pathname]}>
-        <Menu.Item key={routes.changeFurnace}>
-          <Link to={routes.changeFurnace}>Zmień piec</Link>
-        </Menu.Item>
-        <Menu.Item key={routes.fillForm}>
-          <Link to={routes.fillForm}>Dofinansowanie</Link>
-        </Menu.Item>
-      </Menu>
+      <div className="AppHeader__inner">
+        <div className="AppHeader__logo" />
+        <Menu mode="horizontal" defaultSelectedKeys={[location.pathname]}>
+          <Menu.Item key={routes.changeFurnace}>
+            <Link to={routes.changeFurnace}>Zmień piec</Link>
+          </Menu.Item>
+          <Menu.Item key={routes.fillForm}>
+            <Link to={routes.fillForm}>Dofinansowanie</Link>
+          </Menu.Item>
+        </Menu>
+      </div>
     </Header>
   );
 };

@@ -23,7 +23,7 @@ const App = () => {
         <AppProvider>
           <Layout className="App">
             <AppHeader routes={routes} />
-            <Content className="App__Content">
+            <Content className="App__content">
               <Switch>
                 <Route exact path="/">
                   <WelcomePage />

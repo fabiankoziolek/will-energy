@@ -1,0 +1,21 @@
+.AddressStep {
+  & .AddressStep__title {
+    @mixin h3;
+    font-weight: 900;
+    margin: 0 0 8px;
+  }
+
+  & .AddressStep__description {
+    @mixin b0;
+    margin-bottom: 124px;
+  }
+
+  & .Consent {
+    margin-bottom: 25px;
+  }
+
+  & .Button {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,4 +1,5 @@
 .App {
-  height: 100%;
-  width: 100%;
+  & .App__content {
+    padding-top: calc(var(--headerHeight) + 80px);
+  }
 }
