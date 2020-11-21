@@ -246,15 +246,14 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes 
                 </Col>
               </Row>
             </div>
-            <div>
-              <div>Całkowity koszt inwestycji</div>
-
+            <div className="CalculatorStep__chart">
+              <h2 className="CalculatorStep__chartTitle">Całkowity koszt inwestycji</h2>
               {results && heatingType && (
                 <div>
                   <Line type="line" data={data} options={options} />
                 </div>
               )}
-              <div>Kolejne lata</div>
+              <p className="CalculatorStep__chartDescription">Kolejne lata</p>
             </div>
           </Col>
         </Row>
