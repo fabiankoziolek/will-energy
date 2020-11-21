@@ -25,26 +25,26 @@ namespace WillEnergy.Domain.Core.Forms
             HeatingNetworkDetails = contract.CanConnectToHeatingNetwork ? "mam" : "nie mam";
             GasNetworkDetails = contract.CanConnectToGasNetwork ? "mam" : "nie mam";
             YearOfInvestment = contract.YearOfInvestment;
-            DokumentyPotwierdzajace = contract.DokumentyPotwierdzajace;
+            DokumentyPotwierdzajace = contract.DispositionLawDocuments;
             ExectuionCompany = contract.ExectuionCompany;
             UczestnicyPrawa = string.Join(", ",
-                contract.UczestnicyPrawa.Select(up =>
+                contract.LawParticipants.Select(up =>
                     up.Name + " " + up.AddressDetails.StreetName + " " + up.AddressDetails.BuildingNumber + " " +
                     up.AddressDetails.PostCode + " " + up.AddressDetails.City).ToList());
             BankDetails_Name = contract.BankDetails.Name;
             BankDetails_Number = contract.BankDetails.Number;
 
-            Inv_NumerEwidencjiDzialki = contract.PlannedWorkAddressDetails.NumerEwidencjiDzialki;
-            Inv_Obreb = contract.PlannedWorkAddressDetails.Obreb;
+            Inv_NumerEwidencjiDzialki = contract.PlannedWorkAddressDetails.PropertyRegistrationNumber;
+            Inv_Obreb = contract.PlannedWorkAddressDetails.District;
             Inv_PostCode = contract.PlannedWorkAddressDetails.PostCode;
             Inv_BuildingNumber = contract.PlannedWorkAddressDetails.BuildingNumber;
             Inv_StreetName = contract.PlannedWorkAddressDetails.StreetName;
             Inv_City = contract.PlannedWorkAddressDetails.City;
             // PlannedWorkAddressDetails_PrzeznaczonyPodDzialalnoscospodarcza = contract.PlannedWorkAddressDetails.PrzeznaczonyPodDzialalnoscospodarcza;
-            Inv_PowierzchniaUzytkowa = contract.PlannedWorkAddressDetails.PowierzchniaUzytkowa.ToString();
-            PlannedWorkAddressDetails_UzytkowanieDlaDzialalnosciGospodarczej = contract.PlannedWorkAddressDetails.PrzeznaczonyPodDzialalnoscospodarcza ? "tak" : "nie";
-            PowierzchniaPodDzialalnosc = contract.PlannedWorkAddressDetails.PowierzchniaPodDzialanosc.ToString();
-            StosunekPowierzchniDzialalnosciDoUzytkowej = contract.PlannedWorkAddressDetails.StosunekPowierzchniDzialalnosciDoUzytkowej.ToString();
+            Inv_PowierzchniaUzytkowa = contract.PlannedWorkAddressDetails.UsableArea.ToString();
+            PlannedWorkAddressDetails_UzytkowanieDlaDzialalnosciGospodarczej = contract.PlannedWorkAddressDetails.IsForCommercialUse ? "tak" : "nie";
+            PowierzchniaPodDzialalnosc = contract.PlannedWorkAddressDetails.CommercialArea.ToString();
+            StosunekPowierzchniDzialalnosciDoUzytkowej = contract.PlannedWorkAddressDetails.CommercialToUsableAreaRatio.ToString();
 
             PlannedWorkAddressDetails_StreetName = contract.PlannedWorkAddressDetails.StreetName;
             PlannedWorkAddressDetails_BuildingNumber = contract.PlannedWorkAddressDetails.BuildingNumber;
@@ -58,12 +58,33 @@ namespace WillEnergy.Domain.Core.Forms
             PlannedEnergyCharacteristics_Power = contract.PlannedEnergyCharacteristics.Power.ToString();
             PlannedEnergyCharacteristics_ConsumptionPerYear = contract.PlannedEnergyCharacteristics.ConsumptionPerYear.ToString();
             PlannedEnergyCharacteristics_Type = GetHeatingType(contract.PlannedEnergyCharacteristics.Type);
-            TytulPrawaDoDyspozycji = string.Format(GetOwnershipType(contract.TytulPrawaDoDypozycji), UczestnicyPrawa);
-            DeMinimis = contract.CompanyDetails.NiepobieraniePomocyDeMinimis ? "nie" : "pobieram";
-            CompanyDetails_Type = GetCompanyDetails(contract.CompanyDetails.Type);
+
+            TytulPrawaDoDyspozycji = string.Format(GetOwnershipType(contract.PropertyOwnershipType), UczestnicyPrawa);
+            CompanyDetails_Type = GetCompanyDetails(contract.InvestorType);
+            InvestorType_B = GetInvestorType(contract.InvestorType);
             Date_Today = DateTime.Today.ToString("dd-MM-yyyy");
-            Nip = contract.CompanyDetails.Nip;
+            Nip = contract.Nip;
+
         }
+
+        private string GetInvestorType(EInvestorType investorType)
+        {
+            switch (investorType)
+            {
+                case EInvestorType.Company:
+                    return "działalność gospodarczą";
+                case EInvestorType.Farmer:
+                    return "działalność rolniczą";
+                case EInvestorType.Fisherman:
+                    return "działalność w zakresie rybołóstwa i akwakultury";
+                default:
+                    return "......................";
+            }
+        }
+
+        public string InvestorType_B { get; set; }
+
+        public string Temp_4_Type { get; set; }
 
         public string Inv_City { get; set; }
 
@@ -85,43 +106,45 @@ namespace WillEnergy.Domain.Core.Forms
 
         public string PlannedWorkAddressDetails_StreetName { get; set; }
 
-        private static string GetCompanyDetails(CompanyDetailsType companyDetailsType)
+        private static string GetCompanyDetails(EInvestorType investorType)
         {
-            switch (companyDetailsType)
+            switch (investorType)
             {
-                case CompanyDetailsType.DzialalnoscGospodarcza:
+                case EInvestorType.Company:
                     return "działalność gospodarcza";
-                case CompanyDetailsType.DzialanoscRolnicza:
+                case EInvestorType.Farmer:
                     return "działalność rolnicza";
-                case CompanyDetailsType.DzialanoscWZakresieRybolostwaIAkwakultury:
+                case EInvestorType.Fisherman:
                     return "działalność w zakresie rybołóstwa i akwakultury";
+                case EInvestorType.PrivateIndividual:
+                    return "osoba prywatna";
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(companyDetailsType), companyDetailsType, null);
+                    return string.Empty;
             }
         }
 
-        private string GetOwnershipType(TytulPrawaDoDypozycji contractTytulPrawaDoDypozycji)
+        private string GetOwnershipType(PropertyOwnershipType contractPropertyOwnershipType)
         {
-            switch (contractTytulPrawaDoDypozycji)
+            switch (contractPropertyOwnershipType)
             {
-                case Documents.TytulPrawaDoDypozycji.Owner:
+                case PropertyOwnershipType.Owner:
                     return "własności";
-                case Documents.TytulPrawaDoDypozycji.CoOwner:
-                    return "współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu";
-                case Documents.TytulPrawaDoDypozycji.PermanentManagement:
+                case PropertyOwnershipType.CoOwner:
+                    return string.Format("współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu", UczestnicyPrawa);
+                case PropertyOwnershipType.PermanentManagement:
                     return "trwałego zarządu";
-                case Documents.TytulPrawaDoDypozycji.PerpetualUsufruct:
+                case PropertyOwnershipType.PerpetualUsufruct:
                     return "użytkowania wieczystego";
-                case Documents.TytulPrawaDoDypozycji.RestrictionsPropertyLaw:
+                case PropertyOwnershipType.RestrictionsPropertyLaw:
                     return "ograniczonego prawa rzeczowego";
-                case Documents.TytulPrawaDoDypozycji.Other:
-                    return "innego tytułu, wynikające z następujących dokumentów potwierdzających powyższe prawo do dysponowania nieruchomością: .....................................................................";
+                case PropertyOwnershipType.Other:
+                    return string.Format("innego tytułu, wynikające z następujących dokumentów potwierdzających powyższe prawo do dysponowania nieruchomością: {0}", DokumentyPotwierdzajace);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(contractTytulPrawaDoDypozycji), contractTytulPrawaDoDypozycji, null);
+                    return string.Empty;
             }
         }
 
-        private string GetHeatingType(HeatingType type)
+        private static string GetHeatingType(HeatingType type)
         {
             switch (type)
             {
@@ -138,8 +161,6 @@ namespace WillEnergy.Domain.Core.Forms
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
-
-            ;
         }
 
         public DateTimeOffset Date { get; set; }
@@ -187,7 +208,7 @@ namespace WillEnergy.Domain.Core.Forms
         public string TytulPrawaDoDyspozycji { get; set; }
 
         public string Date_Today { get; set; }
-        public string DeMinimis { get; set; }
+        public string IsBenefitingDeMinimis { get; set; }
         public string CompanyDetails_Type { get; set; }
     }
 }

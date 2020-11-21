@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -30,17 +30,24 @@ namespace WillEnergy.Application.Forms.Commands.Handlers
 
         private static IList<string> DetermineRequiredDocuments(SubmitForm requestType)
         {
-            // TODO: determine document types?
-
-            return new List<string>()
+            var documentsToGenerate = new List<string>()
             {
                 DocumentConsts.Doc1,
                 DocumentConsts.Doc2,
-                DocumentConsts.Doc3,
-                DocumentConsts.Doc4,
-                DocumentConsts.Doc5,
                 DocumentConsts.Doc6,
             };
+
+            if (requestType.LawParticipants.Any())
+            {
+                documentsToGenerate.Add(DocumentConsts.Doc3);
+            }
+            else if (requestType.InvestorType != EInvestorType.PrivateIndividual)
+            {
+                documentsToGenerate.Add(DocumentConsts.Doc4);
+                documentsToGenerate.Add(DocumentConsts.Doc5);
+            }
+
+            return documentsToGenerate;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using WillEnergy.Domain.Core.Forms;
 
 namespace WillEnergy.Domain.Core.Documents
 {
@@ -7,11 +8,16 @@ namespace WillEnergy.Domain.Core.Documents
     {
         public DateTimeOffset Date { get; set; }
         public string Name { get; set; } // FirstName + LastName || Company Name
-        public AddressDetails AddressDetails { get; set; } // Private / Company
+
+        /// <summary>
+        /// Private individual or Company address
+        /// </summary>
+        public AddressDetails AddressDetails { get; set; }
+
         public AddressDetails CorrespondenceAddressDetails { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-
+        public EInvestorType InvestorType { get; set; }
         public PlannedWorkAddressDetails PlannedWorkAddressDetails { get; set; }
         public EnergyCharacteristicsOfWork OldEnergyCharacteristics { get; set; }
         public EnergyCharacteristicsOfWork PlannedEnergyCharacteristics { get; set; }
@@ -21,22 +27,24 @@ namespace WillEnergy.Domain.Core.Documents
         public bool CanConnectToHeatingNetwork { get; set; }
         public bool CanConnectToGasNetwork { get; set; }
         public int YearOfInvestment { get; set; }
+        public PropertyOwnershipType PropertyOwnershipType { get; set; }
 
-        public TytulPrawaDoDypozycji TytulPrawaDoDypozycji { get; set; }
-        public IList<LawParticipant> UczestnicyPrawa { get; set; } // kiedy nie właściciel
-        public string DokumentyPotwierdzajace { get; set; } // to pole będzie wypełnione na podstawie TytułPrawaDoDypozycji
+        /// <summary>
+        /// List współwłaścicieli posesji/nieruchomości
+        /// </summary>
+        public IList<LawParticipant> LawParticipants { get; set; }
+
+        /// <summary>
+        /// Dokumenty upoważniające użytkowanie nieruchomości
+        /// </summary>
+        public string DispositionLawDocuments { get; set; } // to pole będzie wypełnione na podstawie TytułPrawaDoDypozycji
 
         public string ExectuionCompany { get; set; }
 
-        public CompanyDetails CompanyDetails { get; set; } // na podstawie PrzeznaczonyPodDziałalnośćGospodarczą
+        public string Nip { get; set; }
+        public bool IsBenefitingDeMinimis { get; set; }
     }
 
-    public class CompanyDetails
-    {
-        public CompanyDetailsType Type { get; set; }
-        public bool NiepobieraniePomocyDeMinimis { get; set; }
-        public string Nip { get; set; }
-    }
 
     public class LawParticipant
     {
@@ -54,15 +62,35 @@ namespace WillEnergy.Domain.Core.Documents
 
     public class PlannedWorkAddressDetails : AddressDetails
     {
-        public string NumerEwidencjiDzialki { get; set; }
-        public string Obreb { get; set; }
-        public bool PrzeznaczonyPodDzialalnoscospodarcza { get; set; }
-        public int PowierzchniaUzytkowa { get; set; }
-        public int PowierzchniaPodDzialanosc { get; set; }
-        public int StosunekPowierzchniDzialalnosciDoUzytkowej { get; set; }
+        /// <summary>
+        /// Numer ewidencyjny działki
+        /// </summary>
+        public string PropertyRegistrationNumber { get; set; }
+
+        /// <summary>
+        /// Obręb w którym znajduje się działka
+        /// </summary>
+        public string District { get; set; }
+
+        public bool IsForCommercialUse { get; set; }
+
+        /// <summary>
+        /// Powierzchnia użytkowa
+        /// </summary>
+        public int UsableArea { get; set; }
+
+        /// <summary>
+        /// Powierzchnia komercyjna
+        /// </summary>
+        public int CommercialArea { get; set; }
+
+        /// <summary>
+        /// Stosunek powierzchni komercyjnej do użytkowej
+        /// </summary>
+        public int CommercialToUsableAreaRatio { get; set; }
     }
 
-    public enum TytulPrawaDoDypozycji
+    public enum PropertyOwnershipType
     {
         Owner, // jesli wlasciciel to uzyj imie i nazwisko podane wyzej zamiast UczestnicyPrawa
         CoOwner,
@@ -84,13 +112,6 @@ namespace WillEnergy.Domain.Core.Documents
         public int Power { get; set; }
         public int Age { get; set; }
         public int ConsumptionPerYear { get; set; }
-    }
-
-    public enum CompanyDetailsType
-    {
-        DzialalnoscGospodarcza,
-        DzialanoscRolnicza,
-        DzialanoscWZakresieRybolostwaIAkwakultury,
     }
 
     public enum HeatingType
