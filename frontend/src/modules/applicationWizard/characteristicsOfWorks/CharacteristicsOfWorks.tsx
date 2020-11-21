@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { InputField } from '../../../shared/forms/Input/InputField';
 import '../../../shared/forms/button.css';
 import { RadioGroupField } from '../../../shared/forms/RadioGroup/RadioGroupField';
-import { Button, Col, Radio, Row } from 'antd';
+import { Button, Col, Radio, Row, Divider } from 'antd';
 import { useAppContext } from '../../../AppState/AppContext';
 import { SelectField } from '../../../shared/forms/Select/SelectField';
 
@@ -64,7 +64,7 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
       >
         {({ values, setFieldValue, setFieldTouched, isValid }: FormikProps<FormValues>) => (
           <Form>
-            <h5>Dotychczasowe źródło ciepła</h5>
+            <h5 className="ApplicationWizard__subtitle">Dotychczasowe źródło ciepła</h5>
             <InputField id="oldType" type="text" value={values.oldType} name="oldType" onChange={setFieldValue} onFocus={setFieldTouched}>
               Rodzaj
             </InputField>
@@ -91,8 +91,8 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
             >
               Roczne zużycie paliw
             </InputField>
-            <hr />
-            <h5>Planowane źródło ciepła</h5>
+            <Divider />
+            <h5 className="ApplicationWizard__subtitle">Planowane źródło ciepła</h5>
             <RadioGroupField
               id="plannedType"
               value={values.plannedType}
@@ -101,23 +101,23 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
               items={() => (
                 <>
                   <Row>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Sieć ciepłownicza">Sieć ciepłownicza</Radio>
                     </Col>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Sieć gazowa">Sieć gazowa</Radio>
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Gaz płynny (zbiornik)">Gaz płynny (zbiornik)</Radio>
                     </Col>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Energia elektryczna">Energia elektryczna</Radio>
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Biomasa">Biomasa</Radio>
                     </Col>
                   </Row>
@@ -141,7 +141,7 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
                   >
                     Planowane roczne zużycie paliw
                   </InputField>
-                  <hr />
+                  <Divider />
                   <SelectField
                     id="plannedCompletionDate"
                     value={values.plannedCompletionDate}
@@ -167,9 +167,13 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
             >
               Tytuł własności nieruchomości
             </RadioGroupField>
-            <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
-              Dalej
-            </Button>
+            <Row>
+              <Col offset={14} span={10}>
+                <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
+                  Dalej
+                </Button>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>
