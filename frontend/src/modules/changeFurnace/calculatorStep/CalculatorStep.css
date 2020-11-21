@@ -140,8 +140,18 @@
         margin: 0 0 64px;
       }
 
-      & a {
+      & button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 312px;
+        height: 48px;
         align-self: flex-end;
+        font-size: 17px;
+
+        & svg {
+          margin-left: 20px;
+        }
       }
     }
   }

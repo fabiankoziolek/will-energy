@@ -1,5 +1,7 @@
 import { Col, Row } from 'antd';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { routes } from '../../../routes';
 import './FillFormStep.css';
 
 export const FillFormStep = () => {
@@ -50,6 +52,12 @@ export const FillFormStep = () => {
               Regulaminie przyznawania dotacji
             </a>
           </p>
+          <div className="FillFormStep__buttons">
+            <Link className="LinkAsButton" to={routes.applicationWizard}>
+              Wypełnij wniosek
+            </Link>
+            <a className="LinkAsButton--outline" target="blank" href="http://zdunskawola.pl/images/luty_2020/Wniosek_z_zalacznikami.pdf">Pobierz pdf</a>
+          </div>
         </Col>
       </Row>
     </div>

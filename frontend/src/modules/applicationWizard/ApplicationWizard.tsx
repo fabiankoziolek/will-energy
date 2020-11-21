@@ -4,6 +4,7 @@ import * as Icon from 'react-feather';
 import { useAppContext } from '../../AppState/AppContext';
 import { WizardStep } from '../../AppState/AppState';
 import './ApplicationWizard.css';
+import {ApplicantDetails} from "./applicantDetails/ApplicantDetails";
 
 const { Panel } = Collapse;
 
@@ -45,16 +46,11 @@ export const ApplicationWizard = () => {
               }
               key={WizardStep.ApplicantDetails}
             >
-              asd
-              <Button
-                onClick={() =>
-                  isCompleted(WizardStep.ApplicantDetails)
-                    ? actions.uncompleteStep(WizardStep.ApplicantDetails)
-                    : actions.completeStep(WizardStep.ApplicantDetails)
-                }
-              >
-                Save
-              </Button>
+              <ApplicantDetails onCompleted={() => {
+                isCompleted(WizardStep.ApplicantDetails)
+                  ? actions.uncompleteStep(WizardStep.ApplicantDetails)
+                  : actions.completeStep(WizardStep.ApplicantDetails);
+              }} />
             </Panel>
             <Panel
               header={
