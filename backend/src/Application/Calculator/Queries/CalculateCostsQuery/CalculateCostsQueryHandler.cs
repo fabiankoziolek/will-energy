@@ -85,9 +85,9 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
             var startingValue = installationCost + monthlyCost;
             var now = DateTimeOffset.UtcNow;
             var records = new List<HeatingCostRecord>();
-            for (var i = 0; i < 10 * 12; i++)
+            for (var i = 0; i < 15; i++)
             {
-                records.Add(new HeatingCostRecord { Date = now.AddDays(i), Cost = startingValue + (i * modifier / 100) * (i * monthlyCost) });
+                records.Add(new HeatingCostRecord { Date = now.AddYears(i), Cost = startingValue + (i * modifier / 100) * (i * monthlyCost) });
             }
 
             return records;
