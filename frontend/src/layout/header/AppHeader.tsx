@@ -6,7 +6,7 @@ import { routes } from '../../routes';
 
 const { Header } = Layout;
 
-export const AppHeader = () => {
+export const AppHeader= () => {
   const location = useLocation();
   return (
     <Header className="AppHeader">

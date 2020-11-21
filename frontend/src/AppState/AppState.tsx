@@ -8,9 +8,17 @@ export enum HeatingType {
   NetworkHeat,
 }
 
-export type AppState = { address?: GoogleAddressIncome; area: number; heatingType?: HeatingType };
+export enum WizardStep {
+  ApplicantDetails,
+  PropertyDetails,
+  CharacteristicsOfWorks,
+  Summary,
+}
+
+export type AppState = { address?: GoogleAddressIncome; area: number; heatingType?: HeatingType; completedApplicationSteps: WizardStep[] };
 
 export const initialState: AppState = {
   address: undefined,
   area: 0,
+  completedApplicationSteps: [],
 };

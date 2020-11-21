@@ -17,12 +17,13 @@ import { routes } from './routes';
 
 const { Content, Header } = Layout;
 
-const BackContextWrapper = (props: { children: React.ReactNode }) => {
+const BackContextWrapper = (props: { children: React.ReactNode; backTo: string }) => {
   const history = useHistory();
+  console.log(history);
   return (
     <>
       <Header className="AppHeader">
-        <Button onClick={() => history.goBack()} icon={<Icon.ArrowLeft />} type="text">
+        <Button onClick={() => history.push(props.backTo)} icon={<Icon.ArrowLeft />} type="text">
           Wróć na poprzednią stronę
         </Button>
       </Header>
@@ -39,12 +40,12 @@ const App = () => {
           <Layout className="App">
             <Switch>
               <Route exact path={routes.applicationWizard}>
-                <BackContextWrapper>
+                <BackContextWrapper backTo={routes.fillForm}>
                   <ApplicationWizard />
                 </BackContextWrapper>
               </Route>
               <Route exact path={routes.privacyPolicy}>
-                <BackContextWrapper>Polityka</BackContextWrapper>
+                <BackContextWrapper backTo={'/'}>Polityka</BackContextWrapper>
               </Route>
               <Route path="/">
                 <AppHeader />

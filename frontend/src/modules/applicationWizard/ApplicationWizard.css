@@ -1,2 +1,3 @@
 .ApplicationWizard {
+  @mixin wrapper;
 }
