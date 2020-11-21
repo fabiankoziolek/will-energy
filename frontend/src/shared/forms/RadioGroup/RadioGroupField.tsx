@@ -19,7 +19,7 @@ export const RadioGroupField: React.FC<Props> = ({ name, value, onChange, id, cl
   return (
     <>
       {children && (
-        <label className="InputField__label" htmlFor={id}>
+        <label className={classNames('InputField__label', 'RadioGroupField__label')} htmlFor={id}>
           {children}
         </label>
       )}

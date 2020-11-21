@@ -22,8 +22,8 @@ const BackContextWrapper = (props: { children: React.ReactNode; backTo: string }
   return (
     <>
       <Header className="AppHeader">
-        <Button onClick={() => history.push(props.backTo)} icon={<Icon.ArrowLeft />} type="text">
-          Wróć na poprzednią stronę
+        <Button className="AppHeader__backButton" onClick={() => history.push(props.backTo)} type="text">
+          <Icon.ArrowLeft /> Wróć na poprzednią stronę
         </Button>
       </Header>
       <Content className="App__content">{props.children}</Content>
