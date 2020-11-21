@@ -9,7 +9,7 @@ namespace WillEnergy.WebUI.Controllers
     public class StreetMediaController : ApiController
     {
         [HttpGet]
-        public async Task<StreetMediaDto> StreetMedia(string streetName)
+        public async Task<StreetMediaDto> StreetMedia([FromQuery]string streetName)
         {
             return await Bus.Send(new StreetMediaQuery(streetName));
         }

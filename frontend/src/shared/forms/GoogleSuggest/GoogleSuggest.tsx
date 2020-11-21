@@ -3,6 +3,13 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import './GoogleSuggest.css';
 const MY_API_KEY = 'AIzaSyDp5Jmo11YFwQY14Fts4d8kH1S1dVauHug';
 
+export interface StreetMediaDto {
+  hasGasConnection: boolean;
+  hasHeatConnection: boolean;
+  gasDateConnection: Date;
+  heatDateConnection: Date;
+}
+
 export type GoogleAddressIncome = {
   country: string;
   city: string;
