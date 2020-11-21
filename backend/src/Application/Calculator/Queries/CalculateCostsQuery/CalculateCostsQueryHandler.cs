@@ -87,7 +87,8 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
             var records = new List<HeatingCostRecord>();
             for (var i = 0; i < 15; i++)
             {
-                records.Add(new HeatingCostRecord { Date = now.AddYears(i), Cost = startingValue + (i * modifier / 100) * (i * monthlyCost) });
+                records.Add(new HeatingCostRecord
+                    { Date = now.AddYears(i), Cost = startingValue + (i * modifier / 100) * (i * monthlyCost) });
             }
 
             return records;
@@ -95,7 +96,7 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static double MonthlyCostForNetworkNaturalGas(double area)
         {
-            return SelectCostPerArea(area, (3000 + 3500) / 2 / 12, (3500 + 4800) / 2 / 12, (4800 + 7000) / 2) / 12;
+            return SelectCostPerArea(area, (3000 + 3500) / 2 / 12, (3500 + 4800) / 2 / 12, (4800 + 7000) / 2 / 12);
         }
 
         private static double InstallationCostForNetworkNaturalGas(double area)
@@ -106,7 +107,7 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static double MonthlyCostForLiquefiedNaturalGas(double area)
         {
-            return SelectCostPerArea(area, (3500 + 4000) / 2 / 12, (4000 + 6000) / 2 / 12, (6000 + 13000) / 2) / 12;
+            return SelectCostPerArea(area, (3500 + 4000) / 2 / 12, (4000 + 6000) / 2 / 12, (6000 + 13000) / 2 / 12);
         }
 
         private static double InstallationCostForLiquefiedNaturalGas(double area)
@@ -121,7 +122,7 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static double MonthlyCostForBiomass(double area)
         {
-            return SelectCostPerArea(area, (3500 + 4000) / 2 / 12, (4000 + 5000) / 2 / 12, (5000 + 8000) / 2) / 12;
+            return SelectCostPerArea(area, (3500 + 4000) / 2 / 12, (4000 + 5000) / 2 / 12, (5000 + 8000) / 2 / 12);
         }
 
         private static double InstallationCostForElectricity(double area)
@@ -131,12 +132,12 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static double MonthlyCostForElectricity(double area)
         {
-            return SelectCostPerArea(area, (5000 + 6000) / 2 / 12, (6000 + 10000) / 2 / 12, (10000 + 15000) / 2) / 12;
+            return SelectCostPerArea(area, (5000 + 6000) / 2 / 12, (6000 + 10000) / 2 / 12, (10000 + 15000) / 2 / 12);
         }
 
         private static double MonthlyCostForNetworkHeat(double area)
         {
-            return SelectCostPerArea(area, (4000 + 4500) / 2 / 12, (4500 + 6000) / 2 / 12, (6000 + 15000) / 2) / 12;
+            return SelectCostPerArea(area, (4000 + 4500) / 2 / 12, (4500 + 6000) / 2 / 12, (6000 + 15000) / 2 / 12);
         }
 
         private static double InstallationCostForNetworkHeat()

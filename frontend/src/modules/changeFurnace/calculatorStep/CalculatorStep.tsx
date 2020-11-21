@@ -60,11 +60,9 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
   const [heatingType, setHeatingType] = React.useState<string>();
 
   const data = {
-    labels: range(0, 10),
+    labels: range(0, 15),
     datasets:
       results?.reports.map((x, index) => {
-        //const groupedData = chunk(x.costRecords, x.costRecords.length / 10);
-        //console.log(groupedData.map(arr => console.log(sum(arr))));
         return {
           label: x.type,
           data: x.costRecords.map((y) => y.cost),
@@ -87,6 +85,9 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
           ticks: {
             beginAtZero: true, // minimum value will be 0.
           },
+          gridLines: {
+            display: false,
+          },
         };
       }),
       xAxes: [
@@ -94,9 +95,18 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
           ticks: {
             autoSkip: true,
             maxTicksLimit: 20,
+            callback: function (value: any) {
+              return 2020 + value;
+            }
+          },
+          gridLines: {
+            display: false,
           },
         },
       ],
+    },
+    legend: {
+      display: false,
     },
   };
 
