@@ -1,0 +1,10 @@
+.RadioGroupField {
+  display: block;
+  margin-top: 42px;
+  & .ant-row {
+    margin-bottom: 28px;
+  }
+}
+
+.RadioGroupField__label {
+}

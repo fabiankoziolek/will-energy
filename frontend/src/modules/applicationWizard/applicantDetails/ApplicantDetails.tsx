@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { InputField } from '../../../shared/forms/Input/InputField';
 import '../../../shared/forms/button.css';
 import { RadioGroupField } from '../../../shared/forms/RadioGroup/RadioGroupField';
-import { Button, Col, Radio, Row } from 'antd';
+import { Button, Col, Divider, Radio, Row } from 'antd';
 import { useAppContext } from '../../../AppState/AppContext';
 
 interface IApplicantDetailsStepProps {
@@ -91,7 +91,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
               onChange={setFieldValue}
               onFocus={setFieldTouched}
             >
-              Imię
+              Telefon
             </InputField>
             <RadioGroupField
               id="typdzialanosci"
@@ -117,7 +117,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
             >
               Rodzaj prowadzonej działalności
             </RadioGroupField>
-            <hr />
+            <Divider />
             <h5>Lokalizacja planowanych prac</h5>
             <InputField
               id="streetName"
@@ -129,8 +129,8 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
             >
               Ulica
             </InputField>
-            <Row>
-              <Col>
+            <Row gutter={24}>
+              <Col span={12}>
                 <InputField
                   id="buildingNumber"
                   type="text"
@@ -142,7 +142,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
                   Numer budynku
                 </InputField>
               </Col>
-              <Col>
+              <Col span={12}>
                 <InputField
                   id="houseNumber"
                   type="text"
@@ -158,7 +158,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
             <InputField id="city" type="text" value={values.city} name="city" onChange={setFieldValue} onFocus={setFieldTouched}>
               Miejscowość
             </InputField>
-            <hr />
+            <Divider />
             <h5>Rachunek bankowy wnioskodawcy</h5>
             <InputField
               id="bankNumber"
@@ -170,9 +170,13 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
             >
               Numer rachunku
             </InputField>
-            <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
-              Dalej
-            </Button>
+            <Row >
+              <Col offset={14} span={10}>
+              <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
+                Dalej
+                </Button>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>
