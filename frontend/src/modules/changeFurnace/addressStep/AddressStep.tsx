@@ -35,12 +35,18 @@ export const AddressStep: React.FC<IAddressStepProps> = (props) => {
               />
             </Col>
             <Col span={6}>
-              <Button className="Button" type="primary">Sprawdź</Button>
+              <Button
+                disabled={!(isPrivacyPolicyAccepted && !!state.address)}
+                onClick={() => props.goToNextStep()}
+                className="Button"
+                type="primary"
+              >
+                Sprawdź
+              </Button>
             </Col>
           </Row>
         </Col>
       </Row>
     </div>
-    //          props.goToNextStep();
   );
 };
