@@ -143,7 +143,7 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
                     Planowane roczne zużycie paliw
                   </InputField>
                   <Divider />
-                  <SelectField
+                  <DatePickerField
                     id="plannedCompletionDate"
                     value={values.plannedCompletionDate}
                     name="plannedCompletionDate"
