@@ -31,5 +31,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\templ_1.docx" />
+    <Content Include="Templates\templ_2.docx" />
+    <Content Include="Templates\templ_3.docx" />
+    <Content Include="Templates\templ_4.docx" />
+    <Content Include="Templates\templ_5.docx" />
+    <Content Include="Templates\templ_6.docx" />
   </ItemGroup> 
 </Project>

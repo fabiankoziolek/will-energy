@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WillEnergy.Application
+namespace WillEnergy.Domain.Core.Documents
 {
     public class DocumentContract
     {
