@@ -45,6 +45,7 @@ interface HeatingCostRecord {
   cost: number;
 }
 
+
 const FormikNextStateListener = () => {
   const { values, submitForm } = useFormikContext();
   React.useEffect(() => {
@@ -129,7 +130,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes 
         <Row>
           <Col offset={4} span={16}>
             <Formik validationSchema={FormSchema} initialValues={initialFormValues} onSubmit={onSubmit}>
-              {({ values, setFieldValue, setFieldTouched }: FormikProps<FormValues>) => {
+              {({ values, setFieldValue, setFieldTouched, errors }: FormikProps<FormValues>) => {
                 return (
                   <Form>
                     <FormikNextStateListener />
@@ -141,6 +142,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes 
                         name="buildingArea"
                         onChange={setFieldValue}
                         onFocus={setFieldTouched}
+                        error={errors.buildingArea}
                       >
                         Podaj powierzchnię budynku w &#x33A1;
                       </InputField>

@@ -15,6 +15,7 @@ type Props = {
   className?: string;
   placeholder?: string;
   disabled?: boolean;
+  error?: string;
 };
 
 export const InputField: React.FC<Props> = ({
@@ -28,10 +29,11 @@ export const InputField: React.FC<Props> = ({
   placeholder,
   disabled,
   children,
+  error,
 }: Props) => {
   return (
     <>
-      {children && (
+      {!!children && (
         <label className="InputField__label" htmlFor={id}>
           {children}
         </label>
@@ -43,10 +45,15 @@ export const InputField: React.FC<Props> = ({
         name={name}
         onChange={(e) => onChange(name, e.target.value)}
         onFocus={() => onFocus(name, true)}
-        className={classNames('InputField', className)}
+        className={classNames('InputField', { 'InputField--error': !!error }, className)}
         placeholder={placeholder}
         disabled={disabled}
       />
+      {!!error && (
+        <div role="alert" className="InputField__error">
+          {error}
+        </div>
+      )}
     </>
   );
 };
