@@ -14,7 +14,6 @@ import * as Icon from 'react-feather';
 import { useHistory } from 'react-router-dom';
 import { routes } from './routes';
 
-
 const { Content, Header } = Layout;
 
 const BackContextWrapper = (props: { children: React.ReactNode; backTo: string }) => {

@@ -5,8 +5,8 @@ namespace WillEnergy.Application.Calculator.Queries
 {
     public class CalculateCostsDto
     {
-        public int InstallationCost { get; set; }
-        public int MonthlyUsageCost { get; set; }
+        public double InstallationCost { get; set; }
+        public double MonthlyUsageCost { get; set; }
         public IList<ReportHeatingType> Reports { get; set; }
     }
 
@@ -19,6 +19,6 @@ namespace WillEnergy.Application.Calculator.Queries
     public class HeatingCostRecord
     {
         public DateTimeOffset Date { get; set; }
-        public int Cost { get; set; }
+        public double Cost { get; set; }
     }
 }

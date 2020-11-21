@@ -5,6 +5,7 @@ import { useAppContext } from '../../AppState/AppContext';
 import { WizardStep } from '../../AppState/AppState';
 import './ApplicationWizard.css';
 import { ApplicantDetails } from './applicantDetails/ApplicantDetails';
+import { PropertyDetails } from './propertyDetails/PropertyDetails';
 
 const { Panel } = Collapse;
 
@@ -66,16 +67,13 @@ export const ApplicationWizard = () => {
               key={WizardStep.PropertyDetails}
               disabled={!isCompleted(WizardStep.ApplicantDetails)}
             >
-              asd a
-              <Button
-                onClick={() =>
+              <PropertyDetails
+                onCompleted={() => {
                   isCompleted(WizardStep.PropertyDetails)
                     ? actions.uncompleteStep(WizardStep.PropertyDetails)
-                    : actions.completeStep(WizardStep.PropertyDetails)
-                }
-              >
-                Save
-              </Button>
+                    : actions.completeStep(WizardStep.PropertyDetails);
+                }}
+              />
             </Panel>
             <Panel
               header={

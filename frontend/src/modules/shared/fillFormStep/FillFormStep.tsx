@@ -56,7 +56,9 @@ export const FillFormStep = () => {
             <Link className="LinkAsButton" to={routes.applicationWizard}>
               Wypełnij wniosek
             </Link>
-            <a className="LinkAsButton--outline" target="blank" href="http://zdunskawola.pl/images/luty_2020/Wniosek_z_zalacznikami.pdf">Pobierz pdf</a>
+            <a className="LinkAsButton--outline" target="blank" href="http://zdunskawola.pl/images/luty_2020/Wniosek_z_zalacznikami.pdf">
+              Pobierz pdf
+            </a>
           </div>
         </Col>
       </Row>
