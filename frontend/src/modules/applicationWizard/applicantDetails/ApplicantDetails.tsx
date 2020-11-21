@@ -170,10 +170,10 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
             >
               Numer rachunku
             </InputField>
-            <Row >
+            <Row>
               <Col offset={14} span={10}>
-              <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
-                Dalej
+                <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
+                  Dalej
                 </Button>
               </Col>
             </Row>
