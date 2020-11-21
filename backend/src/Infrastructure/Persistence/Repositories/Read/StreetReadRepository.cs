@@ -20,7 +20,8 @@ namespace WillEnergy.Infrastructure.Persistence.Repositories.Read
 
         public async Task<Street> FindByName(string name)
         {
-            return await Context.Streets.FirstOrDefaultAsync(x => x.Name == name);
+            return await Context.Streets
+                .FirstOrDefaultAsync(x => x.Name.Contains(name, System.StringComparison.InvariantCulture));
         }
     }
 }
