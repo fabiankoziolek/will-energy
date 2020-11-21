@@ -40,9 +40,9 @@ namespace WillEnergy.Domain.Core.Forms
             Inv_BuildingNumber = contract.PlannedWorkAddressDetails.BuildingNumber;
             Inv_StreetName = contract.PlannedWorkAddressDetails.StreetName;
             Inv_City = contract.PlannedWorkAddressDetails.City;
-            // PlannedWorkAddressDetails_PrzeznaczonyPodDzialalnoscospodarcza = contract.PlannedWorkAddressDetails.PrzeznaczonyPodDzialalnoscospodarcza;
             Inv_PowierzchniaUzytkowa = contract.PlannedWorkAddressDetails.UsableArea.ToString();
-            PlannedWorkAddressDetails_UzytkowanieDlaDzialalnosciGospodarczej = contract.PlannedWorkAddressDetails.IsForCommercialUse ? "tak" : "nie";
+            PlannedWorkAddressDetails_UzytkowanieDlaDzialalnosciGospodarczej =
+                contract.PlannedWorkAddressDetails.IsForCommercialUse ? "tak" : "nie";
             PowierzchniaPodDzialalnosc = contract.PlannedWorkAddressDetails.CommercialArea.ToString();
             StosunekPowierzchniDzialalnosciDoUzytkowej = contract.PlannedWorkAddressDetails.CommercialToUsableAreaRatio.ToString();
 
@@ -64,23 +64,8 @@ namespace WillEnergy.Domain.Core.Forms
             InvestorType_B = GetInvestorType(contract.InvestorType);
             Date_Today = DateTime.Today.ToString("dd-MM-yyyy");
             Nip = contract.Nip;
-
         }
 
-        private string GetInvestorType(EInvestorType investorType)
-        {
-            switch (investorType)
-            {
-                case EInvestorType.Company:
-                    return "działalność gospodarczą";
-                case EInvestorType.Farmer:
-                    return "działalność rolniczą";
-                case EInvestorType.Fisherman:
-                    return "działalność w zakresie rybołóstwa i akwakultury";
-                default:
-                    return "......................";
-            }
-        }
 
         public string InvestorType_B { get; set; }
 
@@ -106,62 +91,6 @@ namespace WillEnergy.Domain.Core.Forms
 
         public string PlannedWorkAddressDetails_StreetName { get; set; }
 
-        private static string GetCompanyDetails(EInvestorType investorType)
-        {
-            switch (investorType)
-            {
-                case EInvestorType.Company:
-                    return "działalność gospodarcza";
-                case EInvestorType.Farmer:
-                    return "działalność rolnicza";
-                case EInvestorType.Fisherman:
-                    return "działalność w zakresie rybołóstwa i akwakultury";
-                case EInvestorType.PrivateIndividual:
-                    return "osoba prywatna";
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private string GetOwnershipType(PropertyOwnershipType contractPropertyOwnershipType)
-        {
-            switch (contractPropertyOwnershipType)
-            {
-                case PropertyOwnershipType.Owner:
-                    return "własności";
-                case PropertyOwnershipType.CoOwner:
-                    return string.Format("współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu", UczestnicyPrawa);
-                case PropertyOwnershipType.PermanentManagement:
-                    return "trwałego zarządu";
-                case PropertyOwnershipType.PerpetualUsufruct:
-                    return "użytkowania wieczystego";
-                case PropertyOwnershipType.RestrictionsPropertyLaw:
-                    return "ograniczonego prawa rzeczowego";
-                case PropertyOwnershipType.Other:
-                    return string.Format("innego tytułu, wynikające z następujących dokumentów potwierdzających powyższe prawo do dysponowania nieruchomością: {0}", DokumentyPotwierdzajace);
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private static string GetHeatingType(HeatingType type)
-        {
-            switch (type)
-            {
-                case HeatingType.NetworkNaturalGas:
-                    return "ogrzewanie gazowe";
-                case HeatingType.LiquefiedNaturalGas:
-                    return "ogrzewanie gazowe";
-                case HeatingType.Biomass:
-                    return "kocioł opalany granulatem drzewnym, tzw. biomasą";
-                case HeatingType.Electricity:
-                    return "ogrzewanie elektryczne";
-                case HeatingType.NetworkHeat:
-                    return "podłączenie do sieci ciepłowniczej";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
-        }
 
         public DateTimeOffset Date { get; set; }
         public string Name { get; set; } // FirstName + LastName || Company Name
@@ -193,7 +122,9 @@ namespace WillEnergy.Domain.Core.Forms
         public string Inv_NumerEwidencjiDzialki { get; set; }
         public string Inv_Obreb { get; set; }
         public string Inv_PrzeznaczonyPodDzialalnoscospodarcza { get; set; }
+
         public string Inv_PowierzchniaUzytkowa { get; set; }
+
         // public string PlannedWorkAddressDetails_PowierzchniaUzytkowa { get; set; }
         public string PowierzchniaPodDzialalnosc { get; set; }
         public string StosunekPowierzchniDzialalnosciDoUzytkowej { get; set; }
@@ -210,5 +141,80 @@ namespace WillEnergy.Domain.Core.Forms
         public string Date_Today { get; set; }
         public string IsBenefitingDeMinimis { get; set; }
         public string CompanyDetails_Type { get; set; }
+
+        private static string GetCompanyDetails(EInvestorType investorType)
+        {
+            switch (investorType)
+            {
+                case EInvestorType.Company:
+                    return "działalność gospodarcza";
+                case EInvestorType.Farmer:
+                    return "działalność rolnicza";
+                case EInvestorType.Fisherman:
+                    return "działalność w zakresie rybołóstwa i akwakultury";
+                case EInvestorType.PrivateIndividual:
+                    return "osoba prywatna";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private string GetInvestorType(EInvestorType investorType)
+        {
+            switch (investorType)
+            {
+                case EInvestorType.Company:
+                    return "działalność gospodarczą";
+                case EInvestorType.Farmer:
+                    return "działalność rolniczą";
+                case EInvestorType.Fisherman:
+                    return "działalność w zakresie rybołóstwa i akwakultury";
+                default:
+                    return "......................";
+            }
+        }
+
+        private string GetOwnershipType(PropertyOwnershipType contractPropertyOwnershipType)
+        {
+            switch (contractPropertyOwnershipType)
+            {
+                case PropertyOwnershipType.Owner:
+                    return "własności";
+                case PropertyOwnershipType.CoOwner:
+                    return string.Format("współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu",
+                        UczestnicyPrawa);
+                case PropertyOwnershipType.PermanentManagement:
+                    return "trwałego zarządu";
+                case PropertyOwnershipType.PerpetualUsufruct:
+                    return "użytkowania wieczystego";
+                case PropertyOwnershipType.RestrictionsPropertyLaw:
+                    return "ograniczonego prawa rzeczowego";
+                case PropertyOwnershipType.Other:
+                    return string.Format(
+                        "innego tytułu, wynikające z następujących dokumentów potwierdzających powyższe prawo do dysponowania nieruchomością: {0}",
+                        DokumentyPotwierdzajace);
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string GetHeatingType(HeatingType type)
+        {
+            switch (type)
+            {
+                case HeatingType.NetworkNaturalGas:
+                    return "ogrzewanie gazowe";
+                case HeatingType.LiquefiedNaturalGas:
+                    return "ogrzewanie gazowe";
+                case HeatingType.Biomass:
+                    return "kocioł opalany granulatem drzewnym, tzw. biomasą";
+                case HeatingType.Electricity:
+                    return "ogrzewanie elektryczne";
+                case HeatingType.NetworkHeat:
+                    return "podłączenie do sieci ciepłowniczej";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+        }
     }
 }

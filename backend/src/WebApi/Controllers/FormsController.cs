@@ -21,7 +21,7 @@ namespace WillEnergy.WebUI.Controllers
             var stream = await Bus.Send(request);
             stream.Position = 0;
 
-            return File(stream, "application/octet-stream", "fileData.Filename.zip");
+            return File(stream, "application/octet-stream", "Wniosek.zip");
         }
     }
 }
