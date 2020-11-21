@@ -58,7 +58,7 @@ export const SelectField: React.FC<Props> = ({
         disabled={disabled}
       >
         {options.map((x) => (
-          <Select.Option value={x.value}>{x.label}</Select.Option>
+          <Select.Option key={x.value} value={x.value}>{x.label}</Select.Option>
         ))}
       </Select>
       {!!error && (
