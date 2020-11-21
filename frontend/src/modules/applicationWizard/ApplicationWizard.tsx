@@ -110,8 +110,12 @@ export const ApplicationWizard = () => {
             >
               <div className="ApplicationWizard__summary">
                 <h5>Twój wniosek jest gotowy</h5>
-                <p>Podpisany wniosek wraz z wszystkimi załącznikami złóż w Kancelarii Urzędu Miasta (budynek nr 2) przy ul. Złotnickiego 12.</p>
-                <Button className="Button" type="primary" onClick={() => actions.completeStep(WizardStep.Summary)}>Pobierz wypełniony wniosek</Button>
+                <p>
+                  Podpisany wniosek wraz z wszystkimi załącznikami złóż w Kancelarii Urzędu Miasta (budynek nr 2) przy ul. Złotnickiego 12.
+                </p>
+                <Button className="Button" type="primary" onClick={() => actions.completeStep(WizardStep.Summary)}>
+                  Pobierz wypełniony wniosek
+                </Button>
               </div>
             </Panel>
           </Collapse>

@@ -7,7 +7,7 @@ import { RadioGroupField } from '../../../shared/forms/RadioGroup/RadioGroupFiel
 import { Button, Col, Radio, Row } from 'antd';
 import { useAppContext } from '../../../AppState/AppContext';
 import { SelectField } from '../../../shared/forms/Select/SelectField';
-import {DatePickerField} from "../../../shared/forms/DatePicker/DatePickerField";
+import { DatePickerField } from '../../../shared/forms/DatePicker/DatePickerField';
 
 interface IPropertyDetailsStepProps {
   onCompleted: () => void;
