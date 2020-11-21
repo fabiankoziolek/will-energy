@@ -115,7 +115,7 @@ namespace WillEnergy.Domain.Core.Forms
                 case Documents.TytulPrawaDoDypozycji.RestrictionsPropertyLaw:
                     return "ograniczonego prawa rzeczowego";
                 case Documents.TytulPrawaDoDypozycji.Other:
-                    return "innego tytułu, wynikające z następujących dokumentów2 potwierdzających powyższe prawo do dysponowania nieruchomością: .....................................................................";
+                    return "innego tytułu, wynikające z następujących dokumentów potwierdzających powyższe prawo do dysponowania nieruchomością: .....................................................................";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(contractTytulPrawaDoDypozycji), contractTytulPrawaDoDypozycji, null);
             }
