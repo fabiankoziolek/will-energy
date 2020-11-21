@@ -5,4 +5,12 @@
   & .ant-row {
     margin-bottom: 28px;
   }
+
+  & .ant-radio-inner::after {
+    background-color: var(--primaryBlue);
+    top: -1px;
+    left: -1px;
+    width: 16px;
+    height: 16px;
+  }
 }
