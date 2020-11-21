@@ -6,7 +6,7 @@ import { WizardStep } from '../../AppState/AppState';
 import './ApplicationWizard.css';
 import { ApplicantDetails } from './applicantDetails/ApplicantDetails';
 import { PropertyDetails } from './propertyDetails/PropertyDetails';
-import {CharacteristicsOfWorks} from "./characteristicsOfWorks/CharacteristicsOfWorks";
+import { CharacteristicsOfWorks } from './characteristicsOfWorks/CharacteristicsOfWorks';
 
 const { Panel } = Collapse;
 

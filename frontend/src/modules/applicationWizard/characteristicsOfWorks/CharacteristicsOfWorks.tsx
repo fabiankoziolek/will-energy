@@ -65,14 +65,7 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
         {({ values, setFieldValue, setFieldTouched, isValid }: FormikProps<FormValues>) => (
           <Form>
             <h5>Dotychczasowe źródło ciepła</h5>
-            <InputField
-              id="oldType"
-              type="text"
-              value={values.oldType}
-              name="oldType"
-              onChange={setFieldValue}
-              onFocus={setFieldTouched}
-            >
+            <InputField id="oldType" type="text" value={values.oldType} name="oldType" onChange={setFieldValue} onFocus={setFieldTouched}>
               Rodzaj
             </InputField>
             <InputField id="oldAge" type="text" value={values.oldAge} name="oldAge" onChange={setFieldValue} onFocus={setFieldTouched}>

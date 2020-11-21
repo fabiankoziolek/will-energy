@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import {ReactChild} from "react";
+import { ReactChild } from 'react';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
