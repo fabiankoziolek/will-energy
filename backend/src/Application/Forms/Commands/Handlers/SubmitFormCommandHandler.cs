@@ -34,7 +34,7 @@ namespace WillEnergy.Application.Forms.Commands.Handlers
 
             return new List<string>()
             {
-                DocumentConsts.Doc1
+                DocumentConsts.Doc2
             };
         }
     }

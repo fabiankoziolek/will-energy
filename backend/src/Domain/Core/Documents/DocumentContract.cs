@@ -69,6 +69,7 @@ namespace WillEnergy.Domain.Core.Documents
         PermanentManagement,
         RestrictionsPropertyLaw,
         Other,
+        PerpetualUsufruct
     }
 
     public class BankDetails

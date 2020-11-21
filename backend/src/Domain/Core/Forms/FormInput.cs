@@ -54,7 +54,7 @@ namespace WillEnergy.Domain.Core.Forms
             PlannedEnergyCharacteristics_Power = contract.PlannedEnergyCharacteristics.Power.ToString();
             PlannedEnergyCharacteristics_ConsumptionPerYear = contract.PlannedEnergyCharacteristics.ConsumptionPerYear.ToString();
             PlannedEnergyCharacteristics_Type = GetHeatingType(contract.PlannedEnergyCharacteristics.Type);
-            TytulPrawaDoDypozycji = GetOwnershipType(contract.TytulPrawaDoDypozycji);
+            TytulPrawaDoDyspozycji = string.Format(GetOwnershipType(contract.TytulPrawaDoDypozycji), UczestnicyPrawa);
             DeMinimis = contract.CompanyDetails.NiepobieraniePomocyDeMinimis ? "nie" : "pobieram";
             CompanyDetails_Type = GetCompanyDetails(contract.CompanyDetails.Type);
             Date_Today = DateTime.Today.ToString("dd-MM-yyyy");
@@ -90,15 +90,17 @@ namespace WillEnergy.Domain.Core.Forms
             switch (contractTytulPrawaDoDypozycji)
             {
                 case Documents.TytulPrawaDoDypozycji.Owner:
-                    return "właściciel";
+                    return "własności";
                 case Documents.TytulPrawaDoDypozycji.CoOwner:
-                    return "współwłaściciel";
+                    return "współwłasności {0}, oraz dysponuję ich zgodami, które przedstawiam w załączeniu";
                 case Documents.TytulPrawaDoDypozycji.PermanentManagement:
-                    return "zarządzanie wieczyste";
+                    return "trwałego zarządu";
+                case Documents.TytulPrawaDoDypozycji.PerpetualUsufruct:
+                    return "użytkowania wieczystego";
                 case Documents.TytulPrawaDoDypozycji.RestrictionsPropertyLaw:
-                    return "???";
+                    return "ograniczonego prawa rzeczowego";
                 case Documents.TytulPrawaDoDypozycji.Other:
-                    return "inne";
+                    return "innego tytułu, wynikające z następujących dokumentów2 potwierdzających powyższe prawo do dysponowania nieruchomością: .....................................................................";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(contractTytulPrawaDoDypozycji), contractTytulPrawaDoDypozycji, null);
             }
@@ -167,7 +169,7 @@ namespace WillEnergy.Domain.Core.Forms
         public string PlannedEnergyCharacteristics_ConsumptionPerYear { get; set; }
         public string PlannedEnergyCharacteristics_Type { get; set; }
 
-        public string TytulPrawaDoDypozycji { get; set; }
+        public string TytulPrawaDoDyspozycji { get; set; }
 
         public string Date_Today { get; set; }
         public string DeMinimis { get; set; }
