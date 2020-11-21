@@ -12,6 +12,7 @@
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="DocX" Version="1.7.1" />
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="FluentValidation" Version="8.6.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="8.6.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
@@ -28,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
+    <Folder Include="Samples\Commands\ReadHeatStreetConnectionsFromExcel\" />
   </ItemGroup>
 
   <ItemGroup>
