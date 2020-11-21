@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { AppProvider } from './AppState/AppContext';
+import { AppFooter } from './layout/footer/AppFooter';
 import { AppHeader } from './layout/header/AppHeader';
 import { ChangeFurnacePage } from './modules/changeFurnace/ChangeFurnacePage';
 import { FillFormPage } from './modules/fillForm/FillFormPage';
@@ -14,7 +15,7 @@ const routes = {
   fillForm: '/dofinansowanie',
 };
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
                 </Route>
               </Switch>
             </Content>
+            <AppFooter />
           </Layout>
         </AppProvider>
       </Router>

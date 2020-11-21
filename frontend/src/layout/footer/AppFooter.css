@@ -1,0 +1,42 @@
+.AppFooter {
+  background: #2c3255;
+  position: relative;
+  height: var(--footerHeight);
+  & .AppFooter__links {
+    height: 184px;
+  }
+
+  & .AppFooter__description {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: var(--backgroundFooterColor);
+    color: var(--whiteColor);
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  & .AppFooter__item {
+    color: var(--whiteColor);
+
+    & div:not(:first-child) {
+      margin-top: 10px;
+    }
+
+    & .AppFooter__iconLink {
+      position: relative;
+
+      & svg {
+        position: absolute;
+      }
+      & .AppFooter__iconLinkText {
+        margin-left: 30px;
+      }
+    }
+
+    & a {
+      color: var(--whiteColor);
+    }
+  }
+}

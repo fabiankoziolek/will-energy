@@ -1,5 +1,6 @@
 .App {
   & .App__content {
+    min-height: calc(100vh - var(--footerHeight) / 2);
     padding-top: calc(var(--headerHeight) + 80px);
   }
 }

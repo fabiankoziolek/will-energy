@@ -3,6 +3,8 @@
 
   --headerHeight: 72px;
 
+  --footerHeight: 260px;
+
   /* MAIN COLORS */
 
   --primaryBlue: #2745d9;
@@ -26,6 +28,8 @@
   --backgroundGreyDarker20Color: #e2e4e9;
 
   --backgroundGreyDarker20Color: #8a99a8;
+
+  --backgroundFooterColor: #242947;
 
   /* SHADES */
 
