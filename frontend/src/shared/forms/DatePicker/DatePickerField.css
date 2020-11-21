@@ -1,0 +1,31 @@
+.DatePickerField {
+  background-color: var(--backgroundGreyColor);
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 100%;
+  border: 0;
+  margin-top: 8px;
+  margin-bottom: 40px;
+
+  input {
+    font-weight: 400;
+    @mixin h5;
+    margin: 0 !important;
+  }
+
+  &.DatePickerField--error.ant-picker-input:focus {
+    border-color: var(--cardinalDarker);
+  }
+}
+
+.DatePickerField__label {
+  @mixin b1;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.DatePickerField__error {
+  @mixin tag;
+  color: var(--cardinalDarker);
+  margin: 16px 0 0 0;
+}

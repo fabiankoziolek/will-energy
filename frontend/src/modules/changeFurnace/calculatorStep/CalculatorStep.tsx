@@ -10,7 +10,6 @@ import { Button, Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
 import * as Icon from 'react-feather';
-import { routes } from '../../../routes';
 import classNames from 'classnames';
 
 interface ICalculatorStepProps {
@@ -97,7 +96,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
             maxTicksLimit: 20,
             callback: function (value: any) {
               return 2020 + value;
-            }
+            },
           },
           gridLines: {
             display: false,

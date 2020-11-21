@@ -4,7 +4,7 @@ import { Field, Form, Formik, FormikProps } from 'formik';
 import classNames from 'classnames';
 import * as Yup from 'yup';
 import { isEmpty } from 'lodash';
-import { Option, SelectField } from '../../shared/forms/Select/SelectField';
+import { SelectOption, SelectField } from '../../shared/forms/Select/SelectField';
 import { DatePickerField } from '../../shared/forms/DatePicker/DatePickerField';
 import { GoogleAddressIncome, GoogleSuggest } from '../../shared/forms/GoogleSuggest/GoogleSuggest';
 import './WelcomePage.css';
@@ -35,7 +35,7 @@ const FormSchema = Yup.object().shape<FormValues>({
   radio: Yup.string().required('Required'),
 });
 
-const sampleOptions: Option[] = [
+const sampleOptions: SelectOption[] = [
   {
     label: 'Undefined',
     value: 'Undefined',
@@ -188,6 +188,7 @@ export const WelcomePage = () => {
             <div className="FormGroup">
               <label>Date</label>
               <DatePickerField
+                id=""
                 name="date2"
                 value={values.date2}
                 onChange={setFieldValue}
@@ -200,6 +201,7 @@ export const WelcomePage = () => {
             <div className="FormGroup">
               <label>Date disabled</label>
               <DatePickerField
+                id=""
                 name="date"
                 value={values.date}
                 onChange={setFieldValue}
