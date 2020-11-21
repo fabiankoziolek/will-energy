@@ -6,6 +6,7 @@ import { WizardStep } from '../../AppState/AppState';
 import './ApplicationWizard.css';
 import { ApplicantDetails } from './applicantDetails/ApplicantDetails';
 import { PropertyDetails } from './propertyDetails/PropertyDetails';
+import {CharacteristicsOfWorks} from "./characteristicsOfWorks/CharacteristicsOfWorks";
 
 const { Panel } = Collapse;
 
@@ -87,16 +88,13 @@ export const ApplicationWizard = () => {
               key={WizardStep.CharacteristicsOfWorks}
               disabled={!isCompleted(WizardStep.PropertyDetails)}
             >
-              asdv
-              <Button
-                onClick={() =>
+              <CharacteristicsOfWorks
+                onCompleted={() => {
                   isCompleted(WizardStep.CharacteristicsOfWorks)
                     ? actions.uncompleteStep(WizardStep.CharacteristicsOfWorks)
-                    : actions.completeStep(WizardStep.CharacteristicsOfWorks)
-                }
-              >
-                Save
-              </Button>
+                    : actions.completeStep(WizardStep.CharacteristicsOfWorks);
+                }}
+              />
             </Panel>
             <Panel
               header={

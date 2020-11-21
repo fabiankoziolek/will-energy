@@ -1,4 +1,5 @@
 ﻿import * as React from 'react';
+import {ReactChild} from "react";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -8,15 +9,17 @@ export type Option = {
 };
 
 type Props = {
+  id: string;
   name: string;
   value: any;
   options: Option[];
   onChange: (field: string, value: any, shouldValidate?: boolean) => void;
   onFocus: (field: string, isTouched?: boolean, shouldValidate?: boolean) => void;
-  className: string;
+  className?: string;
   placeholder?: string;
-  isSearchable: boolean;
+  isSearchable?: boolean;
   disabled?: boolean;
+  children?: ReactChild;
 };
 
 export const SelectField = (props: Props) => {
