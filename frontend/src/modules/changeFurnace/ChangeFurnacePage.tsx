@@ -15,6 +15,15 @@ enum ChangeFurnaceStep {
 
 const { Step } = Steps;
 
+export const smoothScrollToSection = (id: string) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
+};
+
 export const ChangeFurnacePage = () => {
   const [step, setStep] = React.useState<ChangeFurnaceStep>(ChangeFurnaceStep.Address);
   const availableTypes = [HeatingType.NetworkNaturalGas, HeatingType.LiquefiedNaturalGas, HeatingType.Electricity, HeatingType.NetworkHeat]; // TODO: use state
@@ -27,12 +36,14 @@ export const ChangeFurnacePage = () => {
     if (step === ChangeFurnaceStep.Calculator) {
       setStep(ChangeFurnaceStep.FillForm);
     }
+
+    smoothScrollToSection('steps');
   };
 
   return (
     <section className="StepBase ChangeFurnacePage">
       <div className="StepBase__inner">
-        <div className="ChangeFurnacePage__steps">
+        <div id="steps" className="ChangeFurnacePage__steps">
           <Row>
             <Col offset={4} span={8}>
               <Steps current={step}>

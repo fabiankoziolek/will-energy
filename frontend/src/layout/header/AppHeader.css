@@ -1,4 +1,6 @@
 .AppHeader {
+  display: flex;
+  align-items: center;
   position: fixed;
   width: 100%;
   height: var(--headerHeight);
@@ -6,6 +8,19 @@
   background-color: var(--whiteColor);
   padding: 0;
   border-bottom: 1px solid var(--backgroundGreyDarker20Color);
+
+  & .AppHeader__backButton {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:focus {
+      border-bottom: 1px solid var(--primaryBlue);
+    }
+  }
 
   & .AppHeader__inner {
     @mixin wrapper;

@@ -39,10 +39,10 @@ export const ApplicationWizard = () => {
           >
             <Panel
               header={
-                <div>
-                  <span>
+                <div className="ApplicationWizard__panelHeader">
+                  <div>
                     <Icon.User /> Dane wnioskodawcy
-                  </span>
+                  </div>
                   {isCompleted(WizardStep.ApplicantDetails) && <Icon.Check />}
                 </div>
               }
@@ -58,10 +58,10 @@ export const ApplicationWizard = () => {
             </Panel>
             <Panel
               header={
-                <div>
-                  <span>
+                <div className="ApplicationWizard__panelHeader">
+                  <div>
                     <Icon.Home /> Dane nieruchomości
-                  </span>
+                  </div>
                   {isCompleted(WizardStep.PropertyDetails) && <Icon.Check />}
                 </div>
               }
@@ -78,10 +78,10 @@ export const ApplicationWizard = () => {
             </Panel>
             <Panel
               header={
-                <div>
-                  <span>
+                <div className="ApplicationWizard__panelHeader">
+                  <div>
                     <Icon.Tool /> Charakterystyka prac
-                  </span>
+                  </div>
                   {isCompleted(WizardStep.CharacteristicsOfWorks) && <Icon.Check />}
                 </div>
               }
@@ -98,10 +98,10 @@ export const ApplicationWizard = () => {
             </Panel>
             <Panel
               header={
-                <div>
-                  <span>
+                <div className="ApplicationWizard__panelHeader">
+                  <div>
                     <Icon.File /> Podsumowanie
-                  </span>
+                  </div>
                   {isCompleted(WizardStep.Summary) && <Icon.Check />}
                 </div>
               }

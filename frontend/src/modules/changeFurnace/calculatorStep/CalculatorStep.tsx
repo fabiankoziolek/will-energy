@@ -18,14 +18,14 @@ interface ICalculatorStepProps {
 }
 
 const initialFormValues = {
-  buildingArea: '50',
+  buildingArea: 50,
   heatingType: 'NetworkNaturalGas', //TODO: wybierz najtańsze
 };
 
 type FormValues = typeof initialFormValues;
 
 const FormSchema = Yup.object().shape<FormValues>({
-  buildingArea: Yup.string().required('Powierzchnia budynku jest wymagana'),
+  buildingArea: Yup.number().required('Powierzchnia budynku jest wymagana').min(20, 'Minimalna wartośc to 20'),
   heatingType: Yup.string().required(),
 });
 
@@ -149,7 +149,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
                       <InputField
                         id="BuildingArea"
                         type="number"
-                        value={values.buildingArea}
+                        value={values.buildingArea + ""}
                         name="buildingArea"
                         onChange={setFieldValue}
                         onFocus={setFieldTouched}
