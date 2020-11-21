@@ -1,38 +1,60 @@
-﻿import React from 'react';
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿import * as React from 'react';
+import { ReactChild } from 'react';
+import { DatePicker } from 'antd';
+import classNames from 'classnames';
+import './DatePickerField.css';
+import moment from 'moment';
+import 'moment/locale/pl';
+import locale from 'antd/es/date-picker/locale/pl_PL';
 
 type Props = {
   name: string;
-  value?: string;
+  value: string;
   onChange: (field: string, value: any, shouldValidate?: boolean) => void;
   onFocus: (field: string, isTouched?: boolean, shouldValidate?: boolean) => void;
-  className: string;
+  id: string;
+  children?: ReactChild;
+  className?: string;
   placeholder?: string;
   disabled?: boolean;
-  minDate?: Date;
+  error?: string;
 };
 
-export const DatePickerField = (props: Props) => {
+export const DatePickerField: React.FC<Props> = ({
+  name,
+  value,
+  onChange,
+  onFocus,
+  id,
+  className,
+  placeholder,
+  disabled,
+  children,
+  error,
+}: Props) => {
   return (
-    <div>todo</div>
-    // TODO: use ant-design instead of react-datepicker
-    // TODO: use formik within booking desk
-    // <DatePicker
-    //   selected={(props.value && new Date(props.value)) || null}
-    //   onChange={(val: Date) => {
-    //     props.onChange(props.name, val ? val.toISOString() : '');
-    //   }}
-    //   onBlur={() => {
-    //     props.onFocus(props.name, true);
-    //   }}
-    //   isClearable={false}
-    //   wrapperClassName="w-100"
-    //   className={props.className}
-    //   placeholderText={props.placeholder}
-    //   dateFormat="dd.MM.yyyy"
-    //   disabled={props.disabled}
-    //   minDate={props.minDate}
-    // />
+    <>
+      {!!children && (
+        <label className="DatePickerField__label" htmlFor={id}>
+          {children}
+        </label>
+      )}
+      <DatePicker
+        picker="month"
+        locale={locale}
+        id={id}
+        value={moment(value || new Date())}
+        onChange={(e) => onChange(name, e)}
+        onFocus={() => onFocus(name, true)}
+        className={classNames('DatePickerField', { 'DatePickerField--error': !!error }, className)}
+        placeholder={placeholder}
+        disabled={disabled}
+      />
+      {!!error && (
+        <div role="alert" className="DatePickerField__error">
+          {error}
+        </div>
+      )}
+    </>
   );
 };

@@ -7,6 +7,7 @@ import { RadioGroupField } from '../../../shared/forms/RadioGroup/RadioGroupFiel
 import { Button, Col, Radio, Row } from 'antd';
 import { useAppContext } from '../../../AppState/AppContext';
 import { SelectField } from '../../../shared/forms/Select/SelectField';
+import {DatePickerField} from "../../../shared/forms/DatePicker/DatePickerField";
 
 interface IPropertyDetailsStepProps {
   onCompleted: () => void;
@@ -32,7 +33,7 @@ const FormSchema = Yup.object().shape<FormValues>({
   plannedType: Yup.string().required(),
   plannedPower: Yup.string().required(),
   plannedConsumption: Yup.string().required(),
-  plannedCompletionDate: Yup.string().required(),
+  plannedCompletionDate: Yup.string(),
   estimatedCost: Yup.string().required(),
 });
 
@@ -142,16 +143,15 @@ export const CharacteristicsOfWorks: React.FC<IPropertyDetailsStepProps> = ({ on
                     Planowane roczne zużycie paliw
                   </InputField>
                   <hr />
-                  <SelectField
+                  <DatePickerField
                     id="plannedCompletionDate"
                     value={values.plannedCompletionDate}
                     name="plannedCompletionDate"
                     onChange={setFieldValue}
                     onFocus={setFieldTouched}
-                    options={[]}
                   >
                     Planowany termin zakończenia prac objętych wnioskiem
-                  </SelectField>
+                  </DatePickerField>
                   <InputField
                     id="estimatedCost"
                     type="text"

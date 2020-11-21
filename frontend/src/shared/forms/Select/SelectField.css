@@ -1,4 +1,4 @@
-.InputField {
+.SelectField {
   @mixin h5;
   background-color: var(--backgroundGreyColor);
   font-weight: 400;
@@ -19,18 +19,18 @@
     box-shadow: none;
   }
 
-  &.InputField--error.ant-input:focus {
+  &.SelectField--error.ant-input:focus {
     border-color: var(--cardinalDarker);
   }
 }
 
-.InputField__label {
+.SelectField__label {
   @mixin b1;
   font-weight: 700;
   margin: 0 0 8px;
 }
 
-.InputField__error {
+.SelectField__error {
   @mixin tag;
   color: var(--cardinalDarker);
   margin: 16px 0 0 0;

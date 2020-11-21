@@ -20,4 +20,16 @@
     height: 48px;
     width: 100%;
   }
+
+  & .ApplicationWizard__summary {
+    max-width: 600px;
+    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+
+    .Button {
+      margin-left: auto;
+      width: auto;
+    }
+  }
 }

@@ -1,46 +1,71 @@
 ﻿import * as React from 'react';
 import { ReactChild } from 'react';
+import { Select } from 'antd';
+import classNames from 'classnames';
+import './SelectField.css';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export type Option = {
+export type SelectOption = {
   label: string;
   value: any;
 };
 
 type Props = {
-  id: string;
   name: string;
-  value: any;
-  options: Option[];
+  value: string;
   onChange: (field: string, value: any, shouldValidate?: boolean) => void;
   onFocus: (field: string, isTouched?: boolean, shouldValidate?: boolean) => void;
+  id: string;
+  children?: ReactChild;
   className?: string;
   placeholder?: string;
-  isSearchable?: boolean;
   disabled?: boolean;
-  children?: ReactChild;
+  error?: string;
+  options: SelectOption[];
+  isSearchable?: boolean;
 };
 
-export const SelectField = (props: Props) => {
+export const SelectField: React.FC<Props> = ({
+  name,
+  value,
+  onChange,
+  onFocus,
+  id,
+  className,
+  placeholder,
+  disabled,
+  children,
+  error,
+  options,
+  isSearchable,
+}: Props) => {
   return (
-    <div>todo</div>
-    // TODO: use ant-design instead of react-select
-    // <Select
-    //   value={props.options ? props.options.find((option) => option.value === props.value) : { label: '', value: null }}
-    //   options={props.options}
-    //   name={props.name}
-    //   onChange={(option: any) => {
-    //     props.onChange(props.name, option.value);
-    //   }}
-    //   onBlur={(option: any) => {
-    //     props.onFocus(props.name, option.value);
-    //   }}
-    //   classNamePrefix="select"
-    //   isSearchable={props.isSearchable}
-    //   className={props.className}
-    //   placeholder={props.placeholder}
-    //   isDisabled={props.disabled}
-    // />
+    <>
+      {!!children && (
+        <label className="SelectField__label" htmlFor={id}>
+          {children}
+        </label>
+      )}
+      <Select
+        id={id}
+        value={value}
+        onChange={(e) => onChange(name, e)}
+        onFocus={() => onFocus(name, true)}
+        className={classNames('SelectField', { 'SelectField--error': !!error }, className)}
+        placeholder={placeholder}
+        showSearch={isSearchable}
+        disabled={disabled}
+      >
+        {options.map((x) => (
+          <Select.Option value={x.value}>{x.label}</Select.Option>
+        ))}
+      </Select>
+      {!!error && (
+        <div role="alert" className="SelectField__error">
+          {error}
+        </div>
+      )}
+    </>
   );
 };
