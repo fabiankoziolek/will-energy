@@ -4,13 +4,13 @@ import * as Yup from 'yup';
 import { InputField } from '../../../shared/forms/Input/InputField';
 import { HeatingType } from '../../../AppState/AppState';
 import { Link } from 'react-router-dom';
-import { routes } from '../../../App';
 import axios from 'axios';
 import { Line } from '@reactchartjs/react-chart.js';
 import { range } from 'lodash';
 import { Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
+import { routes } from '../../../routes';
 
 interface ICalculatorStepProps {
   goToNextStep: () => void;

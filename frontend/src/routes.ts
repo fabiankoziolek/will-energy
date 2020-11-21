@@ -3,4 +3,5 @@ export const routes = {
   fillForm: '/dofinansowanie',
   applicationWizard: '/wniosek',
   privacyPolicy: '/polityka-prywatnosci',
+  checkDetails: '/sprawdz-warunki',
 };
