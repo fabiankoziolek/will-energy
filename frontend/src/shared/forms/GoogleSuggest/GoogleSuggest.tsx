@@ -1,65 +1,82 @@
 import * as React from 'react';
-import ReactGoogleMapLoader from 'react-google-maps-loader';
-import ReactGooglePlacesSuggest from 'react-google-places-suggest';
-import { Input } from 'antd';
-
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 const MY_API_KEY = 'AIzaSyDp5Jmo11YFwQY14Fts4d8kH1S1dVauHug';
 
 export type GoogleAddressIncome = {
-  locality: string;
   country: string;
-  postal_code: string;
-  street_number: string;
-  route: string;
+  city: string;
+  street: string;
+  buildingNumber: string;
+  houseNumber: string;
 };
 
 type GoogleSuggestProps = {
   onSelect: (value: GoogleAddressIncome) => void;
+  placeholder: string;
 };
 
 export const GoogleSuggest = (props: GoogleSuggestProps) => {
-  const [address, setAddress] = React.useState('');
+  const [address, setAddress] = React.useState<any>();
 
-  const handleGoogleSuggest = (value: google.maps.GeocoderResult) => {
-    const suggestedData = {} as any;
-    value.address_components.forEach((el) => {
-      suggestedData[el.types[0]] = el.long_name;
-    });
-
-    const typedSuggestedData = suggestedData as GoogleAddressIncome;
-    if (typedSuggestedData.route && typedSuggestedData.locality) {
-      setAddress(
-        `${typedSuggestedData.route} ${typedSuggestedData.street_number && typedSuggestedData.street_number}, ${
-          typedSuggestedData.locality
-        }`,
-      );
-      props.onSelect(typedSuggestedData);
+  React.useEffect(() => {
+    if (!address) {
+      return;
     }
-  };
+
+    const terms = address.value.terms;
+    if (terms.length == 3) {
+      const streetTemp = terms[0].value.split(' ');
+      const street = streetTemp[0];
+      const city = terms[1].value;
+      const country = terms[2].value;
+      let buildingNumber, houseNumber;
+      if (streetTemp[1]) {
+        const buildingTemp = streetTemp[1].split('/');
+        buildingNumber = buildingTemp[0];
+        houseNumber = buildingTemp[1];
+      }
+
+      props.onSelect({ street, city, country, buildingNumber, houseNumber });
+    }
+
+    if (terms.length == 4) {
+      const street = terms[0].value;
+      const city = terms[2].value;
+      const country = terms[3].value;
+      let buildingNumber, houseNumber;
+      if (terms[1].value) {
+        const buildingTemp = terms[1].value.split('/');
+        buildingNumber = buildingTemp[0];
+        houseNumber = buildingTemp[1];
+      }
+
+      props.onSelect({ street, city, country, buildingNumber, houseNumber });
+    }
+   
+  }, [address]);
 
   return (
-    <ReactGoogleMapLoader
-      params={{
-        key: MY_API_KEY,
-        libraries: 'places,geocode',
-      }}
-      render={(googleMaps: any) =>
-        googleMaps && (
-          <ReactGooglePlacesSuggest
-            googleMaps={googleMaps}
-            autocompletionRequest={{
-              bounds: { north: 18.96507, east: 51.68843, south: 18.91357, west: 51.65266 },
-              input: address,
-              componentRestrictions: { country: 'pl' },
-            }}
-            onSelectSuggest={(value) => handleGoogleSuggest(value)}
-          >
-            <div className="googlesuggest">
-              <Input autoComplete="chrome-off" type="text" value={address} onChange={(value) => setAddress(value.target.value)} />
-            </div>
-          </ReactGooglePlacesSuggest>
-        )
-      }
-    />
+    <>
+      <GooglePlacesAutocomplete
+        apiKey={MY_API_KEY}
+        autocompletionRequest={{
+          componentRestrictions: {
+            country: 'pl',
+          },
+          radius: 2500,
+          location: { lat: 51.599252, lng: 18.940955 },
+        }}
+        selectProps={{
+          placeholder: props.placeholder,
+          value: address,
+          noOptionsMessage: () => 'Wybacz ale nie jestem wstanie znaleźć adresu - spróbuj wyszukać w formacje np. Cicha 12, Zduńska Wola',
+          loadingMessage: () => 'Szukam wyników',
+          onChange: setAddress,
+          filterOption: (option: any) => {
+            return option.label.indexOf('Zduńska') > 0;
+          },
+        }}
+      />
+    </>
   );
 };

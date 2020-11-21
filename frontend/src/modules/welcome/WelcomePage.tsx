@@ -70,7 +70,10 @@ export const WelcomePage = () => {
             <div className="FormInvalidFeedback">{errors.email}</div>
           </div>
           Address input:
-          <GoogleSuggest onSelect={(value: GoogleAddressIncome) => console.log(value)} />
+          <GoogleSuggest
+            placeholder="Wpisz swój adres, np. Cicha 12, Zduńska Wola"
+            onSelect={(value: GoogleAddressIncome) => console.log(value)}
+          />
           <div className="FormGroup">
             <label htmlFor="password">Etternavn</label>
             <Field
