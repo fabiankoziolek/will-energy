@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WillEnergy.Application.Common.Bus;
 using WillEnergy.Application.Common.Exceptions;
+using WillEnergy.Domain.Core.Documents;
 
 namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 {

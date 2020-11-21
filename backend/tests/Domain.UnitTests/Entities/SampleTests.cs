@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
 using WillEnergy.Domain.Entities;
 using WillEnergy.Domain.Enums;
 using WillEnergy.Domain.Exceptions;
@@ -8,12 +7,11 @@ using WillEnergy.Domain.ValueObjects.Identifiers;
 
 namespace WillEnergy.Domain.UnitTests.Entities
 {
-    public class SampleTests : DomainTestBase
+    public class SampleTests
     {
-        [Test]
         public void ShouldAllowToCancel()
         {
-            var entity = new Sample(DateTimeOffset.UtcNow, SampleType.Type1,  UserId.Generate(), "John Doe");
+            var entity = new Sample(DateTimeOffset.UtcNow, SampleType.Type1, UserId.Generate(), "John Doe");
 
             entity.Cancel();
 
@@ -21,7 +19,6 @@ namespace WillEnergy.Domain.UnitTests.Entities
             entity.ModifiedAt.Should().NotBeNull();
         }
 
-        [Test]
         public void ShouldThrowExceptionWhenAlreadyCancelled()
         {
             var entity = new Sample(DateTimeOffset.UtcNow, SampleType.Type1, UserId.Generate(), "John Doe");
