@@ -98,8 +98,6 @@
     }
 
     & .CalculatorStep__chart {
-      border: 1px solid red;
-
       & .CalculatorStep__chartTitle {
         @mixin h4;
         text-align: center;
