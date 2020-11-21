@@ -1,0 +1,29 @@
+.FillFormStep {
+  & .FillFormStep__title {
+    @mixin h3;
+    font-weight: 900;
+    margin: 0 0 8px;
+  }
+
+  & .FillFormStep__description {
+    @mixin b0;
+    margin-bottom: 80px;
+  }
+
+  & .FillFormStep__section {
+    margin-bottom: 80px;
+
+    & .FillFormStep__sectionTitle {
+      @mixin h4;
+      font-weight: 700;
+    }
+
+    & .FillFormStep__sectionList {
+      padding-left: 20px;
+
+      & li {
+        padding-left: 16px;
+      }
+    }
+  }
+}

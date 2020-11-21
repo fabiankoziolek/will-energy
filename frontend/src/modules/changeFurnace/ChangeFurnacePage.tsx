@@ -18,7 +18,7 @@ export const ChangeFurnacePage = () => {
 
   const goToNextStep = () => {
     if (step === ChangeFurnaceStep.Address) {
-      setStep(ChangeFurnaceStep.Calculator);
+      setStep(ChangeFurnaceStep.FillForm);
     }
 
     if (step === ChangeFurnaceStep.Calculator) {
