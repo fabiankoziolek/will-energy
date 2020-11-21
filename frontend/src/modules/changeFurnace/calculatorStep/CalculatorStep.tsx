@@ -230,19 +230,21 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes 
                 );
               }}
             </Formik>
-            <div>
-              <div>
-                <span>Szacunkowy</span>
-                <span>Koszt instalacji ogrzewania</span>
-                <span>obejmuje koszt projektu i instalacji</span>
-                <span>{results?.installationCost || '-'} zł</span>
-              </div>
-              <div>
-                <span>Szacunkowy</span>
-                <span>Miesięczny koszt ogrzewania </span>
-                <span>obejmuje koszt ogrzewania budynku i podgrzania wody</span>
-                <span>{results?.monthlyUsageCost || '-'} zł</span>
-              </div>
+            <div className="CalculatorStep__estimatedPrice">
+              <Row>
+                <Col span={12}>
+                  <span>Szacunkowy</span>
+                  <h2>Koszt instalacji ogrzewania</h2>
+                  <p>obejmuje koszt projektu i instalacji</p>
+                  {!!results?.installationCost && <h3>{results.installationCost.toLocaleString()} zł</h3>}
+                </Col>
+                <Col span={12}>
+                  <span>Szacunkowy</span>
+                  <h2>Miesięczny koszt ogrzewania</h2>
+                  <p>obejmuje koszt ogrzewania budynku i podgrzania wody</p>
+                  {!!results?.monthlyUsageCost && <h3>{results.monthlyUsageCost.toLocaleString()} zł</h3>}
+                </Col>
+              </Row>
             </div>
             <div>
               <div>Całkowity koszt inwestycji</div>

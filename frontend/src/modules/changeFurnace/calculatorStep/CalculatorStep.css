@@ -64,6 +64,38 @@
         @mixin aspectRatio 96/202;
       }
     }
+
+    & .CalculatorStep__estimatedPrice {
+      padding-bottom: 88px;
+      border-bottom: 1px solid var(--backgroundGreyDarker20Color);
+      margin-bottom: 80px;
+
+      & span {
+        @mixin b1;
+        text-transform: uppercase;
+        color: var(--primaryBlue);
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+
+      & h2 {
+        @mixin h4;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+
+      & p {
+        @mixin tag;
+        color: var(--textTertiary);
+        margin: 0 0 24px;
+      }
+
+      & h3 {
+        @mixin h3;
+        font-weight: 900;
+        margin: 0;
+      }
+    }
   }
 
   & .CalculatorStep__calculatorMessage {
