@@ -156,6 +156,7 @@ export const WelcomePage = () => {
             <div className="FormGroup">
               <label>Custom React Select</label>
               <SelectField
+                id=""
                 options={sampleOptions}
                 isSearchable={false}
                 name="select"
@@ -170,6 +171,7 @@ export const WelcomePage = () => {
             <div className="FormGroup">
               <label>Custom Select disabled</label>
               <SelectField
+                id=""
                 options={sampleOptions}
                 isSearchable={false}
                 name="select"
