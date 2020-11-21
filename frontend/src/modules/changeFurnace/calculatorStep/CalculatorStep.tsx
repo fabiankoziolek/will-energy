@@ -5,7 +5,7 @@ import { InputField } from '../../../shared/forms/Input/InputField';
 import { HeatingType } from '../../../AppState/AppState';
 import axios from 'axios';
 import { Line } from '@reactchartjs/react-chart.js';
-import { range, chunk, sum } from 'lodash';
+import { range, chunk, sum, max } from 'lodash';
 import { Button, Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
@@ -83,6 +83,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
           id: 'y-axis-' + index,
           ticks: {
             beginAtZero: true, // minimum value will be 0.
+            suggestedMax: 45000,
           },
           gridLines: {
             display: false,
