@@ -1,0 +1,7 @@
+.InputField {
+  border: 1px solid red;
+}
+
+.InputField__label {
+  border: 1px solid blue;
+}

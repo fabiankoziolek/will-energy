@@ -70,9 +70,9 @@ namespace WillEnergy.WebUI
             {
                 app.UseExceptionHandler("/error");
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!_environment.IsDevelopment())
             {

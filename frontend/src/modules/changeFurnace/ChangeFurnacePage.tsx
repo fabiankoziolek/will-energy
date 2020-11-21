@@ -1,9 +1,11 @@
-import { Button, Col, Row, Steps } from 'antd';
+import { Col, Row, Steps } from 'antd';
 import * as React from 'react';
 import { FillFormStep } from '../shared/fillFormStep/FillFormStep';
 import { AddressStep } from './addressStep/AddressStep';
 import './ChangeFurnacePage.css';
 import './StepBase.css';
+import { CalculatorStep } from './calculatorStep/CalculatorStep';
+import { HeatingType } from '../../AppState/AppState';
 
 enum ChangeFurnaceStep {
   Address,
@@ -15,6 +17,7 @@ const { Step } = Steps;
 
 export const ChangeFurnacePage = () => {
   const [step, setStep] = React.useState<ChangeFurnaceStep>(ChangeFurnaceStep.Address);
+  const availableTypes = [HeatingType.NetworkNaturalGas, HeatingType.LiquefiedNaturalGas, HeatingType.Electricity, HeatingType.NetworkHeat]; // TODO: use state
 
   const goToNextStep = () => {
     if (step === ChangeFurnaceStep.Address) {
@@ -42,11 +45,7 @@ export const ChangeFurnacePage = () => {
         </div>
 
         {step === ChangeFurnaceStep.Address && <AddressStep goToNextStep={goToNextStep} />}
-        {step === ChangeFurnaceStep.Calculator && (
-          <div>
-            calculator <Button onClick={() => goToNextStep()}> Go to next Step</Button>
-          </div>
-        )}
+        {step === ChangeFurnaceStep.Calculator && <CalculatorStep goToNextStep={goToNextStep} availableTypes={availableTypes} />}
         {step === ChangeFurnaceStep.FillForm && <FillFormStep />}
       </div>
     </section>

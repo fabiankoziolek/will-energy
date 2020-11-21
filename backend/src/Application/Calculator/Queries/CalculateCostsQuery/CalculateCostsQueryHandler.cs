@@ -95,7 +95,7 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static int MonthlyCostForNetworkNaturalGas(int area)
         {
-            return SelectCostPerArea(area, (3000 + 3500) / 2, (3500 + 4800) / 2, (4800 + 7000) / 2);
+            return SelectCostPerArea(area, (3000 + 3500) / 2, (3500 + 4800) / 2, (4800 + 7000) / 2) / 12;
         }
 
         private static int InstallationCostForNetworkNaturalGas(int area)
@@ -106,7 +106,7 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static int MonthlyCostForLiquefiedNaturalGas(int area)
         {
-            return SelectCostPerArea(area, (3500 + 4000) / 2, (4000 + 6000) / 2, (6000 + 13000) / 2);
+            return SelectCostPerArea(area, (3500 + 4000) / 2, (4000 + 6000) / 2, (6000 + 13000) / 2) / 12;
         }
 
         private static int InstallationCostForLiquefiedNaturalGas(int area)
@@ -121,7 +121,7 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static int MonthlyCostForBiomass(int area)
         {
-            return SelectCostPerArea(area, (3500 + 4000) / 2, (4000 + 5000) / 2, (5000 + 8000) / 2);
+            return SelectCostPerArea(area, (3500 + 4000) / 2, (4000 + 5000) / 2, (5000 + 8000) / 2) / 12;
         }
 
         private static int InstallationCostForElectricity(int area)
@@ -131,12 +131,12 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static int MonthlyCostForElectricity(int area)
         {
-            return SelectCostPerArea(area, (5000 + 6000) / 2, (6000 + 10000) / 2, (10000 + 15000) / 2);
+            return SelectCostPerArea(area, (5000 + 6000) / 2, (6000 + 10000) / 2, (10000 + 15000) / 2) / 12;
         }
 
         private static int MonthlyCostForNetworkHeat(int area)
         {
-            return SelectCostPerArea(area, (4000 + 4500) / 2, (4500 + 6000) / 2, (6000 + 15000) / 2);
+            return SelectCostPerArea(area, (4000 + 4500) / 2, (4500 + 6000) / 2, (6000 + 15000) / 2) / 12;
         }
 
         private static int InstallationCostForNetworkHeat()

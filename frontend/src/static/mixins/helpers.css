@@ -46,3 +46,19 @@
     border: none;
   }
 }
+
+@define-mixin fullWidthBackground $color {
+  position: relative;
+  background-color: $color;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(-50vw + 50%);
+    height: 100%;
+    width: 100vw;
+    z-index: 1;
+    background-color: $color;
+  }
+}

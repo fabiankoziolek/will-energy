@@ -8,3 +8,19 @@
     border-color: var(--primaryBlueDarker);
   }
 }
+
+.LinkAsButton {
+  @mixin b2;
+  color: var(--whiteColor);
+  background-color: var(--primaryBlue);
+  border-color: var(--primaryBlue);
+  font-weight: 700;
+  transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
+  padding: 12px 70px;
+
+  &:hover {
+    color: var(--whiteColor);
+    background-color: var(--primaryBlueDarker);
+    border-color: var(--primaryBlueDarker);
+  }
+}
