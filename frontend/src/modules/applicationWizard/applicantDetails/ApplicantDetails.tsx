@@ -118,7 +118,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
               Rodzaj prowadzonej działalności
             </RadioGroupField>
             <Divider />
-            <h5>Lokalizacja planowanych prac</h5>
+            <h5 className="ApplicationWizard__subtitle">Lokalizacja planowanych prac</h5>
             <InputField
               id="streetName"
               type="text"
@@ -159,7 +159,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
               Miejscowość
             </InputField>
             <Divider />
-            <h5>Rachunek bankowy wnioskodawcy</h5>
+            <h5 className="ApplicationWizard__subtitle">Rachunek bankowy wnioskodawcy</h5>
             <InputField
               id="bankNumber"
               type="text"

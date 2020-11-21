@@ -1,7 +1,18 @@
 .ApplicationWizard {
   @mixin wrapper;
 
+  & form {
+    margin-top: 40px;
+  }
+
+  & .ApplicationWizard__subtitle {
+    @mixin h5;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+
   & input {
+    margin-top: 8px;
     margin-bottom: 40px;
   }
 

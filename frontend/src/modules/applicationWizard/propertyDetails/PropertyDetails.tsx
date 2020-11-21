@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { InputField } from '../../../shared/forms/Input/InputField';
 import '../../../shared/forms/button.css';
 import { RadioGroupField } from '../../../shared/forms/RadioGroup/RadioGroupField';
-import { Button, Col, Radio, Row } from 'antd';
+import { Button, Col, Radio, Row, Divider } from 'antd';
 import { useAppContext } from '../../../AppState/AppContext';
 
 interface IPropertyDetailsStepProps {
@@ -61,7 +61,7 @@ export const PropertyDetails: React.FC<IPropertyDetailsStepProps> = ({ onComplet
             <InputField id="obreb" type="text" value={values.obreb} name="obreb" onChange={setFieldValue} onFocus={setFieldTouched}>
               Obręb działki
             </InputField>
-            <hr />
+            <Divider />
             <RadioGroupField
               id="tytulWlasnosci"
               value={values.tytulWlasnosci}
@@ -70,26 +70,26 @@ export const PropertyDetails: React.FC<IPropertyDetailsStepProps> = ({ onComplet
               items={() => (
                 <>
                   <Row>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Własność">Własność</Radio>
                     </Col>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Współwłasność">Współwłasność</Radio>
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="UżytkowanieWieczyste">Użytkowanie wieczyste</Radio>
                     </Col>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="TrwałyZarząd">Trwały zarząd</Radio>
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="OgraniczonePrawoRzeczowe">Ograniczone prawo rzeczowe</Radio>
                     </Col>
-                    <Col>
+                    <Col span={8}>
                       <Radio value="Inny">Inny</Radio>
                     </Col>
                   </Row>
@@ -98,9 +98,13 @@ export const PropertyDetails: React.FC<IPropertyDetailsStepProps> = ({ onComplet
             >
               Tytuł własności nieruchomości
             </RadioGroupField>
-            <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
-              Dalej
-            </Button>
+            <Row>
+              <Col offset={14} span={10}>
+                <Button disabled={!isValid} className="Button" type="primary" htmlType="submit">
+                  Dalej
+                </Button>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>
