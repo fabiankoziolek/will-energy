@@ -3,14 +3,13 @@ import { Form, Formik, FormikProps, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import { InputField } from '../../../shared/forms/Input/InputField';
 import { HeatingType } from '../../../AppState/AppState';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Line } from '@reactchartjs/react-chart.js';
 import { range } from 'lodash';
-import { Col, Row } from 'antd';
+import { Button, Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
-import { routes } from '../../../routes';
+import * as Icon from 'react-feather';
 
 interface ICalculatorStepProps {
   goToNextStep: () => void;
@@ -54,7 +53,7 @@ const FormikNextStateListener = () => {
   return null;
 };
 
-export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes }) => {
+export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes, goToNextStep }) => {
   const [results, setResults] = React.useState<CalculateCostsDto>();
   const [heatingType, setHeatingType] = React.useState<string>();
 
@@ -245,9 +244,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes 
             {`Newton's laws of motion and universal gravitation, the laws of conservation of energy and momentum, the laws of thermodynamics,
             and Maxwell's equations for electricity and magnetism were all more or less nearly complete at the end of the 19th century.`}
           </p>
-          <Link to={routes.checkDetails} className="LinkAsButton">
-            Sprawdź warunki
-          </Link>
+          <Button type="primary" className="Button" onClick={() => goToNextStep()}>Sprawdź warunki<Icon.ArrowRight /></Button>
         </div>
       </div>
     </section>

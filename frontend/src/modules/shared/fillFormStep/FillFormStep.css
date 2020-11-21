@@ -26,4 +26,12 @@
       }
     }
   }
+
+  & .FillFormStep__buttons {
+    margin-top: 82px;
+    margin-bottom: 118px;
+    & a {
+      margin-right: 40px;
+    }
+  }
 }

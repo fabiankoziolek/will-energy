@@ -9,6 +9,18 @@
   }
 }
 
+.Button--outline {
+  background-color: var(--whiteColor);
+  border-color: var(--primaryBlue);
+  color: var(--primaryBlue);
+  font-weight: 700;
+
+  /* &:hover {
+    background-color: var(--primaryBlue);
+    border-color: var(--primaryBlue);
+  } */
+}
+
 .LinkAsButton {
   @mixin b2;
   color: var(--whiteColor);
@@ -21,6 +33,22 @@
   &:hover {
     color: var(--whiteColor);
     background-color: var(--primaryBlueDarker);
+    border-color: var(--primaryBlueDarker);
+  }
+}
+
+.LinkAsButton--outline {
+  @mixin b2;
+  color: var(--primaryBlue);
+  background-color: var(--whiteColor);
+  border-color: var(--primaryBlue);
+  border: 1px solid;
+  font-weight: 700;
+  transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
+  padding: 12px 70px;
+
+  &:hover {
+    color: var(--primaryBlueDarker);
     border-color: var(--primaryBlueDarker);
   }
 }
