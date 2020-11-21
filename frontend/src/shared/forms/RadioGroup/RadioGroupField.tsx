@@ -15,16 +15,7 @@ type Props = {
   disabled?: boolean;
 };
 
-export const RadioGroupField: React.FC<Props> = ({
-  name,
-  value,
-  onChange,
-  id,
-  className,
-  disabled,
-  children,
-  items,
-}: Props) => {
+export const RadioGroupField: React.FC<Props> = ({ name, value, onChange, id, className, disabled, children, items }: Props) => {
   return (
     <>
       {children && (
