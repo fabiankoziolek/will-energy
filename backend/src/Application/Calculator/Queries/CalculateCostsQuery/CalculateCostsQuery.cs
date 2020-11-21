@@ -1,4 +1,5 @@
 using WillEnergy.Application.Common.Bus;
+using WillEnergy.Domain.Core.Documents;
 
 namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 {

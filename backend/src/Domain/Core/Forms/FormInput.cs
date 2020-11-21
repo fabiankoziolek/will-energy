@@ -36,6 +36,10 @@ namespace WillEnergy.Domain.Core.Forms
 
             Inv_NumerEwidencjiDzialki = contract.PlannedWorkAddressDetails.NumerEwidencjiDzialki;
             Inv_Obreb = contract.PlannedWorkAddressDetails.Obreb;
+            Inv_PostCode = contract.PlannedWorkAddressDetails.PostCode;
+            Inv_BuildingNumber = contract.PlannedWorkAddressDetails.BuildingNumber;
+            Inv_StreetName = contract.PlannedWorkAddressDetails.StreetName;
+            Inv_City = contract.PlannedWorkAddressDetails.City;
             // PlannedWorkAddressDetails_PrzeznaczonyPodDzialalnoscospodarcza = contract.PlannedWorkAddressDetails.PrzeznaczonyPodDzialalnoscospodarcza;
             Inv_PowierzchniaUzytkowa = contract.PlannedWorkAddressDetails.PowierzchniaUzytkowa.ToString();
             PlannedWorkAddressDetails_UzytkowanieDlaDzialalnosciGospodarczej = contract.PlannedWorkAddressDetails.PrzeznaczonyPodDzialalnoscospodarcza ? "tak" : "nie";
@@ -58,7 +62,18 @@ namespace WillEnergy.Domain.Core.Forms
             DeMinimis = contract.CompanyDetails.NiepobieraniePomocyDeMinimis ? "nie" : "pobieram";
             CompanyDetails_Type = GetCompanyDetails(contract.CompanyDetails.Type);
             Date_Today = DateTime.Today.ToString("dd-MM-yyyy");
+            Nip = contract.CompanyDetails.Nip;
         }
+
+        public string Inv_City { get; set; }
+
+        public string Inv_StreetName { get; set; }
+
+        public string Inv_BuildingNumber { get; set; }
+
+        public string Inv_PostCode { get; set; }
+
+        public string Nip { get; set; }
 
         public string PlannedWorkAddressDetails_UzytkowanieDlaDzialalnosciGospodarczej { get; set; }
 
@@ -111,15 +126,15 @@ namespace WillEnergy.Domain.Core.Forms
             switch (type)
             {
                 case HeatingType.NetworkNaturalGas:
-                    return "Gaz ziemny";
+                    return "ogrzewanie gazowe";
                 case HeatingType.LiquefiedNaturalGas:
-                    return "Gaz w płynie";
+                    return "ogrzewanie gazowe";
                 case HeatingType.Biomass:
-                    return "";
+                    return "kocioł opalany granulatem drzewnym, tzw. biomasą";
                 case HeatingType.Electricity:
-                    return "";
+                    return "ogrzewanie elektryczne";
                 case HeatingType.NetworkHeat:
-                    return "";
+                    return "podłączenie do sieci ciepłowniczej";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

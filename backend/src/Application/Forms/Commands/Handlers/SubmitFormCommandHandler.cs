@@ -34,7 +34,12 @@ namespace WillEnergy.Application.Forms.Commands.Handlers
 
             return new List<string>()
             {
-                DocumentConsts.Doc2
+                DocumentConsts.Doc1,
+                DocumentConsts.Doc2,
+                DocumentConsts.Doc3,
+                DocumentConsts.Doc4,
+                DocumentConsts.Doc5,
+                DocumentConsts.Doc6,
             };
         }
     }
