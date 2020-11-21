@@ -10,6 +10,8 @@ import { Button, Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
 import * as Icon from 'react-feather';
+import { routes } from '../../../routes';
+import classNames from 'classnames';
 
 interface ICalculatorStepProps {
   goToNextStep: () => void;
@@ -18,13 +20,13 @@ interface ICalculatorStepProps {
 
 const initialFormValues = {
   buildingArea: '50',
-  heatingType: '',
+  heatingType: 'NetworkNaturalGas', //TODO: wybierz najtańsze
 };
 
 type FormValues = typeof initialFormValues;
 
 const FormSchema = Yup.object().shape<FormValues>({
-  buildingArea: Yup.string().required(),
+  buildingArea: Yup.string().required('Powierzchnia budynku jest wymagana'),
   heatingType: Yup.string().required(),
 });
 
@@ -128,111 +130,130 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
         <Row>
           <Col offset={4} span={16}>
             <Formik validationSchema={FormSchema} initialValues={initialFormValues} onSubmit={onSubmit}>
-              {({ values, setFieldValue, setFieldTouched }: FormikProps<FormValues>) => {
+              {({ values, setFieldValue, setFieldTouched, errors }: FormikProps<FormValues>) => {
                 return (
                   <Form>
                     <FormikNextStateListener />
                     <div className="CalculatorStep__buildingArea">
                       <InputField
                         id="BuildingArea"
-                        type="text"
+                        type="number"
                         value={values.buildingArea}
                         name="buildingArea"
                         onChange={setFieldValue}
                         onFocus={setFieldTouched}
+                        error={errors.buildingArea}
                       >
                         Podaj powierzchnię budynku w &#x33A1;
                       </InputField>
                     </div>
-                    <div>
-                      {availableTypes.includes(HeatingType.NetworkNaturalGas) && (
-                        <InputField
-                          id="NetworkNaturalGas"
-                          type="radio"
-                          value="NetworkNaturalGas"
-                          name="heatingType"
-                          onChange={setFieldValue}
-                          onFocus={setFieldTouched}
-                        >
-                          Sieć gazowa
-                        </InputField>
-                      )}
-                      {availableTypes.includes(HeatingType.LiquefiedNaturalGas) && (
-                        <InputField
-                          id="LiquefiedNaturalGas"
-                          type="radio"
-                          value="LiquefiedNaturalGas"
-                          name="heatingType"
-                          onChange={setFieldValue}
-                          onFocus={setFieldTouched}
-                        >
-                          Gaz płynny (zbiornik)
-                        </InputField>
-                      )}
-                      {availableTypes.includes(HeatingType.Biomass) && (
-                        <InputField
-                          id="Biomass"
-                          type="radio"
-                          value="Biomass"
-                          name="heatingType"
-                          onChange={setFieldValue}
-                          onFocus={setFieldTouched}
-                        >
-                          Biomasa
-                        </InputField>
-                      )}
-                      {availableTypes.includes(HeatingType.Electricity) && (
-                        <InputField
-                          id="Electricity"
-                          type="radio"
-                          value="Electricity"
-                          name="heatingType"
-                          onChange={setFieldValue}
-                          onFocus={setFieldTouched}
-                        >
-                          Energia elektryczna
-                        </InputField>
-                      )}
-                      {availableTypes.includes(HeatingType.NetworkHeat) && (
-                        <InputField
-                          id="NetworkHeat"
-                          type="radio"
-                          value="NetworkHeat"
-                          name="heatingType"
-                          onChange={setFieldValue}
-                          onFocus={setFieldTouched}
-                        >
-                          Ciepło sieciowe
-                        </InputField>
-                      )}
+                    <div className="CalculatorStep__heatingType">
+                      <Row>
+                        {availableTypes.includes(HeatingType.NetworkNaturalGas) && (
+                          <Col span={6}>
+                            <div className="CalculatorStep__heatingTypeElement">
+                              <Button
+                                id="NetworkNaturalGas"
+                                name="heatingType"
+                                onClick={() => setFieldValue('heatingType', 'NetworkNaturalGas')}
+                                className={classNames('Button', { 'Button--active': values.heatingType === 'NetworkNaturalGas' })}
+                                type="primary"
+                              >
+                                Sieć gazowa
+                              </Button>
+                            </div>
+                          </Col>
+                        )}
+                        {availableTypes.includes(HeatingType.LiquefiedNaturalGas) && (
+                          <Col span={6}>
+                            <div className="CalculatorStep__heatingTypeElement">
+                              <Button
+                                id="LiquefiedNaturalGas"
+                                name="heatingType"
+                                onClick={() => setFieldValue('heatingType', 'LiquefiedNaturalGas')}
+                                className={classNames('Button', { 'Button--active': values.heatingType === 'LiquefiedNaturalGas' })}
+                                type="primary"
+                              >
+                                Gaz płynny (zbiornik)
+                              </Button>
+                            </div>
+                          </Col>
+                        )}
+                        {availableTypes.includes(HeatingType.Biomass) && (
+                          <Col span={6}>
+                            <div className="CalculatorStep__heatingTypeElement">
+                              <Button
+                                id="Biomass"
+                                name="heatingType"
+                                onClick={() => setFieldValue('heatingType', 'Biomass')}
+                                className={classNames('Button', { 'Button--active': values.heatingType === 'Biomass' })}
+                                type="primary"
+                              >
+                                Biomasa
+                              </Button>
+                            </div>
+                          </Col>
+                        )}
+                        {availableTypes.includes(HeatingType.Electricity) && (
+                          <Col span={6}>
+                            <div className="CalculatorStep__heatingTypeElement">
+                              <Button
+                                id="Electricity"
+                                name="heatingType"
+                                onClick={() => setFieldValue('heatingType', 'Electricity')}
+                                className={classNames('Button', { 'Button--active': values.heatingType === 'Electricity' })}
+                                type="primary"
+                              >
+                                Energia elektryczna
+                              </Button>
+                            </div>
+                          </Col>
+                        )}
+                        {availableTypes.includes(HeatingType.NetworkHeat) && (
+                          <Col span={6}>
+                            <div className="CalculatorStep__heatingTypeElement">
+                              <Button
+                                id="NetworkHeat"
+                                name="heatingType"
+                                onClick={() => setFieldValue('heatingType', 'NetworkHeat')}
+                                className={classNames('Button', { 'Button--active': values.heatingType === 'NetworkHeat' })}
+                                type="primary"
+                              >
+                                Ciepło sieciowe
+                              </Button>
+                            </div>
+                          </Col>
+                        )}
+                      </Row>
                     </div>
                   </Form>
                 );
               }}
             </Formik>
-            <div>
-              <div>
-                <span>Szacunkowy</span>
-                <span>Koszt instalacji ogrzewania</span>
-                <span>obejmuje koszt projektu i instalacji</span>
-                <span>{results?.installationCost || '-'} zł</span>
-              </div>
-              <div>
-                <span>Szacunkowy</span>
-                <span>Miesięczny koszt ogrzewania </span>
-                <span>obejmuje koszt ogrzewania budynku i podgrzania wody</span>
-                <span>{results?.monthlyUsageCost || '-'} zł</span>
-              </div>
+            <div className="CalculatorStep__estimatedPrice">
+              <Row>
+                <Col span={12}>
+                  <span>Szacunkowy</span>
+                  <h2>Koszt instalacji ogrzewania</h2>
+                  <p>obejmuje koszt projektu i instalacji</p>
+                  {!!results?.installationCost && <h3>{results.installationCost.toLocaleString()} zł</h3>}
+                </Col>
+                <Col span={12}>
+                  <span>Szacunkowy</span>
+                  <h2>Miesięczny koszt ogrzewania</h2>
+                  <p>obejmuje koszt ogrzewania budynku i podgrzania wody</p>
+                  {!!results?.monthlyUsageCost && <h3>{results.monthlyUsageCost.toLocaleString()} zł</h3>}
+                </Col>
+              </Row>
             </div>
-            <div>
-              <div>Całkowity koszt inwestycji</div>
-
+            <div className="CalculatorStep__chart">
+              <h2 className="CalculatorStep__chartTitle">Całkowity koszt inwestycji</h2>
               {results && heatingType && (
                 <div>
                   <Line type="line" data={data} options={options} />
                 </div>
               )}
-              <div>Kolejne lata</div>
+              <p className="CalculatorStep__chartDescription">Kolejne lata</p>
             </div>
           </Col>
         </Row>

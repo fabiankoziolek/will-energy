@@ -1,7 +1,36 @@
 .InputField {
-  border: 1px solid red;
+  @mixin h5;
+  background-color: var(--backgroundGreyColor);
+  font-weight: 700;
+  padding: 8px 16px;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-right-width: 0 !important;
+  border-color: transparent;
+  &.ant-input:hover {
+    border-right-width: 0 !important;
+  }
+
+  &.ant-input:focus {
+    border-color: var(--primaryBlue);
+    border-right-width: 0 !important;
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &.InputField--error.ant-input:focus {
+    border-color: var(--cardinalDarker);
+  }
 }
 
 .InputField__label {
-  border: 1px solid blue;
+  @mixin b1;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.InputField__error {
+  @mixin tag;
+  color: var(--cardinalDarker);
+  margin: 16px 0 0 0;
 }

@@ -31,6 +31,89 @@
     & .CalculatorStep__buildingArea {
       margin-bottom: 72px;
     }
+
+    & .CalculatorStep__heatingType {
+      margin-bottom: 80px;
+
+      & button {
+        @mixin b1;
+        width: 100%;
+        background-color: var(--backgroundGreyColor);
+        border-color: var(--backgroundGreyColor);
+        border-radius: none;
+        color: var(--textPrimary);
+        font-weight: 700;
+
+        &:hover {
+          background-color: var(--backgroundGreyDarker20Color);
+          border-color: var(--backgroundGreyDarker20Color);
+        }
+
+        &:focus {
+          border: 1px solid var(--primaryBlueDarker);
+        }
+
+        &.Button--active {
+          color: var(--primaryBlue);
+          border: 2px solid var(--primaryBlue);
+          border-radius: 4px;
+        }
+      }
+
+      & .CalculatorStep__heatingTypeElement {
+        @mixin aspectRatio 96/202;
+      }
+    }
+
+    & .CalculatorStep__estimatedPrice {
+      padding-bottom: 88px;
+      border-bottom: 1px solid var(--backgroundGreyDarker20Color);
+      margin-bottom: 80px;
+
+      & span {
+        @mixin b1;
+        text-transform: uppercase;
+        color: var(--primaryBlue);
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+
+      & h2 {
+        @mixin h4;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+
+      & p {
+        @mixin tag;
+        color: var(--textTertiary);
+        margin: 0 0 24px;
+      }
+
+      & h3 {
+        @mixin h3;
+        font-weight: 900;
+        margin: 0;
+      }
+    }
+
+    & .CalculatorStep__chart {
+      border: 1px solid red;
+
+      & .CalculatorStep__chartTitle {
+        @mixin h4;
+        text-align: center;
+        font-weight: 700;
+        margin: 0 0 24px;
+      }
+
+      & .CalculatorStep__chartDescription {
+        @mixin b1;
+        text-align: center;
+        font-weight: 700;
+        margin: 24px 0 0;
+      }
+    }
   }
 
   & .CalculatorStep__calculatorMessage {
