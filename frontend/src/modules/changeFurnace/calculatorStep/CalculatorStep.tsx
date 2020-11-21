@@ -136,7 +136,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes 
                     <div className="CalculatorStep__buildingArea">
                       <InputField
                         id="BuildingArea"
-                        type="text"
+                        type="number"
                         value={values.buildingArea}
                         name="buildingArea"
                         onChange={setFieldValue}
