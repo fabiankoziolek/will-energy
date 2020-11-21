@@ -31,6 +31,39 @@
     & .CalculatorStep__buildingArea {
       margin-bottom: 72px;
     }
+
+    & .CalculatorStep__heatingType {
+      margin-bottom: 80px;
+
+      & button {
+        @mixin b1;
+        width: 100%;
+        background-color: var(--backgroundGreyColor);
+        border-color: var(--backgroundGreyColor);
+        border-radius: none;
+        color: var(--textPrimary);
+        font-weight: 700;
+
+        &:hover {
+          background-color: var(--backgroundGreyDarker20Color);
+          border-color: var(--backgroundGreyDarker20Color);
+        }
+
+        &:focus {
+          border: 1px solid var(--primaryBlueDarker);
+        }
+
+        &.Button--active {
+          color: var(--primaryBlue);
+          border: 2px solid var(--primaryBlue);
+          border-radius: 4px;
+        }
+      }
+
+      & .CalculatorStep__heatingTypeElement {
+        @mixin aspectRatio 96/202;
+      }
+    }
   }
 
   & .CalculatorStep__calculatorMessage {
