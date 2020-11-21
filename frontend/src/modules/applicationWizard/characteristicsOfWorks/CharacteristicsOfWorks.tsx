@@ -33,7 +33,7 @@ const FormSchema = Yup.object().shape<FormValues>({
   plannedType: Yup.string().required(),
   plannedPower: Yup.string().required(),
   plannedConsumption: Yup.string().required(),
-  plannedCompletionDate: Yup.string(),
+  plannedCompletionDate: Yup.string().required(),
   estimatedCost: Yup.string().required(),
 });
 
