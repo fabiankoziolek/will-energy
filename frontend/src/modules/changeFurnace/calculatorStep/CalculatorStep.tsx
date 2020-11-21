@@ -5,7 +5,7 @@ import { InputField } from '../../../shared/forms/Input/InputField';
 import { HeatingType } from '../../../AppState/AppState';
 import axios from 'axios';
 import { Line } from '@reactchartjs/react-chart.js';
-import { range } from 'lodash';
+import { range, chunk, sum } from 'lodash';
 import { Button, Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
@@ -60,15 +60,17 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
   const [heatingType, setHeatingType] = React.useState<string>();
 
   const data = {
-    labels: range(0, 120),
+    labels: range(0, 10),
     datasets:
       results?.reports.map((x, index) => {
+        //const groupedData = chunk(x.costRecords, x.costRecords.length / 10);
+        //console.log(groupedData.map(arr => console.log(sum(arr))));
         return {
           label: x.type,
           data: x.costRecords.map((y) => y.cost),
           fill: false,
-          backgroundColor: x.type === heatingType ? 'rgba(255, 99, 132, 1)' : 'rgba(0, 0, 0, 0.1)',
-          borderColor: x.type === heatingType ? 'rgba(255, 99, 132, 1)' : 'rgba(0, 0, 0, 0.2)',
+          backgroundColor: x.type === heatingType ? '#2745D9' : '#8A99A8',
+          borderColor: x.type === heatingType ? '#2745D9' : '#8A99A8',
           yAxisID: 'y-axis-' + index,
         };
       }) || [],
