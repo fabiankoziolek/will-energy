@@ -244,7 +244,10 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
             {`Newton's laws of motion and universal gravitation, the laws of conservation of energy and momentum, the laws of thermodynamics,
             and Maxwell's equations for electricity and magnetism were all more or less nearly complete at the end of the 19th century.`}
           </p>
-          <Button type="primary" className="Button" onClick={() => goToNextStep()}>Sprawdź warunki<Icon.ArrowRight /></Button>
+          <Button type="primary" className="Button" onClick={() => goToNextStep()}>
+            Sprawdź warunki
+            <Icon.ArrowRight />
+          </Button>
         </div>
       </div>
     </section>

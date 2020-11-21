@@ -58,14 +58,7 @@ export const PropertyDetails: React.FC<IPropertyDetailsStepProps> = ({ onComplet
             >
               Numer ewidencyjny działki
             </InputField>
-            <InputField
-              id="obreb"
-              type="text"
-              value={values.obreb}
-              name="obreb"
-              onChange={setFieldValue}
-              onFocus={setFieldTouched}
-            >
+            <InputField id="obreb" type="text" value={values.obreb} name="obreb" onChange={setFieldValue} onFocus={setFieldTouched}>
               Obręb działki
             </InputField>
             <hr />
