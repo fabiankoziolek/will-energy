@@ -78,5 +78,9 @@ namespace WillEnergy.Application.Measurements.Dto
         public IList<MeasurementDto> Measurements { get; set; }
 
         public string Predkosc { get; set; }
+
+        public int CaqiPm25 => (int)(Pm25 * 100 / 110) > 100 ? 100 : (int)(Pm25 * 100 / 110);
+
+        public int CaqiPm10 => (int)(Pm10 * 100 / 180) > 100 ? 100 : (int)(Pm10 * 100 / 180);
     }
 }

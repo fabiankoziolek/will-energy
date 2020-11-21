@@ -14,5 +14,11 @@ namespace WillEnergy.WebUI.Controllers
         {
             return await Bus.Send(new GetCurrentMeasurementsQuery());
         }
+
+        [HttpGet("Worst")]
+        public async Task<MeasurementDto> GetWorstMeasurement()
+        {
+            return await Bus.Send(new GetWorstSensorMeasurementQuery());
+        }
     }
 }
