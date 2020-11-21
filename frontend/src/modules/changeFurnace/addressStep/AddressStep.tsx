@@ -36,7 +36,7 @@ export const AddressStep: React.FC<IAddressStepProps> = (props) => {
             </Col>
             <Col span={6}>
               <Button
-                // disabled={!(isPrivacyPolicyAccepted && !!state.address)}
+                disabled={!(isPrivacyPolicyAccepted && !!state.address)}
                 onClick={() => props.goToNextStep()}
                 className="Button"
                 type="primary"
