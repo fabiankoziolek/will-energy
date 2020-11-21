@@ -1,0 +1,10 @@
+.GoogleSuggest {
+  & * {
+    background-color: var(--backgroundGreyColor);
+    color: var(--textPrimary) !important;
+  }
+
+  & div[class$='placeholder'] {
+    color: var(--textTertiary) !important;
+  }
+}

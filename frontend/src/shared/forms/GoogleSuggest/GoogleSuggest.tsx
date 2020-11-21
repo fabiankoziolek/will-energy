@@ -1,5 +1,6 @@
 import * as React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import './GoogleSuggest.css';
 const MY_API_KEY = 'AIzaSyDp5Jmo11YFwQY14Fts4d8kH1S1dVauHug';
 
 export type GoogleAddressIncome = {
@@ -24,7 +25,7 @@ export const GoogleSuggest = (props: GoogleSuggestProps) => {
     }
 
     const terms = address.value.terms;
-    if (terms.length == 3) {
+    if (terms.length === 3) {
       const streetTemp = terms[0].value.split(' ');
       const street = streetTemp[0];
       const city = terms[1].value;
@@ -39,7 +40,7 @@ export const GoogleSuggest = (props: GoogleSuggestProps) => {
       props.onSelect({ street, city, country, buildingNumber, houseNumber });
     }
 
-    if (terms.length == 4) {
+    if (terms.length === 4) {
       const street = terms[0].value;
       const city = terms[2].value;
       const country = terms[3].value;
@@ -52,11 +53,10 @@ export const GoogleSuggest = (props: GoogleSuggestProps) => {
 
       props.onSelect({ street, city, country, buildingNumber, houseNumber });
     }
-   
   }, [address]);
 
   return (
-    <>
+    <div className="GoogleSuggest">
       <GooglePlacesAutocomplete
         apiKey={MY_API_KEY}
         autocompletionRequest={{
@@ -77,6 +77,6 @@ export const GoogleSuggest = (props: GoogleSuggestProps) => {
           },
         }}
       />
-    </>
+    </div>
   );
 };
