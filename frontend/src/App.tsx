@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import { Button, Layout } from 'antd';
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -6,16 +6,30 @@ import './App.css';
 import { AppProvider } from './AppState/AppContext';
 import { AppFooter } from './layout/footer/AppFooter';
 import { AppHeader } from './layout/header/AppHeader';
+import { ApplicationWizard } from './modules/applicationWizard/ApplicationWizard';
 import { ChangeFurnacePage } from './modules/changeFurnace/ChangeFurnacePage';
 import { FillFormPage } from './modules/fillForm/FillFormPage';
 import { WelcomePage } from './modules/welcome/WelcomePage';
+import * as Icon from 'react-feather';
+import { useHistory } from 'react-router-dom';
+import { routes } from './routes';
 
-const routes = {
-  changeFurnace: '/zmien-piec',
-  fillForm: '/dofinansowanie',
+
+const { Content, Header } = Layout;
+
+const BackContextWrapper = (props: { children: React.ReactNode }) => {
+  const history = useHistory();
+  return (
+    <>
+      <Header className="AppHeader">
+        <Button onClick={() => history.goBack()} icon={<Icon.ArrowLeft />} type="text">
+          Wróć na poprzednią stronę
+        </Button>
+      </Header>
+      <Content className="App__content">{props.children}</Content>
+    </>
+  );
 };
-
-const { Content } = Layout;
 
 const App = () => {
   return (
@@ -23,21 +37,33 @@ const App = () => {
       <Router>
         <AppProvider>
           <Layout className="App">
-            <AppHeader routes={routes} />
-            <Content className="App__content">
-              <Switch>
-                <Route exact path="/">
-                  <WelcomePage />
-                </Route>
-                <Route exact path={routes.changeFurnace}>
-                  <ChangeFurnacePage />
-                </Route>
-                <Route exact path={routes.fillForm}>
-                  <FillFormPage />
-                </Route>
-              </Switch>
-            </Content>
-            <AppFooter />
+            <Switch>
+              <Route exact path={routes.applicationWizard}>
+                <BackContextWrapper>
+                  <ApplicationWizard />
+                </BackContextWrapper>
+              </Route>
+              <Route exact path={routes.privacyPolicy}>
+                <BackContextWrapper>Polityka</BackContextWrapper>
+              </Route>
+              <Route path="/">
+                <AppHeader />
+                <Content className="App__content">
+                  <Switch>
+                    <Route exact path="/">
+                      <WelcomePage />
+                    </Route>
+                    <Route exact path={routes.changeFurnace}>
+                      <ChangeFurnacePage />
+                    </Route>
+                    <Route exact path={routes.fillForm}>
+                      <FillFormPage />
+                    </Route>
+                  </Switch>
+                </Content>
+                <AppFooter />
+              </Route>
+            </Switch>
           </Layout>
         </AppProvider>
       </Router>

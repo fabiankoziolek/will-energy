@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Col, Layout, Row, Space } from 'antd';
 import './AppFooter.css';
 import * as Icon from 'react-feather';
+import { Link } from 'react-router-dom';
+import { routes } from '../../routes';
 
 const { Footer } = Layout;
 
@@ -26,7 +28,7 @@ export const AppFooter = () => {
               <b>Informacje prawne</b>
             </div>
             <div>
-              <a href={'https://www.zdunskawola.pl/pl/'}>Politykę prywatności</a>
+              <Link to={routes.privacyPolicy}>Politykę prywatności</Link>
             </div>
             <div>
               <a href={'https://www.zdunskawola.pl/pl/'}>Politykę cookies</a>

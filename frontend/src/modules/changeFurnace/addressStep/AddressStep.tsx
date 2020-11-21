@@ -6,6 +6,7 @@ import { GoogleAddressIncome, GoogleSuggest } from '../../../shared/forms/Google
 import './AddressStep.css';
 import '../../../shared/forms/consent.css';
 import '../../../shared/forms/button.css';
+import { routes } from '../../../routes';
 
 interface IAddressStepProps {
   goToNextStep: () => void;
@@ -24,7 +25,7 @@ export const AddressStep: React.FC<IAddressStepProps> = (props) => {
           <p className="AddressStep__description">Podaj swój adres i sprawdź możliwość zmiany źródła ogrzewania</p>
           <div className="Consent">
             <Checkbox onChange={(e) => setPrivacyPolicy(e.target.checked)}>
-              Znam i akcjeptuję <Link to={'/polityka'}>Politykę prywatności</Link>
+              Znam i akcjeptuję <Link to={routes.privacyPolicy}>Politykę prywatności</Link>
             </Checkbox>
           </div>
           <Row>

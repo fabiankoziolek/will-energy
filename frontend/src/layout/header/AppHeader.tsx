@@ -2,15 +2,11 @@ import * as React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import './AppHeader.css';
+import { routes } from '../../routes';
 
 const { Header } = Layout;
 
-interface IAppHeaderProps {
-  routes: { changeFurnace: string; fillForm: string };
-}
-
-export const AppHeader: React.FC<IAppHeaderProps> = (props) => {
-  const { routes } = props;
+export const AppHeader= () => {
   const location = useLocation();
   return (
     <Header className="AppHeader">
