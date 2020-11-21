@@ -25,7 +25,7 @@ const initialFormValues = {
 type FormValues = typeof initialFormValues;
 
 const FormSchema = Yup.object().shape<FormValues>({
-  buildingArea: Yup.string().required(),
+  buildingArea: Yup.string().required('Powierzchnia budynku jest wymagana'),
   heatingType: Yup.string().required(),
 });
 
