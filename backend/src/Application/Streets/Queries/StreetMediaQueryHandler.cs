@@ -24,7 +24,6 @@ namespace WillEnergy.Application.Streets.Queries
 
             return new StreetMediaDto
             {
-                Id = street.Id,
                 GasDateConnection = street.GasDateConnection,
                 HasGasConnection = street.GasDateConnection.HasValue && street.GasDateConnection.Value <= DateTimeOffset.UtcNow,
                 HeatDateConnection = street.HeatDateConnection,

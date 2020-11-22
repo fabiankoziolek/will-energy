@@ -1,5 +1,5 @@
 import { StoreActionApi } from 'react-sweet-state';
-import { GoogleAddressIncome } from '../shared/forms/GoogleSuggest/GoogleSuggest';
+import { GoogleAddressIncome, StreetMediaDto } from '../shared/forms/GoogleSuggest/GoogleSuggest';
 import { AppState, WizardStep } from './AppState';
 
 export type AppStoreApi = StoreActionApi<AppState>;
@@ -15,6 +15,12 @@ export const actions = {
     setState({
       ...getState(),
       address,
+    });
+  },
+  setAdressMedia: (addressMedia: StreetMediaDto) => ({ setState, getState }: AppStoreApi) => {
+    setState({
+      ...getState(),
+      media: addressMedia,
     });
   },
   completeStep: (wizardStep: WizardStep) => ({ setState, getState }: AppStoreApi) => {

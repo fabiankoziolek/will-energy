@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using WillEnergy.Application.Samples.Infrastructure.Repositories;
@@ -21,7 +23,7 @@ namespace WillEnergy.Infrastructure.Persistence.Repositories.Read
         public async Task<Street> FindByName(string name)
         {
             return await Context.Streets
-                .FirstOrDefaultAsync(x => x.Name.Contains(name, System.StringComparison.InvariantCulture));
+                .FirstOrDefaultAsync(x => x.Name.Contains(name));
         }
     }
 }
