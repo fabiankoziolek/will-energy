@@ -1,3 +1,4 @@
+import { DocumentContract } from '../modules/applicationWizard/ApplicationDto';
 import { GoogleAddressIncome, StreetMediaDto } from '../shared/forms/GoogleSuggest/GoogleSuggest';
 
 export enum HeatingType {
@@ -20,6 +21,7 @@ export type AppState = {
   area: number;
   heatingType?: HeatingType;
   completedApplicationSteps: WizardStep[];
+  application: Partial<DocumentContract>;
   media?: StreetMediaDto;
 };
 
@@ -27,4 +29,5 @@ export const initialState: AppState = {
   address: undefined,
   area: 0,
   completedApplicationSteps: [],
+  application: {},
 };

@@ -6,6 +6,8 @@ import '../../../shared/forms/button.css';
 import { RadioGroupField } from '../../../shared/forms/RadioGroup/RadioGroupField';
 import { Button, Col, Divider, Radio, Row } from 'antd';
 import { useAppContext } from '../../../AppState/AppContext';
+import { EInvestorType, HeatingType } from '../ApplicationDto';
+import { first } from 'lodash';
 
 interface IApplicantDetailsStepProps {
   onCompleted: () => void;
@@ -15,7 +17,7 @@ type FormValues = {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  typdzialanosci: string;
+  investorType: EInvestorType;
   streetName: string;
   buildingNumber: string;
   houseNumber: string;
@@ -27,7 +29,7 @@ const FormSchema = Yup.object().shape<FormValues>({
   firstName: Yup.string().required(),
   lastName: Yup.string().required(),
   phoneNumber: Yup.string().required(),
-  typdzialanosci: Yup.string().required(),
+  investorType: Yup.number().required(),
   streetName: Yup.string().required(),
   buildingNumber: Yup.string().required(),
   houseNumber: Yup.string(),
@@ -36,10 +38,24 @@ const FormSchema = Yup.object().shape<FormValues>({
 });
 
 export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompleted }) => {
-  const [state] = useAppContext();
+  const [state, actions] = useAppContext();
 
   const onSubmit = (form: FormValues) => {
     console.log(form); // TODO: fill state
+    const { firstName, lastName, city, buildingNumber, streetName, bankNumber, investorType, phoneNumber } = form;
+
+    actions.updateApplication({
+      name: `${firstName} ${lastName}`,
+      addressDetails: { city, buildingNumber, streetName, postCode: '' }, //postCode: ''
+      correspondenceAddressDetails: { city, buildingNumber, streetName, postCode: '' }, //postCode: ''
+      investorType,
+      email: '',//email: ''
+      phoneNumber,
+      bankDetails: {
+        name: '', //Lack of name in form 
+        number: bankNumber,
+      },
+    });
     onCompleted();
   };
 
@@ -52,7 +68,7 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
           firstName: '',
           lastName: '',
           phoneNumber: '',
-          typdzialanosci: 'Brak',
+          investorType: EInvestorType.Undefined,
           streetName: state.address?.street || '',
           buildingNumber: state.address?.buildingNumber || '',
           houseNumber: state.address?.houseNumber || '',
@@ -94,23 +110,23 @@ export const ApplicantDetails: React.FC<IApplicantDetailsStepProps> = ({ onCompl
               Telefon
             </InputField>
             <RadioGroupField
-              id="typdzialanosci"
-              value={values.typdzialanosci}
-              name="typdzialanosci"
+              id="investorType"
+              value={values.investorType as any}
+              name="investorType"
               onChange={setFieldValue}
               items={() => (
                 <>
                   <Row>
-                    <Radio value="Brak">Brak</Radio>
+                    <Radio value={EInvestorType.Undefined}>Brak</Radio>
                   </Row>
                   <Row>
-                    <Radio value="Gospodarcza">Działalność gospodarcza</Radio>
+                    <Radio value={EInvestorType.PrivateIndividual}>Działalność gospodarcza</Radio>
                   </Row>
                   <Row>
-                    <Radio value="Rolnicza">Działalność rolnicza</Radio>
+                    <Radio value={EInvestorType.Farmer}>Działalność rolnicza</Radio>
                   </Row>
                   <Row>
-                    <Radio value="Rybolowstwo">Działalność w zakresie rybołówstwa i akwakultury</Radio>
+                    <Radio value={EInvestorType.Fisherman}>Działalność w zakresie rybołówstwa i akwakultury</Radio>
                   </Row>
                 </>
               )}
