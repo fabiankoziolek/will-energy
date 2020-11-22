@@ -1,4 +1,5 @@
 import { StoreActionApi } from 'react-sweet-state';
+import { DocumentContract } from '../modules/applicationWizard/ApplicationDto';
 import { GoogleAddressIncome } from '../shared/forms/GoogleSuggest/GoogleSuggest';
 import { AppState, WizardStep } from './AppState';
 
@@ -35,6 +36,12 @@ export const actions = {
     setState({
       ...getState(),
       completedApplicationSteps: completedApplicationSteps.splice(0, completedApplicationSteps.indexOf(wizardStep)),
+    });
+  },
+  updateApplication: (application: Partial<DocumentContract>) => ({ setState, getState }: AppStoreApi) => {
+    setState({
+      ...getState(),
+      application: { ...getState().application, ...application },
     });
   },
 };

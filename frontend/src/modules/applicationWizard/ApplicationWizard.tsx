@@ -7,6 +7,8 @@ import './ApplicationWizard.css';
 import { ApplicantDetails } from './applicantDetails/ApplicantDetails';
 import { PropertyDetails } from './propertyDetails/PropertyDetails';
 import { CharacteristicsOfWorks } from './characteristicsOfWorks/CharacteristicsOfWorks';
+import axios, { AxiosResponse } from 'axios';
+import { DocumentContract } from './ApplicationDto';
 
 const { Panel } = Collapse;
 
@@ -20,6 +22,17 @@ export const ApplicationWizard = () => {
 
     setActiveStep(state.completedApplicationSteps[state.completedApplicationSteps.length - 1] + 1);
   }, [state.completedApplicationSteps.length]);
+
+  const generateApplication = async () => {
+    const x = await axios.post<DocumentContract, AxiosResponse<Blob>>(`http://localhost:5000/api/forms`, state.application, { responseType: 'blob' });
+
+    const url = window.URL.createObjectURL(new Blob([x.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'wniosek.zip');
+    document.body.appendChild(link);
+    link.click();
+  };
 
   return (
     <div className="ApplicationWizard">
@@ -109,13 +122,25 @@ export const ApplicationWizard = () => {
               disabled={!isCompleted(WizardStep.CharacteristicsOfWorks)}
             >
               <div className="ApplicationWizard__summary">
-                <h5>Twój wniosek jest gotowy</h5>
+                <h5 className="ApplicationWizard__subtitle">Twój wniosek jest gotowy</h5>
                 <p>
                   Podpisany wniosek wraz z wszystkimi załącznikami złóż w Kancelarii Urzędu Miasta (budynek nr 2) przy ul. Złotnickiego 12.
                 </p>
-                <Button className="Button" type="primary" onClick={() => actions.completeStep(WizardStep.Summary)}>
-                  Pobierz wypełniony wniosek
-                </Button>
+
+                <Row>
+                  <Col offset={14} span={10}>
+                    <Button
+                      className="Button"
+                      type="primary"
+                      onClick={async () => {
+                        console.log('asd');
+                        await generateApplication();
+                      }}
+                    >
+                      Pobierz wypełniony wniosek
+                    </Button>
+                  </Col>
+                </Row>
               </div>
             </Panel>
           </Collapse>
