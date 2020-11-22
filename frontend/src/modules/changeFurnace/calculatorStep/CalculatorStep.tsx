@@ -5,7 +5,7 @@ import { InputField } from '../../../shared/forms/Input/InputField';
 import { HeatingType } from '../../../AppState/AppState';
 import axios from 'axios';
 import { Line } from '@reactchartjs/react-chart.js';
-import { range, chunk, sum } from 'lodash';
+import { range, chunk, sum, max } from 'lodash';
 import { Button, Col, Row } from 'antd';
 import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
@@ -18,14 +18,14 @@ interface ICalculatorStepProps {
 }
 
 const initialFormValues = {
-  buildingArea: '50',
+  buildingArea: 50,
   heatingType: 'NetworkNaturalGas', //TODO: wybierz najtańsze
 };
 
 type FormValues = typeof initialFormValues;
 
 const FormSchema = Yup.object().shape<FormValues>({
-  buildingArea: Yup.string().required('Powierzchnia budynku jest wymagana'),
+  buildingArea: Yup.number().required('Powierzchnia budynku jest wymagana').min(20, 'Minimalna wartośc to 20'),
   heatingType: Yup.string().required(),
 });
 
@@ -83,6 +83,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
           id: 'y-axis-' + index,
           ticks: {
             beginAtZero: true, // minimum value will be 0.
+            suggestedMax: 45000,
           },
           gridLines: {
             display: false,
@@ -149,7 +150,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
                       <InputField
                         id="BuildingArea"
                         type="number"
-                        value={values.buildingArea}
+                        value={values.buildingArea + ""}
                         name="buildingArea"
                         onChange={setFieldValue}
                         onFocus={setFieldTouched}

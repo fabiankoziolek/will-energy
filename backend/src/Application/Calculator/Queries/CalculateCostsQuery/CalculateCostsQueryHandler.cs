@@ -53,27 +53,27 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
                 new ReportHeatingType
                 {
                     Type = HeatingType.NetworkNaturalGas.ToString(),
-                    CostRecords = PrepareReports(installationCostForNetworkNaturalGas, monthlyCostForNetworkNaturalGas, 101),
+                    CostRecords = PrepareReports(installationCostForNetworkNaturalGas, monthlyCostForNetworkNaturalGas, 2),
                 },
                 new ReportHeatingType
                 {
                     Type = HeatingType.LiquefiedNaturalGas.ToString(),
-                    CostRecords = PrepareReports(installationCostForLiquefiedNaturalGas, monthlyCostForLiquefiedNaturalGas, 102),
+                    CostRecords = PrepareReports(installationCostForLiquefiedNaturalGas, monthlyCostForLiquefiedNaturalGas, 3),
                 },
                 new ReportHeatingType
                 {
                     Type = HeatingType.Biomass.ToString(),
-                    CostRecords = PrepareReports(installationCostForBiomass, monthlyCostForBiomass, 102),
+                    CostRecords = PrepareReports(installationCostForBiomass, monthlyCostForBiomass, 2),
                 },
                 new ReportHeatingType
                 {
                     Type = HeatingType.Electricity.ToString(),
-                    CostRecords = PrepareReports(installationCostForElectricity, monthlyCostForElectricity, 112),
+                    CostRecords = PrepareReports(installationCostForElectricity, monthlyCostForElectricity, 12),
                 },
                 new ReportHeatingType
                 {
                     Type = HeatingType.NetworkHeat.ToString(),
-                    CostRecords = PrepareReports(installationCostForNetworkHeat, monthlyCostForNetworkHeat, 103),
+                    CostRecords = PrepareReports(installationCostForNetworkHeat, monthlyCostForNetworkHeat, 3),
                 },
             };
 
@@ -82,13 +82,12 @@ namespace WillEnergy.Application.Calculator.Queries.CalculateCostsQuery
 
         private static IList<HeatingCostRecord> PrepareReports(double installationCost, double monthlyCost, double modifier)
         {
-            var startingValue = installationCost + monthlyCost;
             var now = DateTimeOffset.UtcNow;
             var records = new List<HeatingCostRecord>();
             for (var i = 0; i < 15; i++)
             {
                 records.Add(new HeatingCostRecord
-                    { Date = now.AddYears(i), Cost = startingValue + (i * modifier / 100) * (i * monthlyCost) });
+                    { Date = now.AddYears(i), Cost = installationCost + (i * modifier / 100) * (i * monthlyCost) + (i * monthlyCost) });
             }
 
             return records;

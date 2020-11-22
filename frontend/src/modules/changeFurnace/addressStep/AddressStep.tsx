@@ -1,8 +1,9 @@
 import { Button, Checkbox, Col, Input, Row } from 'antd';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { useAppContext } from '../../../AppState/AppContext';
-import { GoogleAddressIncome, GoogleSuggest } from '../../../shared/forms/GoogleSuggest/GoogleSuggest';
+import { GoogleAddressIncome, GoogleSuggest, StreetMediaDto } from '../../../shared/forms/GoogleSuggest/GoogleSuggest';
 import './AddressStep.css';
 import '../../../shared/forms/consent.css';
 import '../../../shared/forms/button.css';
@@ -16,6 +17,13 @@ export const AddressStep: React.FC<IAddressStepProps> = (props) => {
   const [isPrivacyPolicyAccepted, setPrivacyPolicy] = React.useState(false);
 
   const [state, actions] = useAppContext();
+
+  const handleSubmitAdress = async () => {
+    const street = state?.address?.street ?? '';
+    const x = await axios.get<StreetMediaDto>(`http://localhost:5001/api/StreetMedia?streetName=${street}`);
+    actions.setAdressMedia(x.data);
+    props.goToNextStep();
+  };
 
   return (
     <div className="AddressStep">
@@ -38,7 +46,7 @@ export const AddressStep: React.FC<IAddressStepProps> = (props) => {
             <Col span={6}>
               <Button
                 disabled={!(isPrivacyPolicyAccepted && !!state.address)}
-                onClick={() => props.goToNextStep()}
+                onClick={() => handleSubmitAdress()}
                 className="Button"
                 type="primary"
               >
