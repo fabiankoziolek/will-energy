@@ -1,4 +1,15 @@
 .AddressStep {
+  position: relative;
+  min-height: calc(100vh - 295px);
+
+  & .AddressStep__messageImage {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+
   & .AddressStep__title {
     @mixin h3;
     font-weight: 900;

@@ -28,3 +28,7 @@ body {
 .visuallyHidden {
   @mixin visuallyHidden;
 }
+
+.ant-popover {
+  max-width: 268px;
+}

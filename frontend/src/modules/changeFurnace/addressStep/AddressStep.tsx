@@ -8,6 +8,7 @@ import './AddressStep.css';
 import '../../../shared/forms/consent.css';
 import '../../../shared/forms/button.css';
 import { routes } from '../../../routes';
+import imgCalculator from '../../../static/images/img-calculator.svg';
 
 interface IAddressStepProps {
   goToNextStep: () => void;
@@ -56,6 +57,7 @@ export const AddressStep: React.FC<IAddressStepProps> = (props) => {
           </Row>
         </Col>
       </Row>
+      <img className="AddressStep__messageImage" src={imgCalculator} alt="" />
     </div>
   );
 };

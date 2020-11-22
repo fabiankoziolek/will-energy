@@ -8,3 +8,4 @@ _ReSharper*/
 .DS_Store
 Thumbs.db
 $RECYCLE.BIN/
+*.Development.json

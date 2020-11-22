@@ -1,358 +1,101 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import * as React from 'react';
-import { Field, Form, Formik, FormikProps } from 'formik';
-import classNames from 'classnames';
-import * as Yup from 'yup';
-import { isEmpty } from 'lodash';
-import { SelectOption, SelectField } from '../../shared/forms/Select/SelectField';
-import { DatePickerField } from '../../shared/forms/DatePicker/DatePickerField';
-import { GoogleAddressIncome, GoogleSuggest } from '../../shared/forms/GoogleSuggest/GoogleSuggest';
 import './WelcomePage.css';
+import imgLanding from '../../static/images/img-person-bounds.svg';
+import { routes } from '../../routes';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Col, Popover, Row } from 'antd';
+import * as Icon from 'react-feather';
 
-const initialFormValues = {
-  email: '',
-  password: '',
-  address: '',
-  select: '',
-  date: '',
-  date2: '',
-  check: false,
-  check2: true,
-  radio: '',
-};
-
-type FormValues = typeof initialFormValues;
-
-const FormSchema = Yup.object().shape<FormValues>({
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().required('Required'),
-  address: Yup.string().required('Required'),
-  select: Yup.string().required('Required'),
-  date: Yup.string().required('Required'),
-  date2: Yup.string().required('Required'),
-  check: Yup.boolean().required('Required'),
-  check2: Yup.boolean().required('Required'),
-  radio: Yup.string().required('Required'),
-});
-
-const sampleOptions: SelectOption[] = [
-  {
-    label: 'Undefined',
-    value: 'Undefined',
-  },
-  {
-    label: 'Other',
-    value: 'Other',
-  },
-];
+interface SensorResultDto {
+  longtitude: number;
+  latitude: number;
+  currentValuePm10: string;
+  currentValuePm25: string;
+  currentColourPm10: string;
+  currentColourPm25: string;
+  currentOrderNumberPm10: number;
+  currentOrderNumberPm25: number;
+  forecastedValuePm10: string;
+  forecastedValuePm25: string;
+  forecastedColourPm10: string;
+  forecastedColourPm25: string;
+  forecastedOrderNumberPm10: number;
+  forecastedOrderNumberPm25: number;
+  forecastedDateTime: string;
+  street: string;
+  buildingNumber: string;
+  pm1: number;
+  pm25: number;
+  pm1number: number;
+  temperatura: number;
+  predkoscMax: number;
+  dataGodzina: string;
+  measurements: [null];
+  predkosc: string;
+  caqiPm25: number;
+  caqiPm10: number;
+}
 
 export const WelcomePage = () => {
-  const onSubmit = (form: FormValues) => {
-    console.log(form);
+  const [sensorResult, setSensorResult] = React.useState<SensorResultDto>();
+
+  React.useEffect(() => {
+    axios.get<SensorResultDto>('http://localhost:5000/api/Sensors/Worst').then((x) => {
+      setSensorResult(x.data);
+      console.log(x.data)
+    });
+  }, []);
+
+  const getSensorTextOpinion = (result: number) => {
+    if (result > 75) {
+      return 'Jakość powietrza jest zła';
+    }
+
+    if (result > 50) {
+      return 'Jakość powietrza nie jest dzisiaj najlepsza';
+    }
+
+    return 'Jakość powietrza jest w porzadku';
   };
 
   return (
-    <Formik
-      validationSchema={FormSchema}
-      initialValues={initialFormValues}
-      onSubmit={onSubmit}
-      render={({ errors, touched, values, setFieldValue, setFieldTouched }: FormikProps<FormValues>) => (
-        <Form className="WelcomePage">
-          <div className="FormGroup">
-            <Field
-              type="email"
-              name="email"
-              id="email"
-              className={classNames('FormControl FormControl--large', {
-                'FormControl--invalid': touched.email && errors.email,
-              })}
-            />
-            <div className="FormInvalidFeedback">{errors.email}</div>
+    <section className="WelcomePage">
+      <Row>
+        <Col offset={10} span={8} style={{ position: "relative", zIndex: 5 }}>
+          <p className="WelcomePage__info">
+            Prawie 70% domów wciąż ogrzewane jest piecami węglowymi. <br />
+            <br /> Zyskaj nawet <strong>5 000 zł</strong> na wymianę swojego pieca dzięki dofinansowaniu z programu{' '}
+            <strong>Stop smog</strong>
+          </p>
+          <Link className="LinkAsButton" to={routes.changeFurnace}>
+            Dowiedz się więcej
+          </Link>
+        </Col>
+      </Row>
+      {!!sensorResult && (
+        <div className="WelcomePage__messageBox">
+          <h2 className="WelcomePage__messageTitle">Aktualna Jakość powietrza</h2>
+          <h3 className="WelcomePage__city">Zduńska Wola</h3>
+          <h4 className="WelcomePage__street">Ul. {sensorResult.street}</h4>
+          <div className="WelcomePage__measureResult">
+            <h5>{sensorResult.caqiPm10}</h5>
+            <p>
+              CAQI (PM10) <br />
+              /100
+            </p>
           </div>
-          Address input:
-          <GoogleSuggest
-            placeholder="Wpisz swój adres, np. Cicha 12, Zduńska Wola"
-            onSelect={(value: GoogleAddressIncome) => console.log(value)}
-          />
-          <div className="FormGroup">
-            <label htmlFor="password">Etternavn</label>
-            <Field
-              type="password"
-              name="password"
-              id="password"
-              className={classNames('FormControl', {
-                'FormControl--invalid': touched.password && errors.password,
-              })}
-            />
-          </div>
-          <div className="FormGroup">
-            <label htmlFor="address">Adresse</label>
-            <Field
-              type="text"
-              name="address"
-              id="address"
-              className={classNames('FormControl', {
-                'FormControl--invalid': touched.address && errors.address,
-              })}
-              disabled={true}
-              placeholder="placeholder text"
-            />
-          </div>
-          <div className="FormGroup">
-            <label>Build in checkbox and radio</label>
-            <div className="FormCheck">
-              <Field
-                type="checkbox"
-                name="check"
-                id="check1"
-                className={classNames('FormCheck__input', {
-                  'FormControl--invalid': touched.check && errors.check,
-                })}
-              />
-              <label className="FormCheck__label" htmlFor="check1">
-                Check this custom checkbox
-              </label>
-            </div>
-            <div className="FormCheck">
-              <Field
-                type="checkbox"
-                name="check2"
-                id="check2"
-                className={classNames('FormCheck__input', {
-                  'FormControl--invalid': touched.check2 && errors.check2,
-                })}
-                disabled={true}
-              />
-              <label className="FormCheck__label" htmlFor="check2">
-                Do not click this custom disabled checkbox
-              </label>
-            </div>
-            <div className="FormGroup">
-              <label id="">Build in Select</label>
-              <select className="FormControl" defaultValue="" name="" id="">
-                <option disabled value="">
-                  Select...
-                </option>
-                {sampleOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="FormGroup">
-              <label>Custom Select</label>
-              <select className="FormCustomSelect" defaultValue="" name="" id="">
-                <option disabled value="">
-                  Select...
-                </option>
-                {sampleOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="FormGroup">
-              <label>Custom React Select</label>
-              <SelectField
-                id=""
-                options={sampleOptions}
-                isSearchable={false}
-                name="select"
-                value={values.select}
-                onChange={setFieldValue}
-                onFocus={setFieldTouched}
-                className={classNames('FormControlSelect', {
-                  'FormControl--invalid': touched.select && errors.select,
-                })}
-              />
-            </div>
-            <div className="FormGroup">
-              <label>Custom Select disabled</label>
-              <SelectField
-                id=""
-                options={sampleOptions}
-                isSearchable={false}
-                name="select"
-                value={values.select}
-                onChange={setFieldValue}
-                onFocus={setFieldTouched}
-                className={classNames('FormControlSelect', {
-                  'FormControl--invalid': touched.select && errors.select,
-                })}
-                disabled={true}
-                placeholder="Select placeholder"
-              />
-            </div>
-            <div className="FormGroup">
-              <label>Date</label>
-              <DatePickerField
-                id=""
-                name="date2"
-                value={values.date2}
-                onChange={setFieldValue}
-                onFocus={setFieldTouched}
-                className={classNames('FormControl', {
-                  'FormControl--invalid': touched.date2 && errors.date2,
-                })}
-              />
-            </div>
-            <div className="FormGroup">
-              <label>Date disabled</label>
-              <DatePickerField
-                id=""
-                name="date"
-                value={values.date}
-                onChange={setFieldValue}
-                onFocus={setFieldTouched}
-                className={classNames('FormControl', {
-                  'FormControl--invalid': touched.date && errors.date,
-                })}
-                disabled={true}
-                placeholder="Date placeholder"
-              />
-            </div>
-          </div>
-          <div className="FormGroup">
-            <div className="FormCheck">
-              <Field
-                type="radio"
-                name="radio"
-                value="value1"
-                id="radio1"
-                className={classNames('FormCheck__input', {
-                  'FormControl--invalid': touched.radio && errors.radio,
-                })}
-              />
-              <label className="FormCheck__label" htmlFor="radio1">
-                Toggle this custom radio
-              </label>
-            </div>
-            <div className="FormCheck">
-              <Field
-                type="radio"
-                name="radio"
-                value="value2"
-                id="radio2"
-                className={classNames('FormCheck__input', {
-                  'FormControl--invalid': touched.radio && errors.radio,
-                })}
-              />
-              <label className="FormCheck__label" htmlFor="radio2">
-                Or toggle this other custom radio
-              </label>
-            </div>
-            <div className="FormCheck">
-              <Field
-                type="radio"
-                name="radio"
-                value="value3"
-                id="radio3"
-                className={classNames('FormCheck__input', {
-                  'FormControl--invalid': touched.radio && errors.radio,
-                })}
-                disabled={true}
-              />
-              <label className="FormCheck__label" htmlFor="radio3">
-                Sorry this one is disabled
-              </label>
-            </div>
-          </div>
-          <div className="FormGroup">
-            <label>Custom checkbox and radio</label>
-            <div className="FormCustomControl FormCustomControl--check">
-              <Field
-                type="checkbox"
-                name="check"
-                id="customCheck1"
-                className={classNames('FormCustomControl__input', {
-                  'FormControl--invalid': touched.check && errors.check,
-                })}
-              />
-              <label className="FormCustomControl__label" htmlFor="customCheck1">
-                Check this custom checkbox
-              </label>
-            </div>
-            <div className="FormCustomControl FormCustomControl--switch">
-              <Field
-                type="checkbox"
-                name="check"
-                id="switch1"
-                className={classNames('FormCustomControl__input', {
-                  'FormControl--invalid': touched.check && errors.check,
-                })}
-              />
-              <label className="FormCustomControl__label" htmlFor="switch1">
-                Toggle custom switch
-              </label>
-            </div>
-            <div className="FormCustomControl FormCustomControl--check">
-              <Field
-                type="checkbox"
-                name="check2"
-                id="customCheck2"
-                className={classNames('FormCustomControl__input', {
-                  'FormControl--invalid': touched.check2 && errors.check2,
-                })}
-                disabled={true}
-              />
-              <label className="FormCustomControl__label" htmlFor="customCheck2">
-                Do not click this custom disabled checkbox
-              </label>
-            </div>
-          </div>
-          <div className="FormGroup">
-            <div className="FormCustomControl FormCustomControl--radio">
-              <Field
-                type="radio"
-                name="radio"
-                value="value1"
-                id="customRadio1"
-                className={classNames('FormCustomControl__input', {
-                  'FormControl--invalid': touched.radio && errors.radio,
-                })}
-              />
-              <label className="FormCustomControl__label" htmlFor="customRadio1">
-                Toggle this custom radio
-              </label>
-            </div>
-            <div className="FormCustomControl FormCustomControl--radio">
-              <Field
-                type="radio"
-                name="radio"
-                value="value2"
-                id="customRadio2"
-                className={classNames('FormCustomControl__input', {
-                  'FormControl--invalid': touched.radio && errors.radio,
-                })}
-              />
-              <label className="FormCustomControl__label" htmlFor="customRadio2">
-                Or toggle this other custom radio
-              </label>
-            </div>
-            <div className="FormCustomControl FormCustomControl--radio">
-              <Field
-                type="radio"
-                name="radio"
-                value="value3"
-                id="customRadio3"
-                className={classNames('FormCustomControl__input', {
-                  'FormControl--invalid': touched.radio && errors.radio,
-                })}
-                disabled={true}
-              />
-              <label className="FormCustomControl__label" htmlFor="customRadio3">
-                Sorry this one is disabled
-              </label>
-            </div>
-          </div>
-          <button type="submit" className="Button" disabled={!isEmpty(errors) || isEmpty(touched)}>
-            Gå videre
-          </button>
-          <pre style={{ whiteSpace: 'pre-wrap', lineBreak: 'anywhere', fontSize: '12px' }}>{JSON.stringify(errors)}</pre>
-        </Form>
+          <p className="WelcomePage__text">{getSensorTextOpinion(sensorResult.caqiPm10)}</p>
+          <Popover
+            placement="bottom"
+            content="CAQI to wskaźnik godzinowej jakości powietrza. Im wyższą ma wartość, tym bardziej zanieczyszczone jest powietrze, którym oddychasz."
+            trigger="hover"
+          >
+            <Icon.Info className="WelcomePage__infoIcon" />
+          </Popover>
+        </div>
       )}
-    />
+      <img className="WelcomePage__backgroundImage" src={imgLanding} alt="" />
+    </section>
   );
 };

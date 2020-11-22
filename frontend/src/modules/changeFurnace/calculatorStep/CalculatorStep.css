@@ -1,6 +1,14 @@
 .CalculatorStep {
   & .CalculatorStep__message {
+    position: relative;
     min-height: calc(100vh - 304px);
+
+    & .CalculatorStep__messageImage {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      pointer-events: none;
+    }
 
     & .CalculatorStep__messageTitle {
       @mixin h3;

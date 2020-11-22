@@ -11,6 +11,7 @@ import './CalculatorStep.css';
 import '../../../shared/forms/button.css';
 import * as Icon from 'react-feather';
 import classNames from 'classnames';
+import imgCalculator from '../../../static/images/img-calculator.svg';
 
 interface ICalculatorStepProps {
   goToNextStep: () => void;
@@ -136,6 +137,7 @@ export const CalculatorStep: React.FC<ICalculatorStepProps> = ({ availableTypes,
             </p>
           </Col>
         </Row>
+        <img className="CalculatorStep__messageImage" src={imgCalculator} alt="" />
       </div>
       <div className="CalculatorStep__messageFooter" />
       <div className="CalculatorStep__calculator">

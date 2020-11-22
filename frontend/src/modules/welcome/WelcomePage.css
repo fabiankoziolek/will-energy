@@ -1,5 +1,81 @@
 .WelcomePage {
-  width: 100%;
-  max-width: 500px;
-  margin: 50px auto;
+  position: relative;
+  min-height: calc(100vh - 152px);
+
+  & .WelcomePage__info {
+    margin-bottom: 48px;
+  }
+
+  & .WelcomePage__messageBox {
+    display: none;
+
+    @media (--desktop) {
+      display: block;
+      top: 160px;
+      left: 200px;
+      width: 392px;
+      position: fixed;
+      padding: 40px 40px 120px;
+      border-radius: 4px;
+      background-color: var(--backgroundGreyColor);
+      z-index: 5;
+    }
+
+    & .WelcomePage__infoIcon {
+      position: absolute;
+      bottom: 42px;
+      right: 42px;
+      stroke: var(--primaryBlue);
+    }
+
+    & .WelcomePage__messageTitle {
+      @mixin b1;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primaryBlue);
+    }
+
+    & .WelcomePage__city {
+      @mixin h3;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    & .WelcomePage__street {
+      @mixin h5;
+      color: var(--textSecondary);
+      margin: 0 0 24px;
+    }
+
+    & .WelcomePage__measureResult {
+      display: flex;
+      margin-bottom: 32px;
+
+      & h5 {
+        @mixin h1;
+        line-height: 56px;
+        font-weight: 900;
+        margin: 0 8px 0 0;
+      }
+
+      & p {
+        @mixin h5;
+        color: var(--textTertiary);
+        margin: 0;
+      }
+    }
+
+    & .WelcomePage__text {
+      @mixin b2;
+      color: var(--textSecondary);
+    }
+  }
+
+  & .WelcomePage__backgroundImage {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -14px;
+    z-index: 1;
+  }
 }

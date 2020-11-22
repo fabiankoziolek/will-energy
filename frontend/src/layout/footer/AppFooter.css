@@ -2,6 +2,8 @@
   background: #2c3255;
   position: relative;
   height: var(--footerHeight);
+  padding-top: 40px;
+
   & .AppFooter__links {
     height: 184px;
   }
