@@ -74,10 +74,6 @@ namespace WillEnergy.WebUI
             }
 
             app.UseStaticFiles();
-            if (!_environment.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
 
             app.UseCors(builder => builder
                 .SetIsOriginAllowed(isOriginAllowed => true)
